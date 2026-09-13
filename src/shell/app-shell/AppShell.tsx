@@ -1,47 +1,37 @@
 import { useEffect, useMemo, useState, type ReactNode } from "react";
 import {
   BookOpen,
-  CalendarDays,
   ChevronDown,
   ChevronRight,
   CircleHelp,
-  Component,
-  FileCode2,
-  FolderOpen,
-  LayoutDashboard,
-  Layers3,
   Menu,
   Moon,
   MoreHorizontal,
   PanelLeft,
-  Palette,
   Search,
   Settings2,
   Sun,
-  Table2,
-  Type,
   X,
 } from "lucide-react";
 import { cn } from "../../lib/cn";
 import { Breadcrumb } from "../breadcrumb/Breadcrumb";
 import { componentRegistry } from "../../components/docs/component-registry";
 
-type Icon = typeof LayoutDashboard;
 export type ShellNavItem = { label: string; url: string };
 export type ShellNavGroup = {
   label: string;
-  items: Array<ShellNavItem & { description?: string; icon?: Icon }>;
+  items: Array<ShellNavItem & { description?: string }>;
 };
 export type ShellTheme = "light" | "dark" | "system";
 
 const registryGroups = Array.from(new Set(componentRegistry.map((item) => item.group)));
 const defaultGroups: ShellNavGroup[] = [
-  { label: "Workspace", items: [{ label: "Overview", url: "/", icon: LayoutDashboard, description: "Catalog summary" }] },
+  { label: "Workspace", items: [{ label: "Overview", url: "/", description: "Catalog summary" }] },
   ...registryGroups.map((group) => ({
     label: group,
-    items: componentRegistry.filter((item) => item.group === group).map((item) => ({ label: item.name, url: item.path, icon: Component, description: `${item.variants.length} documented variation${item.variants.length === 1 ? "" : "s"}` })),
+    items: componentRegistry.filter((item) => item.group === group).map((item) => ({ label: item.name, url: item.path, description: `${item.variants.length} documented variation${item.variants.length === 1 ? "" : "s"}` })),
   })),
-  { label: "Resources", items: [{ label: "Usage guide", url: "/docs/usage", icon: BookOpen, description: "How to consume a remote module" }, { label: "Contracts", url: "/docs/contracts", icon: FileCode2, description: "Consumer-facing interfaces" }] },
+  { label: "Resources", items: [{ label: "Usage guide", url: "/docs/usage", description: "How to consume a remote module" }, { label: "Contracts", url: "/docs/contracts", description: "Consumer-facing interfaces" }] },
 ];
 
 function resolveTheme(theme: ShellTheme): "light" | "dark" {
@@ -110,7 +100,7 @@ export function AppShell({
             const hasNested = group.items.length > 1;
             return <section className="edjavu-nav-group" key={group.label}>
               {sidebarOpen && <button type="button" className="edjavu-nav-group-label" onClick={() => hasNested && setExpanded((value) => ({ ...value, [group.label]: !isExpanded }))}><span>{group.label}</span>{hasNested && (isExpanded ? <ChevronDown size={14} /> : <ChevronRight size={14} />)}</button>}
-              {isExpanded && <nav className="edjavu-nav-list">{group.items.map((item) => { const Icon = item.icon ?? Component; const active = isActive(item.url, currentPath); return <button type="button" key={item.url} className={cn("edjavu-nav-item", active && "is-active")} onClick={() => navigate(item.url)} title={sidebarOpen ? item.description : item.label}><Icon size={17} /><span className="edjavu-nav-copy"><strong>{item.label}</strong>{sidebarOpen && item.description && <small>{item.description}</small>}</span></button>; })}</nav>}
+              {isExpanded && <nav className="edjavu-nav-list">{group.items.map((item) => { const active = isActive(item.url, currentPath); return <button type="button" key={item.url} className={cn("edjavu-nav-item", active && "is-active")} onClick={() => navigate(item.url)} title={sidebarOpen ? item.description : item.label}><span className="edjavu-nav-copy"><strong>{item.label}</strong>{sidebarOpen && item.description && <small>{item.description}</small>}</span></button>; })}</nav>}
             </section>;
           })}
         </div>

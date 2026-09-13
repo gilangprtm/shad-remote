@@ -166,7 +166,8 @@
 .edjavu-nav-group { margin-top: 22px; }
 .edjavu-nav-group-label { display: flex; width: 100%; align-items: center; justify-content: space-between; border: 0; background: transparent; color: var(--muted-foreground); padding: 0 9px 8px; font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; cursor: pointer; }
 .edjavu-nav-list { display: grid; gap: 3px; }
-.edjavu-nav-item, .edjavu-preference-link { display: flex; width: 100%; min-height: 44px; align-items: center; gap: 10px; border: 0; border-radius: 7px; background: transparent; color: var(--sidebar-foreground); padding: 8px 10px; text-align: left; cursor: pointer; }
+.edjavu-nav-item { display: flex; width: 100%; min-height: 44px; align-items: center; gap: 10px; border: 0; border-radius: 7px; background: transparent; color: var(--sidebar-foreground); padding: 8px 10px 8px 18px; text-align: left; cursor: pointer; }
+.edjavu-preference-link { display: flex; width: 100%; min-height: 44px; align-items: center; gap: 10px; border: 0; border-radius: 7px; background: transparent; color: var(--sidebar-foreground); padding: 8px 10px; text-align: left; cursor: pointer; }
 .edjavu-nav-item:hover, .edjavu-nav-item.is-active { background: var(--sidebar-accent); color: var(--sidebar-accent-foreground); }
 .edjavu-nav-item.is-active { box-shadow: inset 2px 0 0 var(--sidebar-primary); }
 .edjavu-nav-copy { min-width: 0; flex: 1; }
