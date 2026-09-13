@@ -1,0 +1,1 @@
+import type { NavigationAdapter } from "./navigation"; export interface PlatformContracts { navigation?: NavigationAdapter; }

@@ -1,0 +1,1 @@
+export function RemoteFallback({label}:{label:string}){return <div className="edjavu-error">Failed to load remote {label}. Remote may be unreachable.</div>;}

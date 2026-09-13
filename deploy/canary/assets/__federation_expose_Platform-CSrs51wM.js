@@ -1,0 +1,1 @@
+import{importShared as e}from"./__federation_fn_import-2TbUE80B.js";import{j as n}from"./jsx-runtime-u17CrQMm.js";const{createContext:a,useContext:i}=await e("react"),t=a({});function s({children:r,...o}){return n.jsx(t.Provider,{value:o,children:r})}function f(){return i(t)}export{s as EdjavuPlatformProvider,f as usePlatform};

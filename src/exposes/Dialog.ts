@@ -1,0 +1,1 @@
+export { Dialog } from "../core/dialog/Dialog";

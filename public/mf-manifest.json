@@ -1,0 +1,7 @@
+{
+  "name": "edjavu_ui",
+  "version": "v1",
+  "entry": "remoteEntry.js",
+  "exposes": ["./core", "./composites", "./shell", "./Button", "./Dialog", "./DataTable", "./AppShell", "./platform"],
+  "shared": {"react": {"singleton": true}, "react-dom": {"singleton": true}}
+}

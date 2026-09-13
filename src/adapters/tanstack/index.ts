@@ -1,0 +1,1 @@
+import type { NavigationAdapter } from "../../contracts/navigation"; export function createTanStackAdapter(router:{navigate:(opts:{to:string})=>void;state?:{location?:{pathname?:string}}}):NavigationAdapter{return {navigate:url=>router.navigate({to:url}),isActive:url=>router.state?.location?.pathname===url}}

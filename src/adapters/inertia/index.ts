@@ -1,0 +1,1 @@
+import type { NavigationAdapter } from "../../contracts/navigation"; export function createInertiaAdapter(router:{visit:(url:string)=>void; current:(url?:string)=>boolean}):NavigationAdapter{return {navigate:url=>router.visit(url),isActive:url=>router.current(url)}}

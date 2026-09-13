@@ -1,0 +1,1 @@
+export { EdjavuPlatformProvider, usePlatform } from "../providers/platform-provider"; export type { PlatformContracts } from "../contracts/platform"; export type { NavigationAdapter } from "../contracts/navigation";

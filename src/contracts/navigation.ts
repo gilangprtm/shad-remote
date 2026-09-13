@@ -1,0 +1,1 @@
+export interface NavigationAdapter { navigate(url:string):void; isActive(url:string):boolean; }
