@@ -15,7 +15,7 @@ export { Tabs, TabsList, TabsTrigger, TabsContent } from "../core/tabs/Tabs";
 export { Tooltip } from "../core/tooltip/Tooltip";
 export { Popover } from "../core/popover/Popover";
 export { Alert, AlertDescription } from "../core/alert/Alert";
-export { Avatar, AvatarImage, AvatarFallback } from "../core/avatar/Avatar";
+export { Avatar, AvatarImage, AvatarFallback, AvatarBadge, AvatarGroup, AvatarGroupCount } from "../core/avatar/Avatar";
 export { Toggle } from "../core/toggle/Toggle";
 export { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "../core/accordion/Accordion";
 export { Collapsible, CollapsibleTrigger, CollapsibleContent } from "../core/collapsible/Collapsible";

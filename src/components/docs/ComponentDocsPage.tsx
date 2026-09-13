@@ -9,7 +9,7 @@ import { Select } from "../../core/select/Select";
 import { Switch } from "../../core/switch/Switch";
 import { Checkbox } from "../../core/checkbox/Checkbox";
 import { Alert, AlertDescription } from "../../core/alert/Alert";
-import { Avatar, AvatarFallback } from "../../core/avatar/Avatar";
+import { Avatar, AvatarFallback, AvatarImage, AvatarBadge, AvatarGroup, AvatarGroupCount } from "../../core/avatar/Avatar";
 import { Progress } from "../../core/progress/Progress";
 import { Skeleton } from "../../core/skeleton/Skeleton";
 import { Separator } from "../../core/separator/Separator";
@@ -70,6 +70,20 @@ function ButtonPreview({ variant = "All variants" }: { variant?: string }) {
   return <div className="docs-preview-row docs-preview-centered">{variants[variant] ?? variants.Default}</div>;
 }
 
+function AvatarPreview({ variant = "Basic" }: { variant?: string }) {
+  const avatar = (label: string, size?: "sm" | "lg") => <Avatar size={size}><AvatarFallback>{label}</AvatarFallback></Avatar>;
+  if (variant === "Badge") return <div className="docs-preview-row docs-preview-centered"><Avatar><AvatarFallback>GP</AvatarFallback><AvatarBadge /></Avatar><Avatar><AvatarFallback>MC</AvatarFallback><AvatarBadge className="bg-green-600" /></Avatar></div>;
+  if (variant === "Badge with Icon") return <div className="docs-preview-row docs-preview-centered"><Avatar><AvatarFallback>GP</AvatarFallback><AvatarBadge><Check size={8} /></AvatarBadge></Avatar><Avatar><AvatarFallback>MC</AvatarFallback><AvatarBadge className="bg-green-600"><Check size={8} /></AvatarBadge></Avatar></div>;
+  if (variant === "Avatar Group") return <AvatarGroup className="docs-avatar-group">{avatar("GP")} {avatar("MC")} {avatar("PP")}</AvatarGroup>;
+  if (variant === "Avatar Group Count") return <AvatarGroup className="docs-avatar-group">{avatar("GP")} {avatar("MC")} {avatar("PP")}<AvatarGroupCount>+3</AvatarGroupCount></AvatarGroup>;
+  if (variant === "Avatar Group with Icon") return <AvatarGroup className="docs-avatar-group">{avatar("GP")} {avatar("MC")}<AvatarGroupCount><MoreHorizontal size={15} /></AvatarGroupCount></AvatarGroup>;
+  if (variant === "Sizes") return <div className="docs-preview-row docs-preview-centered">{avatar("S", "sm")}{avatar("M")}{avatar("L", "lg")}</div>;
+  if (variant === "Dropdown") return <DropdownMenu trigger={<Button variant="ghost" size="icon" aria-label="Open account menu"><Avatar size="sm"><AvatarFallback>GP</AvatarFallback></Avatar></Button>}><DropdownMenuItem onSelect={() => undefined}>Account settings</DropdownMenuItem><DropdownMenuItem onSelect={() => undefined}>Sign out</DropdownMenuItem></DropdownMenu>;
+  if (variant === "RTL") return <div className="docs-preview-row docs-preview-centered" dir="rtl"><Avatar><AvatarFallback>ج ب</AvatarFallback><AvatarBadge /></Avatar><AvatarGroup className="docs-avatar-group">{avatar("س")} {avatar("م")}<AvatarGroupCount>+٣</AvatarGroupCount></AvatarGroup></div>;
+  if (variant === "Fallback") return <div className="docs-preview-row docs-preview-centered"><Avatar><AvatarFallback>GP</AvatarFallback></Avatar><Avatar><AvatarImage src="/missing-avatar.png" alt="Gilang Pratama" /><AvatarFallback>GP</AvatarFallback></Avatar></div>;
+  return <div className="docs-preview-row docs-preview-centered"><Avatar><AvatarImage src="https://github.com/shadcn.png" alt="shadcn" /><AvatarFallback>SC</AvatarFallback></Avatar></div>;
+}
+
 function ComponentPreview({ name, variant }: { name: string; variant?: string }) {
   const [checked, setChecked] = useState(false);
   const [tab, setTab] = useState("one");
@@ -78,6 +92,7 @@ function ComponentPreview({ name, variant }: { name: string; variant?: string })
   const [paletteOpen, setPaletteOpen] = useState(false);
   const [uploadFiles, setUploadFiles] = useState<UploadFile[]>([]);
   if (name === "Checkbox") return <CheckboxPreview variant={variant} />;
+  if (name === "Avatar") return <AvatarPreview variant={variant} />;
   if (name === "Alert") return <AlertPreview variant={variant} />;
   if (name === "Input") return <InputPreview variant={variant} />;
   if (name === "Label") return <div className="docs-preview-form"><Label htmlFor="label-preview">Project name</Label><Input id="label-preview" placeholder="Remote UI" /></div>;
