@@ -1,0 +1,1763 @@
+{
+  "generatedAt": "2026-09-13T07:55:28.633Z",
+  "scope": 64,
+  "covered": 5,
+  "incomplete": 59,
+  "rendererMissing": 0,
+  "officialPreviewSections": 393,
+  "missingPreviewSections": 327,
+  "rows": [
+    {
+      "name": "Accordion",
+      "officialPreviewSections": [
+        "Basic",
+        "Multiple",
+        "Disabled",
+        "Borders",
+        "Card",
+        "RTL"
+      ],
+      "localExamples": [
+        "AccordionItem",
+        "AccordionTrigger",
+        "AccordionContent",
+        "Single section"
+      ],
+      "missingSections": [
+        "Basic",
+        "Multiple",
+        "Disabled",
+        "Borders",
+        "Card",
+        "RTL"
+      ],
+      "renderer": true,
+      "status": "incomplete"
+    },
+    {
+      "name": "Alert",
+      "officialPreviewSections": [
+        "Basic",
+        "Destructive",
+        "Action",
+        "Custom Colors",
+        "RTL"
+      ],
+      "localExamples": [
+        "children",
+        "Basic",
+        "Destructive",
+        "Action",
+        "RTL"
+      ],
+      "missingSections": [
+        "Custom Colors"
+      ],
+      "renderer": true,
+      "status": "incomplete"
+    },
+    {
+      "name": "Alert Dialog",
+      "officialPreviewSections": [
+        "Basic",
+        "Small",
+        "Media",
+        "Small with Media",
+        "Destructive",
+        "RTL"
+      ],
+      "localExamples": [
+        "open",
+        "onOpenChange",
+        "title",
+        "Confirmation"
+      ],
+      "missingSections": [
+        "Basic",
+        "Small",
+        "Media",
+        "Small with Media",
+        "Destructive",
+        "RTL"
+      ],
+      "renderer": true,
+      "status": "incomplete"
+    },
+    {
+      "name": "Aspect Ratio",
+      "officialPreviewSections": [
+        "Square",
+        "Portrait",
+        "RTL"
+      ],
+      "localExamples": [
+        "ratio",
+        "children",
+        "Video",
+        "Square"
+      ],
+      "missingSections": [
+        "Portrait",
+        "RTL"
+      ],
+      "renderer": true,
+      "status": "incomplete"
+    },
+    {
+      "name": "Attachment",
+      "officialPreviewSections": [
+        "Image",
+        "States",
+        "Sizes",
+        "Group",
+        "Trigger"
+      ],
+      "localExamples": [
+        "name",
+        "size / type",
+        "action",
+        "Metadata",
+        "Action"
+      ],
+      "missingSections": [
+        "Image",
+        "States",
+        "Sizes",
+        "Group",
+        "Trigger"
+      ],
+      "renderer": true,
+      "status": "incomplete"
+    },
+    {
+      "name": "Avatar",
+      "officialPreviewSections": [
+        "Basic",
+        "Badge",
+        "Badge with Icon",
+        "Avatar Group",
+        "Avatar Group Count",
+        "Avatar Group with Icon",
+        "Sizes",
+        "Dropdown",
+        "RTL"
+      ],
+      "localExamples": [
+        "AvatarImage",
+        "AvatarFallback",
+        "Basic",
+        "Fallback",
+        "Badge",
+        "Badge with Icon",
+        "Avatar Group",
+        "Avatar Group Count",
+        "Avatar Group with Icon",
+        "Sizes",
+        "Dropdown",
+        "RTL"
+      ],
+      "missingSections": [],
+      "renderer": true,
+      "status": "covered"
+    },
+    {
+      "name": "Badge",
+      "officialPreviewSections": [
+        "Variants",
+        "With Icon",
+        "With Spinner",
+        "Link",
+        "Custom Colors",
+        "RTL"
+      ],
+      "localExamples": [
+        "variant",
+        "Variants",
+        "With icon",
+        "With spinner",
+        "Link",
+        "Custom colors",
+        "RTL"
+      ],
+      "missingSections": [],
+      "renderer": true,
+      "status": "covered"
+    },
+    {
+      "name": "Breadcrumb",
+      "officialPreviewSections": [
+        "Basic",
+        "Custom separator",
+        "Dropdown",
+        "Collapsed",
+        "Link component",
+        "RTL"
+      ],
+      "localExamples": [
+        "items",
+        "Default"
+      ],
+      "missingSections": [
+        "Custom separator",
+        "Dropdown",
+        "Collapsed",
+        "Link component",
+        "RTL"
+      ],
+      "renderer": true,
+      "status": "incomplete"
+    },
+    {
+      "name": "Bubble",
+      "officialPreviewSections": [
+        "Variants",
+        "Alignment",
+        "Bubble Group",
+        "Links and Buttons",
+        "Reactions",
+        "Show More / Collapsible",
+        "Tooltip",
+        "Popover"
+      ],
+      "localExamples": [
+        "role",
+        "timestamp",
+        "children",
+        "User",
+        "Assistant"
+      ],
+      "missingSections": [
+        "Variants",
+        "Alignment",
+        "Bubble Group",
+        "Links and Buttons",
+        "Reactions",
+        "Show More / Collapsible",
+        "Tooltip",
+        "Popover"
+      ],
+      "renderer": true,
+      "status": "incomplete"
+    },
+    {
+      "name": "Button",
+      "officialPreviewSections": [
+        "Cursor",
+        "Size",
+        "Default",
+        "Outline",
+        "Secondary",
+        "Ghost",
+        "Destructive",
+        "Link",
+        "Icon",
+        "With Icon",
+        "Rounded",
+        "Spinner",
+        "Button Group",
+        "As Link",
+        "RTL"
+      ],
+      "localExamples": [
+        "variant",
+        "size",
+        "disabled",
+        "Default",
+        "Secondary",
+        "Outline",
+        "Ghost",
+        "Destructive",
+        "Link",
+        "Sizes",
+        "Icon only",
+        "Icon with title",
+        "Loading",
+        "Disabled",
+        "Form actions",
+        "Destructive confirmation",
+        "Link action"
+      ],
+      "missingSections": [
+        "Cursor",
+        "Icon",
+        "With Icon",
+        "Rounded",
+        "Spinner",
+        "Button Group",
+        "As Link",
+        "RTL"
+      ],
+      "renderer": true,
+      "status": "incomplete"
+    },
+    {
+      "name": "Button Group",
+      "officialPreviewSections": [
+        "Orientation",
+        "Size",
+        "Nested",
+        "Separator",
+        "Split",
+        "Input",
+        "Input Group",
+        "Dropdown Menu",
+        "Select",
+        "Popover",
+        "RTL"
+      ],
+      "localExamples": [
+        "children",
+        "Horizontal",
+        "Orientation",
+        "Split",
+        "Input"
+      ],
+      "missingSections": [
+        "Size",
+        "Nested",
+        "Separator",
+        "Input Group",
+        "Dropdown Menu",
+        "Select",
+        "Popover",
+        "RTL"
+      ],
+      "renderer": true,
+      "status": "incomplete"
+    },
+    {
+      "name": "Calendar",
+      "officialPreviewSections": [
+        "Date Picker",
+        "Persian / Hijri / Jalali Calendar",
+        "Selected Date (With TimeZone)",
+        "Basic",
+        "Range Calendar",
+        "Month and Year Selector",
+        "Presets",
+        "Date and Time Picker",
+        "Booked dates",
+        "Custom Cell Size",
+        "Week Numbers",
+        "RTL"
+      ],
+      "localExamples": [
+        "value",
+        "onChange",
+        "min / max",
+        "Single date",
+        "Bounded"
+      ],
+      "missingSections": [
+        "Date Picker",
+        "Persian / Hijri / Jalali Calendar",
+        "Selected Date (With TimeZone)",
+        "Basic",
+        "Range Calendar",
+        "Month and Year Selector",
+        "Presets",
+        "Date and Time Picker",
+        "Booked dates",
+        "Custom Cell Size",
+        "Week Numbers",
+        "RTL"
+      ],
+      "renderer": true,
+      "status": "incomplete"
+    },
+    {
+      "name": "Card",
+      "officialPreviewSections": [
+        "Size",
+        "Spacing",
+        "Image",
+        "RTL"
+      ],
+      "localExamples": [
+        "CardHeader",
+        "CardContent",
+        "CardFooter",
+        "Content card",
+        "Structured card",
+        "Login form",
+        "Scheduled reports",
+        "Image",
+        "RTL"
+      ],
+      "missingSections": [
+        "Size",
+        "Spacing"
+      ],
+      "renderer": true,
+      "status": "incomplete"
+    },
+    {
+      "name": "Carousel",
+      "officialPreviewSections": [
+        "Sizes",
+        "Spacing",
+        "Orientation",
+        "Options",
+        "Events",
+        "Plugins",
+        "RTL"
+      ],
+      "localExamples": [
+        "items",
+        "renderItem",
+        "Default",
+        "Custom item"
+      ],
+      "missingSections": [
+        "Sizes",
+        "Spacing",
+        "Orientation",
+        "Options",
+        "Events",
+        "Plugins",
+        "RTL"
+      ],
+      "renderer": true,
+      "status": "incomplete"
+    },
+    {
+      "name": "Chart",
+      "officialPreviewSections": [
+        "Your First Chart",
+        "Chart Config",
+        "Tooltip",
+        "Legend",
+        "RTL"
+      ],
+      "localExamples": [
+        "definition",
+        "state",
+        "Line",
+        "Area",
+        "Bar",
+        "Pie",
+        "Donut"
+      ],
+      "missingSections": [
+        "Your First Chart",
+        "Chart Config",
+        "Tooltip",
+        "Legend",
+        "RTL"
+      ],
+      "renderer": true,
+      "status": "incomplete"
+    },
+    {
+      "name": "Checkbox",
+      "officialPreviewSections": [
+        "Checked State",
+        "Invalid State",
+        "Basic",
+        "Description",
+        "Disabled",
+        "Group",
+        "Table",
+        "RTL"
+      ],
+      "localExamples": [
+        "checked",
+        "onCheckedChange",
+        "Basic",
+        "Checked",
+        "Invalid",
+        "Description",
+        "Disabled",
+        "Group",
+        "Table",
+        "RTL"
+      ],
+      "missingSections": [
+        "Checked State",
+        "Invalid State"
+      ],
+      "renderer": true,
+      "status": "incomplete"
+    },
+    {
+      "name": "Collapsible",
+      "officialPreviewSections": [
+        "Controlled State",
+        "Basic",
+        "Settings Panel",
+        "File Tree",
+        "RTL"
+      ],
+      "localExamples": [
+        "open",
+        "CollapsibleTrigger",
+        "CollapsibleContent",
+        "Closed",
+        "Open"
+      ],
+      "missingSections": [
+        "Controlled State",
+        "Basic",
+        "Settings Panel",
+        "File Tree",
+        "RTL"
+      ],
+      "renderer": true,
+      "status": "incomplete"
+    },
+    {
+      "name": "Combobox",
+      "officialPreviewSections": [
+        "Custom Items",
+        "Multiple Selection",
+        "Basic",
+        "Multiple",
+        "Clear Button",
+        "Groups",
+        "Custom Items",
+        "Invalid",
+        "Disabled",
+        "Auto Highlight",
+        "Popup",
+        "Input Group",
+        "RTL"
+      ],
+      "localExamples": [
+        "options",
+        "value",
+        "onValueChange",
+        "Searchable",
+        "Placeholder"
+      ],
+      "missingSections": [
+        "Custom Items",
+        "Multiple Selection",
+        "Basic",
+        "Multiple",
+        "Clear Button",
+        "Groups",
+        "Custom Items",
+        "Invalid",
+        "Disabled",
+        "Auto Highlight",
+        "Popup",
+        "Input Group",
+        "RTL"
+      ],
+      "renderer": true,
+      "status": "incomplete"
+    },
+    {
+      "name": "Command",
+      "officialPreviewSections": [
+        "Basic",
+        "Command Palette",
+        "Shortcuts",
+        "Command Palette",
+        "Groups",
+        "Command Palette",
+        "Scrollable",
+        "Command Palette",
+        "RTL"
+      ],
+      "localExamples": [
+        "CommandInput",
+        "CommandList",
+        "CommandItem",
+        "Basic",
+        "Command Palette",
+        "Groups",
+        "Scrollable",
+        "Empty"
+      ],
+      "missingSections": [
+        "Shortcuts",
+        "RTL"
+      ],
+      "renderer": true,
+      "status": "incomplete"
+    },
+    {
+      "name": "Context Menu",
+      "officialPreviewSections": [
+        "Basic",
+        "Submenu",
+        "Shortcuts",
+        "Groups",
+        "Icons",
+        "Checkboxes",
+        "Radio",
+        "Destructive",
+        "Sides",
+        "RTL"
+      ],
+      "localExamples": [
+        "children",
+        "menu",
+        "Context actions"
+      ],
+      "missingSections": [
+        "Basic",
+        "Submenu",
+        "Shortcuts",
+        "Groups",
+        "Icons",
+        "Checkboxes",
+        "Radio",
+        "Destructive",
+        "Sides",
+        "RTL"
+      ],
+      "renderer": true,
+      "status": "incomplete"
+    },
+    {
+      "name": "Data Table",
+      "officialPreviewSections": [
+        "Basic Table",
+        "Cell Formatting",
+        "Row Actions",
+        "Pagination",
+        "Sorting",
+        "Filtering",
+        "Visibility",
+        "Row Selection",
+        "RTL"
+      ],
+      "localExamples": [
+        "rows",
+        "columns",
+        "state",
+        "Default",
+        "Loading",
+        "Empty"
+      ],
+      "missingSections": [
+        "Basic Table",
+        "Cell Formatting",
+        "Row Actions",
+        "Pagination",
+        "Sorting",
+        "Filtering",
+        "Visibility",
+        "Row Selection",
+        "RTL"
+      ],
+      "renderer": true,
+      "status": "incomplete"
+    },
+    {
+      "name": "Date Picker",
+      "officialPreviewSections": [
+        "Basic",
+        "Range Picker",
+        "Date of Birth",
+        "Input",
+        "Time Picker",
+        "Natural Language Picker",
+        "RTL"
+      ],
+      "localExamples": [
+        "value",
+        "onChange",
+        "Single date"
+      ],
+      "missingSections": [
+        "Basic",
+        "Range Picker",
+        "Date of Birth",
+        "Input",
+        "Time Picker",
+        "Natural Language Picker",
+        "RTL"
+      ],
+      "renderer": true,
+      "status": "incomplete"
+    },
+    {
+      "name": "Dialog",
+      "officialPreviewSections": [
+        "Custom Close Button",
+        "No Close Button",
+        "Sticky Footer",
+        "Scrollable Content",
+        "RTL"
+      ],
+      "localExamples": [
+        "open",
+        "onOpenChange",
+        "Dialog",
+        "Drawer",
+        "Sheet"
+      ],
+      "missingSections": [
+        "Custom Close Button",
+        "No Close Button",
+        "Sticky Footer",
+        "Scrollable Content",
+        "RTL"
+      ],
+      "renderer": true,
+      "status": "incomplete"
+    },
+    {
+      "name": "Direction",
+      "officialPreviewSections": [],
+      "localExamples": [
+        "dir",
+        "children",
+        "LTR",
+        "RTL"
+      ],
+      "missingSections": [],
+      "renderer": true,
+      "status": "covered"
+    },
+    {
+      "name": "Drawer",
+      "officialPreviewSections": [
+        "Custom Sizes",
+        "Position",
+        "Swipe Handle",
+        "Nested",
+        "Non Modal",
+        "Snap Points",
+        "Responsive"
+      ],
+      "localExamples": [
+        "open",
+        "onOpenChange",
+        "Dialog",
+        "Drawer",
+        "Sheet"
+      ],
+      "missingSections": [
+        "Custom Sizes",
+        "Position",
+        "Swipe Handle",
+        "Nested",
+        "Non Modal",
+        "Snap Points",
+        "Responsive"
+      ],
+      "renderer": true,
+      "status": "incomplete"
+    },
+    {
+      "name": "Dropdown Menu",
+      "officialPreviewSections": [
+        "Basic",
+        "Submenu",
+        "Shortcuts",
+        "Icons",
+        "Checkboxes",
+        "Checkboxes Icons",
+        "Radio Group",
+        "Radio Icons",
+        "Destructive",
+        "Avatar",
+        "Complex",
+        "RTL"
+      ],
+      "localExamples": [
+        "trigger",
+        "children",
+        "Actions",
+        "Disabled item"
+      ],
+      "missingSections": [
+        "Basic",
+        "Submenu",
+        "Shortcuts",
+        "Icons",
+        "Checkboxes",
+        "Checkboxes Icons",
+        "Radio Group",
+        "Radio Icons",
+        "Destructive",
+        "Avatar",
+        "Complex",
+        "RTL"
+      ],
+      "renderer": true,
+      "status": "incomplete"
+    },
+    {
+      "name": "Empty",
+      "officialPreviewSections": [
+        "Outline",
+        "Background",
+        "Avatar",
+        "Avatar Group",
+        "InputGroup",
+        "RTL"
+      ],
+      "localExamples": [
+        "CommandInput",
+        "CommandList",
+        "CommandItem",
+        "Basic",
+        "Command Palette",
+        "Groups",
+        "Scrollable",
+        "Empty"
+      ],
+      "missingSections": [
+        "Outline",
+        "Background",
+        "Avatar",
+        "Avatar Group",
+        "InputGroup",
+        "RTL"
+      ],
+      "renderer": true,
+      "status": "incomplete"
+    },
+    {
+      "name": "Field",
+      "officialPreviewSections": [
+        "Form",
+        "Input",
+        "Textarea",
+        "Select",
+        "Slider",
+        "Fieldset",
+        "Checkbox",
+        "Radio",
+        "Switch",
+        "Choice Card",
+        "Field Group",
+        "RTL"
+      ],
+      "localExamples": [
+        "value",
+        "placeholder",
+        "disabled",
+        "Basic",
+        "Field",
+        "Disabled",
+        "Invalid",
+        "Input group",
+        "Button group",
+        "Form",
+        "RTL"
+      ],
+      "missingSections": [
+        "Input",
+        "Textarea",
+        "Select",
+        "Slider",
+        "Fieldset",
+        "Checkbox",
+        "Radio",
+        "Switch",
+        "Choice Card",
+        "Field Group"
+      ],
+      "renderer": true,
+      "status": "incomplete"
+    },
+    {
+      "name": "Hover Card",
+      "officialPreviewSections": [
+        "Trigger Delays",
+        "Positioning",
+        "Basic",
+        "Sides",
+        "RTL"
+      ],
+      "localExamples": [
+        "trigger",
+        "children",
+        "openDelay",
+        "Default"
+      ],
+      "missingSections": [
+        "Trigger Delays",
+        "Positioning",
+        "Sides",
+        "RTL"
+      ],
+      "renderer": true,
+      "status": "incomplete"
+    },
+    {
+      "name": "Input",
+      "officialPreviewSections": [
+        "Basic",
+        "Field",
+        "Field Group",
+        "Disabled",
+        "Invalid",
+        "File",
+        "Inline",
+        "Grid",
+        "Required",
+        "Badge",
+        "Input Group",
+        "Button Group",
+        "Form",
+        "RTL"
+      ],
+      "localExamples": [
+        "value",
+        "placeholder",
+        "disabled",
+        "Basic",
+        "Field",
+        "Disabled",
+        "Invalid",
+        "Input group",
+        "Button group",
+        "Form",
+        "RTL"
+      ],
+      "missingSections": [
+        "Field Group",
+        "File",
+        "Inline",
+        "Grid",
+        "Required",
+        "Badge"
+      ],
+      "renderer": true,
+      "status": "incomplete"
+    },
+    {
+      "name": "Input Group",
+      "officialPreviewSections": [
+        "Align",
+        "Icon",
+        "Text",
+        "Button",
+        "Kbd",
+        "Dropdown",
+        "Spinner",
+        "Textarea",
+        "Custom Input",
+        "RTL"
+      ],
+      "localExamples": [
+        "prefix",
+        "suffix",
+        "children",
+        "Prefix",
+        "Suffix"
+      ],
+      "missingSections": [
+        "Align",
+        "Icon",
+        "Text",
+        "Button",
+        "Kbd",
+        "Dropdown",
+        "Spinner",
+        "Textarea",
+        "Custom Input",
+        "RTL"
+      ],
+      "renderer": true,
+      "status": "incomplete"
+    },
+    {
+      "name": "Input OTP",
+      "officialPreviewSections": [
+        "Pattern",
+        "Separator",
+        "Disabled",
+        "Controlled",
+        "Invalid",
+        "Four Digits",
+        "Alphanumeric",
+        "Form",
+        "RTL"
+      ],
+      "localExamples": [
+        "length",
+        "value",
+        "onChange",
+        "Six digits",
+        "Four digits"
+      ],
+      "missingSections": [
+        "Pattern",
+        "Separator",
+        "Disabled",
+        "Controlled",
+        "Invalid",
+        "Alphanumeric",
+        "Form",
+        "RTL"
+      ],
+      "renderer": true,
+      "status": "incomplete"
+    },
+    {
+      "name": "Item",
+      "officialPreviewSections": [
+        "Variant",
+        "Size",
+        "Icon",
+        "Avatar",
+        "Image",
+        "Group",
+        "Header",
+        "Link",
+        "Dropdown",
+        "RTL"
+      ],
+      "localExamples": [
+        "children",
+        "className",
+        "Default"
+      ],
+      "missingSections": [
+        "Variant",
+        "Size",
+        "Icon",
+        "Avatar",
+        "Image",
+        "Group",
+        "Header",
+        "Link",
+        "Dropdown",
+        "RTL"
+      ],
+      "renderer": true,
+      "status": "incomplete"
+    },
+    {
+      "name": "Kbd",
+      "officialPreviewSections": [
+        "Group",
+        "Button",
+        "Tooltip",
+        "Input Group",
+        "RTL"
+      ],
+      "localExamples": [
+        "children",
+        "className",
+        "Single key",
+        "Shortcut"
+      ],
+      "missingSections": [
+        "Group",
+        "Button",
+        "Tooltip",
+        "Input Group",
+        "RTL"
+      ],
+      "renderer": true,
+      "status": "incomplete"
+    },
+    {
+      "name": "Label",
+      "officialPreviewSections": [
+        "Label in Field",
+        "RTL"
+      ],
+      "localExamples": [
+        "htmlFor",
+        "Default",
+        "Label in Field",
+        "RTL"
+      ],
+      "missingSections": [],
+      "renderer": true,
+      "status": "covered"
+    },
+    {
+      "name": "Marker",
+      "officialPreviewSections": [
+        "Variants",
+        "Status",
+        "Shimmer",
+        "Separator",
+        "Border",
+        "With Icon",
+        "Links and Buttons"
+      ],
+      "localExamples": [
+        "color",
+        "children",
+        "Default",
+        "Color"
+      ],
+      "missingSections": [
+        "Variants",
+        "Status",
+        "Shimmer",
+        "Separator",
+        "Border",
+        "With Icon",
+        "Links and Buttons"
+      ],
+      "renderer": true,
+      "status": "incomplete"
+    },
+    {
+      "name": "Menubar",
+      "officialPreviewSections": [
+        "Checkbox",
+        "Radio",
+        "Submenu",
+        "With Icons",
+        "RTL"
+      ],
+      "localExamples": [
+        "children",
+        "MenubarItem",
+        "Action",
+        "Link"
+      ],
+      "missingSections": [
+        "Checkbox",
+        "Radio",
+        "Submenu",
+        "With Icons",
+        "RTL"
+      ],
+      "renderer": true,
+      "status": "incomplete"
+    },
+    {
+      "name": "Message",
+      "officialPreviewSections": [
+        "Avatar",
+        "Group",
+        "Header and Footer",
+        "Actions",
+        "Attachment"
+      ],
+      "localExamples": [
+        "variant",
+        "title",
+        "children",
+        "Default",
+        "Error",
+        "Success"
+      ],
+      "missingSections": [
+        "Avatar",
+        "Group",
+        "Header and Footer",
+        "Actions",
+        "Attachment"
+      ],
+      "renderer": true,
+      "status": "incomplete"
+    },
+    {
+      "name": "Message Scroller",
+      "officialPreviewSections": [
+        "MessageScroller"
+      ],
+      "localExamples": [
+        "messages",
+        "className",
+        "Bounded"
+      ],
+      "missingSections": [
+        "MessageScroller"
+      ],
+      "renderer": true,
+      "status": "incomplete"
+    },
+    {
+      "name": "Native Select",
+      "officialPreviewSections": [
+        "Groups",
+        "Disabled",
+        "Invalid",
+        "RTL"
+      ],
+      "localExamples": [
+        "value",
+        "disabled",
+        "children",
+        "Default",
+        "Disabled"
+      ],
+      "missingSections": [
+        "Groups",
+        "Invalid",
+        "RTL"
+      ],
+      "renderer": true,
+      "status": "incomplete"
+    },
+    {
+      "name": "Navigation Menu",
+      "officialPreviewSections": [
+        "Link Component",
+        "RTL"
+      ],
+      "localExamples": [
+        "children",
+        "NavigationMenuLink",
+        "Links",
+        "Active"
+      ],
+      "missingSections": [
+        "Link Component",
+        "RTL"
+      ],
+      "renderer": true,
+      "status": "incomplete"
+    },
+    {
+      "name": "Pagination",
+      "officialPreviewSections": [
+        "Simple",
+        "Icons Only",
+        "Next.js",
+        "RTL"
+      ],
+      "localExamples": [
+        "page",
+        "pageCount",
+        "onPageChange",
+        "Default",
+        "First page"
+      ],
+      "missingSections": [
+        "Simple",
+        "Icons Only",
+        "Next.js",
+        "RTL"
+      ],
+      "renderer": true,
+      "status": "incomplete"
+    },
+    {
+      "name": "Popover",
+      "officialPreviewSections": [
+        "Basic",
+        "Align",
+        "With Form",
+        "RTL"
+      ],
+      "localExamples": [
+        "trigger",
+        "children",
+        "Default"
+      ],
+      "missingSections": [
+        "Align",
+        "With Form",
+        "RTL"
+      ],
+      "renderer": true,
+      "status": "incomplete"
+    },
+    {
+      "name": "Progress",
+      "officialPreviewSections": [
+        "Label",
+        "Controlled",
+        "RTL"
+      ],
+      "localExamples": [
+        "value",
+        "Determinate"
+      ],
+      "missingSections": [
+        "Label",
+        "Controlled",
+        "RTL"
+      ],
+      "renderer": true,
+      "status": "incomplete"
+    },
+    {
+      "name": "Questionnaire",
+      "officialPreviewSections": [
+        "Multiple Selection",
+        "Freeform Answer",
+        "Explicit Skip",
+        "Shortcuts",
+        "Custom Validation",
+        "Controlled",
+        "Conditional Items",
+        "Card",
+        "Dialog"
+      ],
+      "localExamples": [
+        "name",
+        "question",
+        "options",
+        "value",
+        "onValueChange",
+        "Single choice",
+        "Described choices"
+      ],
+      "missingSections": [
+        "Multiple Selection",
+        "Freeform Answer",
+        "Explicit Skip",
+        "Shortcuts",
+        "Custom Validation",
+        "Controlled",
+        "Conditional Items",
+        "Card",
+        "Dialog"
+      ],
+      "renderer": true,
+      "status": "incomplete"
+    },
+    {
+      "name": "Radio Group",
+      "officialPreviewSections": [
+        "Description",
+        "Choice Card",
+        "Fieldset",
+        "Disabled",
+        "Invalid",
+        "RTL"
+      ],
+      "localExamples": [
+        "value",
+        "onValueChange",
+        "RadioGroupItem",
+        "Single selection",
+        "Disabled option"
+      ],
+      "missingSections": [
+        "Description",
+        "Choice Card",
+        "Fieldset",
+        "Disabled",
+        "Invalid",
+        "RTL"
+      ],
+      "renderer": true,
+      "status": "incomplete"
+    },
+    {
+      "name": "Resizable",
+      "officialPreviewSections": [
+        "Vertical",
+        "Handle",
+        "RTL"
+      ],
+      "localExamples": [
+        "children",
+        "direction",
+        "min / max",
+        "Horizontal",
+        "Vertical"
+      ],
+      "missingSections": [
+        "Handle",
+        "RTL"
+      ],
+      "renderer": true,
+      "status": "incomplete"
+    },
+    {
+      "name": "Scroll Area",
+      "officialPreviewSections": [
+        "Horizontal",
+        "RTL"
+      ],
+      "localExamples": [
+        "children",
+        "className",
+        "Vertical",
+        "Both axes"
+      ],
+      "missingSections": [
+        "Horizontal",
+        "RTL"
+      ],
+      "renderer": true,
+      "status": "incomplete"
+    },
+    {
+      "name": "Select",
+      "officialPreviewSections": [
+        "Align Item With Trigger",
+        "Groups",
+        "Scrollable",
+        "Disabled",
+        "Invalid",
+        "RTL"
+      ],
+      "localExamples": [
+        "value",
+        "onChange",
+        "disabled",
+        "Default",
+        "Disabled"
+      ],
+      "missingSections": [
+        "Align Item With Trigger",
+        "Groups",
+        "Scrollable",
+        "Invalid",
+        "RTL"
+      ],
+      "renderer": true,
+      "status": "incomplete"
+    },
+    {
+      "name": "Separator",
+      "officialPreviewSections": [
+        "Vertical",
+        "Menu",
+        "List",
+        "RTL"
+      ],
+      "localExamples": [
+        "orientation",
+        "Horizontal",
+        "Vertical"
+      ],
+      "missingSections": [
+        "Menu",
+        "List",
+        "RTL"
+      ],
+      "renderer": true,
+      "status": "incomplete"
+    },
+    {
+      "name": "Sheet",
+      "officialPreviewSections": [
+        "Side",
+        "No Close Button",
+        "RTL"
+      ],
+      "localExamples": [
+        "open",
+        "onOpenChange",
+        "Dialog",
+        "Drawer",
+        "Sheet"
+      ],
+      "missingSections": [
+        "Side",
+        "No Close Button",
+        "RTL"
+      ],
+      "renderer": true,
+      "status": "incomplete"
+    },
+    {
+      "name": "Sidebar",
+      "officialPreviewSections": [
+        "RTL"
+      ],
+      "localExamples": [
+        "open",
+        "onOpenChange",
+        "Expanded",
+        "Collapsed"
+      ],
+      "missingSections": [
+        "RTL"
+      ],
+      "renderer": true,
+      "status": "incomplete"
+    },
+    {
+      "name": "Skeleton",
+      "officialPreviewSections": [
+        "Avatar",
+        "Card",
+        "Text",
+        "Form",
+        "Table",
+        "RTL"
+      ],
+      "localExamples": [
+        "className",
+        "Line",
+        "Block"
+      ],
+      "missingSections": [
+        "Avatar",
+        "Card",
+        "Text",
+        "Form",
+        "Table",
+        "RTL"
+      ],
+      "renderer": true,
+      "status": "incomplete"
+    },
+    {
+      "name": "Slider",
+      "officialPreviewSections": [
+        "Range",
+        "Multiple Thumbs",
+        "Vertical",
+        "Controlled",
+        "Disabled",
+        "RTL"
+      ],
+      "localExamples": [
+        "value",
+        "min / max",
+        "step",
+        "Default"
+      ],
+      "missingSections": [
+        "Range",
+        "Multiple Thumbs",
+        "Vertical",
+        "Controlled",
+        "Disabled",
+        "RTL"
+      ],
+      "renderer": true,
+      "status": "incomplete"
+    },
+    {
+      "name": "Spinner",
+      "officialPreviewSections": [
+        "Customization",
+        "Size",
+        "Button",
+        "Badge",
+        "Input Group",
+        "Empty",
+        "RTL"
+      ],
+      "localExamples": [
+        "aria-label",
+        "className",
+        "Default",
+        "Labeled"
+      ],
+      "missingSections": [
+        "Customization",
+        "Size",
+        "Button",
+        "Badge",
+        "Input Group",
+        "Empty",
+        "RTL"
+      ],
+      "renderer": true,
+      "status": "incomplete"
+    },
+    {
+      "name": "Switch",
+      "officialPreviewSections": [
+        "Description",
+        "Choice Card",
+        "Disabled",
+        "Invalid",
+        "Size",
+        "RTL"
+      ],
+      "localExamples": [
+        "checked",
+        "onCheckedChange",
+        "Off",
+        "On"
+      ],
+      "missingSections": [
+        "Description",
+        "Choice Card",
+        "Disabled",
+        "Invalid",
+        "Size",
+        "RTL"
+      ],
+      "renderer": true,
+      "status": "incomplete"
+    },
+    {
+      "name": "Table",
+      "officialPreviewSections": [
+        "Footer",
+        "Actions",
+        "Data Table",
+        "RTL"
+      ],
+      "localExamples": [
+        "checked",
+        "onCheckedChange",
+        "Basic",
+        "Checked",
+        "Invalid",
+        "Description",
+        "Disabled",
+        "Group",
+        "Table",
+        "RTL"
+      ],
+      "missingSections": [
+        "Footer",
+        "Actions",
+        "Data Table"
+      ],
+      "renderer": true,
+      "status": "incomplete"
+    },
+    {
+      "name": "Tabs",
+      "officialPreviewSections": [
+        "Line",
+        "Vertical",
+        "Disabled",
+        "Icons",
+        "RTL"
+      ],
+      "localExamples": [
+        "defaultValue",
+        "value",
+        "onValueChange",
+        "Default"
+      ],
+      "missingSections": [
+        "Line",
+        "Vertical",
+        "Disabled",
+        "Icons",
+        "RTL"
+      ],
+      "renderer": true,
+      "status": "incomplete"
+    },
+    {
+      "name": "Textarea",
+      "officialPreviewSections": [
+        "Field",
+        "Disabled",
+        "Invalid",
+        "Button",
+        "RTL"
+      ],
+      "localExamples": [
+        "value",
+        "rows",
+        "Default"
+      ],
+      "missingSections": [
+        "Field",
+        "Disabled",
+        "Invalid",
+        "Button",
+        "RTL"
+      ],
+      "renderer": true,
+      "status": "incomplete"
+    },
+    {
+      "name": "Toast",
+      "officialPreviewSections": [
+        "Types",
+        "Action",
+        "Promise"
+      ],
+      "localExamples": [
+        "title",
+        "description",
+        "onDismiss",
+        "Informational",
+        "Dismissible"
+      ],
+      "missingSections": [
+        "Types",
+        "Action",
+        "Promise"
+      ],
+      "renderer": true,
+      "status": "incomplete"
+    },
+    {
+      "name": "Toggle",
+      "officialPreviewSections": [
+        "Outline",
+        "With Text",
+        "Size",
+        "Disabled",
+        "RTL"
+      ],
+      "localExamples": [
+        "pressed",
+        "onPressedChange",
+        "children",
+        "Off",
+        "On"
+      ],
+      "missingSections": [
+        "Outline",
+        "With Text",
+        "Size",
+        "Disabled",
+        "RTL"
+      ],
+      "renderer": true,
+      "status": "incomplete"
+    },
+    {
+      "name": "Toggle Group",
+      "officialPreviewSections": [
+        "Outline",
+        "Size",
+        "Spacing",
+        "Vertical",
+        "Disabled",
+        "Custom",
+        "RTL"
+      ],
+      "localExamples": [
+        "type",
+        "value",
+        "Single",
+        "Multiple"
+      ],
+      "missingSections": [
+        "Outline",
+        "Size",
+        "Spacing",
+        "Vertical",
+        "Disabled",
+        "Custom",
+        "RTL"
+      ],
+      "renderer": true,
+      "status": "incomplete"
+    },
+    {
+      "name": "Tooltip",
+      "officialPreviewSections": [
+        "Side",
+        "With Keyboard Shortcut",
+        "Disabled Button",
+        "RTL"
+      ],
+      "localExamples": [
+        "content",
+        "Default"
+      ],
+      "missingSections": [
+        "Side",
+        "With Keyboard Shortcut",
+        "Disabled Button",
+        "RTL"
+      ],
+      "renderer": true,
+      "status": "incomplete"
+    },
+    {
+      "name": "Typography",
+      "officialPreviewSections": [],
+      "localExamples": [
+        "as",
+        "children",
+        "Heading",
+        "Quote",
+        "Code"
+      ],
+      "missingSections": [],
+      "renderer": true,
+      "status": "covered"
+    }
+  ]
+}
