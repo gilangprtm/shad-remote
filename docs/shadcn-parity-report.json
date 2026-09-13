@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-09-13T04:55:06.689Z",
+  "generatedAt": "2026-09-13T04:56:12.764Z",
   "upstreamCount": 64,
   "counts": {
     "documented": 28,
-    "runtime-only": 33,
+    "runtime-only": 36,
     "source-only": 0,
-    "missing": 3
+    "missing": 0
   },
   "rows": [
     {
@@ -38,10 +38,10 @@
     },
     {
       "name": "Attachment",
-      "source": false,
-      "federation": false,
+      "source": true,
+      "federation": true,
       "docs": false,
-      "status": "missing"
+      "status": "runtime-only"
     },
     {
       "name": "Avatar",
@@ -66,10 +66,10 @@
     },
     {
       "name": "Bubble",
-      "source": false,
-      "federation": false,
+      "source": true,
+      "federation": true,
       "docs": false,
-      "status": "missing"
+      "status": "runtime-only"
     },
     {
       "name": "Button",
@@ -318,10 +318,10 @@
     },
     {
       "name": "Questionnaire",
-      "source": false,
-      "federation": false,
+      "source": true,
+      "federation": true,
       "docs": false,
-      "status": "missing"
+      "status": "runtime-only"
     },
     {
       "name": "Radio Group",

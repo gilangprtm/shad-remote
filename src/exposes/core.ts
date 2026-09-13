@@ -21,6 +21,8 @@ export { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "..
 export { Collapsible, CollapsibleTrigger, CollapsibleContent } from "../core/collapsible/Collapsible";
 export { Spinner, Kbd, AspectRatio, ScrollArea, Item, Field, NativeSelect } from "../core/misc/Misc";
 export { Direction, Empty, HoverCard, Marker, Message, MessageScroller, Typography, Calendar, Toast } from "../core/foundation/Foundation";
+export { Attachment, Bubble, Questionnaire } from "../core/foundation/ExtendedFoundation";
+export type { QuestionnaireOption } from "../core/foundation/ExtendedFoundation";
 export { ButtonGroup, ToggleGroup, ToggleGroupItem, Slider } from "../core/controls/Controls";
 export { AlertDialog, Drawer, Sheet } from "../core/overlay/Overlay";
 export { Command, CommandInput, CommandList, CommandEmpty, CommandGroup, CommandItem, useCommandQuery } from "../core/command/Command";
