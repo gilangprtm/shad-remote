@@ -4,7 +4,7 @@ import { cn } from "../../lib/cn";
 type DivProps = HTMLAttributes<HTMLDivElement>;
 
 export function Card({ className, ...props }: DivProps) {
-  return <div data-slot="card" className={cn("flex flex-col gap-4 overflow-hidden rounded-xl bg-card py-4 text-sm text-card-foreground ring-1 ring-foreground/10", className)} {...props} />;
+  return <div data-slot="card" className={cn("flex flex-col gap-4 overflow-hidden rounded-xl bg-card py-4 text-sm text-card-foreground ring-1 ring-foreground/10 [&:has(>[data-slot=card-footer])]:pb-0", className)} {...props} />;
 }
 export function CardHeader({ className, ...props }: DivProps) {
   return <div data-slot="card-header" className={cn("grid gap-1 px-4", className)} {...props} />;
