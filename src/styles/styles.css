@@ -119,23 +119,18 @@
 .docs-page-heading h1 { margin: 13px 0 7px; font-size: clamp(30px, 4vw, 42px); letter-spacing: -.04em; text-transform: capitalize; }
 .docs-page-heading p { max-width: 680px; margin: 0; color: var(--muted-foreground); font-size: 16px; line-height: 1.55; }
 .docs-heading-actions { display: flex; flex-shrink: 0; gap: 8px; }
-.docs-demo-card { min-height: 0; }
-.docs-demo-card .edjavu-card-content { display: flex; min-height: 0; align-items: center; justify-content: center; padding: 24px; }
-.docs-variants { display: grid; gap: 16px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
-.docs-variants .docs-code-wrap { min-height: 58px; }
+.docs-demo-preview,
+.docs-example-preview { display: flex; width: 100%; min-height: 0; align-items: center; justify-content: center; padding: 4px 0; }
+.docs-example-preview { justify-content: flex-start; }
 .docs-component-sections { display: grid; gap: 30px; }
 .docs-section-intro { display: grid; gap: 8px; }
 .docs-example-section { display: grid; gap: 12px; padding-top: 8px; }
 .docs-example-section + .docs-example-section { border-top: 1px solid var(--border); padding-top: 28px; }
 .docs-example-section h3 { margin: 0; font-size: 18px; letter-spacing: -.02em; }
 .docs-example-section p { max-width: 680px; margin: 5px 0 0; color: var(--muted-foreground); line-height: 1.55; }
-.docs-example-card { min-height: 150px; }
-.docs-example-card .edjavu-card-content { display: flex; align-items: center; min-height: 118px; }
-@media (max-width: 700px) { .docs-variants { grid-template-columns: 1fr; } }
-.docs-example-card .edjavu-card-content { display: flex; align-items: center; min-height: 118px; }
 .docs-error { color: var(--destructive); font-size: 12px; }
 .docs-rtl-preview { text-align: right; }
-@media (max-width: 700px) { .docs-variants { grid-template-columns: 1fr; } }
+@media (max-width: 700px) { .docs-example-preview { justify-content: center; overflow-x: auto; } }
 .docs-preview-row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
 .docs-preview-centered { justify-content: center; width: 100%; }
 .docs-preview-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 10px; width: 100%; }
