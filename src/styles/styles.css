@@ -121,7 +121,7 @@
 .docs-heading-actions { display: flex; flex-shrink: 0; gap: 8px; }
 .docs-demo-preview,
 .docs-example-preview { display: flex; width: 100%; min-height: 0; align-items: center; justify-content: center; padding: 4px 0; }
-.docs-example-preview { justify-content: flex-start; }
+.docs-example-preview { justify-content: center; }
 .docs-component-sections { display: grid; gap: 30px; }
 .docs-section-intro { display: grid; gap: 8px; }
 .docs-example-section { display: grid; gap: 12px; padding-top: 8px; }
@@ -130,7 +130,7 @@
 .docs-example-section p { max-width: 680px; margin: 5px 0 0; color: var(--muted-foreground); line-height: 1.55; }
 .docs-error { color: var(--destructive); font-size: 12px; }
 .docs-rtl-preview { text-align: right; }
-@media (max-width: 700px) { .docs-example-preview { justify-content: center; overflow-x: auto; } }
+@media (max-width: 700px) { .docs-example-preview { justify-content: center; overflow-x: auto; } .docs-card-preview { flex: 0 0 min(420px, 100%); } }
 .docs-preview-row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
 .docs-preview-centered { justify-content: center; width: 100%; }
 .docs-preview-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 10px; width: 100%; }
