@@ -4,6 +4,9 @@ Remote contract: `edjavu_ui`, version `v1`.
 
 ## Implemented and runtime exposed
 
+The runtime exposes more symbols than the documentation page count. A page represents one documented component surface; compound exports such as `CardHeader`, `CardContent`, and `TableRow` are documented under their parent component. The catalog currently contains 29 documented component pages in the producer dashboard. The registry below remains the source for the complete runtime export list.
+
+
 | Group | Remote module | Status | Contents |
 |---|---|---|---|
 | Core | `edjavu_ui/core` | implemented | Button, Card, Badge, Input, Label, Textarea, Checkbox, Switch, RadioGroup, Select, Tabs, Tooltip, Popover, Separator, Skeleton, Progress, Table, Alert, Avatar, Toggle, Accordion, Collapsible, Spinner, Kbd, AspectRatio, ScrollArea, Item, Field, NativeSelect, ButtonGroup, ToggleGroup, Slider, AlertDialog, Drawer, Sheet, Command, DropdownMenu, ContextMenu, Menubar, NavigationMenu, Combobox |

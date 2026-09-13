@@ -22,13 +22,9 @@ import { Switch } from "../../core/switch/Switch";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../core/tabs/Tabs";
 import { Textarea } from "../../core/textarea/Textarea";
 import { Tooltip } from "../../core/tooltip/Tooltip";
+import { componentCounts, componentRegistry } from "../docs/component-registry";
 
-const rows = [
-  { component: "Button", category: "Core", status: "Stable" },
-  { component: "Card", category: "Core", status: "Stable" },
-  { component: "DataTable", category: "Composite", status: "Stable" },
-  { component: "AppShell", category: "Shell", status: "Stable" },
-];
+const rows = componentRegistry.slice(0, 8).map((item) => ({ component: item.name, category: item.group, status: "Documented" }));
 
 export function ComponentShowcase() {
   const [checked, setChecked] = useState<boolean | "indeterminate">(true);
@@ -78,9 +74,9 @@ export function ComponentShowcase() {
       </div>
 
       <div className="showcase-stat-grid">
-        <Card><CardHeader><CardDescription>Core primitives</CardDescription><CardTitle>17</CardTitle></CardHeader><CardContent><Progress value={78} /></CardContent></Card>
-        <Card><CardHeader><CardDescription>Composite patterns</CardDescription><CardTitle>4</CardTitle></CardHeader><CardContent><p className="showcase-muted">Data table, filter, pagination, state</p></CardContent></Card>
-        <Card><CardHeader><CardDescription>Shell surfaces</CardDescription><CardTitle>5</CardTitle></CardHeader><CardContent><p className="showcase-muted">Navigation, header, content, footer</p></CardContent></Card>
+        <Card><CardHeader><CardDescription>Documented components</CardDescription><CardTitle>{componentCounts.total}</CardTitle></CardHeader><CardContent><Progress value={100} /></CardContent></Card>
+        <Card><CardHeader><CardDescription>Core primitives</CardDescription><CardTitle>{componentCounts.core}</CardTitle></CardHeader><CardContent><p className="showcase-muted">Primitive pages with API and variations</p></CardContent></Card>
+        <Card><CardHeader><CardDescription>Composite and pattern pages</CardDescription><CardTitle>{componentCounts.composites}</CardTitle></CardHeader><CardContent><p className="showcase-muted">Consumer-owned data contracts</p></CardContent></Card>
       </div>
 
       <div className="showcase-feature-grid">

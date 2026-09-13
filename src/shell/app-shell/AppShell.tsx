@@ -24,6 +24,7 @@ import {
 } from "lucide-react";
 import { cn } from "../../lib/cn";
 import { Breadcrumb } from "../breadcrumb/Breadcrumb";
+import { componentRegistry } from "../../components/docs/component-registry";
 
 type Icon = typeof LayoutDashboard;
 export type ShellNavItem = { label: string; url: string };
@@ -33,33 +34,14 @@ export type ShellNavGroup = {
 };
 export type ShellTheme = "light" | "dark" | "system";
 
+const registryGroups = Array.from(new Set(componentRegistry.map((item) => item.group)));
 const defaultGroups: ShellNavGroup[] = [
   { label: "Workspace", items: [{ label: "Overview", url: "/", icon: LayoutDashboard, description: "Catalog summary" }] },
-  {
-    label: "Components",
-    items: [
-      { label: "Core primitives", url: "/components/core", icon: Component, description: "Button, Card, Input, Badge" },
-      { label: "Forms & controls", url: "/components/forms", icon: Type, description: "Forms, select, tabs, inputs" },
-      { label: "Data display", url: "/components/data", icon: Table2, description: "Tables, filters, pagination" },
-      { label: "Overlays & menus", url: "/components/overlays", icon: Layers3, description: "Dialog, drawer, menus" },
-      { label: "Navigation", url: "/components/navigation", icon: PanelLeft, description: "Shell, sidebar, breadcrumb" },
-    ],
-  },
-  {
-    label: "Patterns",
-    items: [
-      { label: "Calendar & dates", url: "/patterns/calendar", icon: CalendarDays, description: "Date, range, events" },
-      { label: "Charts & visualization", url: "/patterns/charts", icon: Palette, description: "SVG chart contracts" },
-      { label: "Files & uploads", url: "/patterns/files", icon: FolderOpen, description: "Validation and upload lifecycle" },
-    ],
-  },
-  {
-    label: "Resources",
-    items: [
-      { label: "Usage guide", url: "/docs/usage", icon: BookOpen, description: "How to consume a remote module" },
-      { label: "Contracts", url: "/docs/contracts", icon: FileCode2, description: "Consumer-facing interfaces" },
-    ],
-  },
+  ...registryGroups.map((group) => ({
+    label: group,
+    items: componentRegistry.filter((item) => item.group === group).map((item) => ({ label: item.name, url: item.path, icon: Component, description: `${item.variants.length} documented variation${item.variants.length === 1 ? "" : "s"}` })),
+  })),
+  { label: "Resources", items: [{ label: "Usage guide", url: "/docs/usage", icon: BookOpen, description: "How to consume a remote module" }, { label: "Contracts", url: "/docs/contracts", icon: FileCode2, description: "Consumer-facing interfaces" }] },
 ];
 
 function resolveTheme(theme: ShellTheme): "light" | "dark" {
