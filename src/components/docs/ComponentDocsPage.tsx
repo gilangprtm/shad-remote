@@ -1,5 +1,5 @@
 import { useEffect, useState, type ReactNode } from "react";
-import { ArrowLeft, ArrowRight, Check, Copy } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, Copy, Download, MoreHorizontal, Plus, Search, Settings } from "lucide-react";
 import { Badge } from "../../core/badge/Badge";
 import { Button } from "../../core/button/Button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../../core/card/Card";
@@ -14,9 +14,23 @@ function CodeBlock({ children }: { children: string }) {
   return <div className="docs-code-wrap"><pre><code>{children}</code></pre><button type="button" className="docs-copy-button" onClick={() => { void navigator.clipboard?.writeText(children); setCopied(true); window.setTimeout(() => setCopied(false), 1200); }} aria-label="Copy code">{copied ? <Check size={15} /> : <Copy size={15} />}</button></div>;
 }
 
+function ButtonPreview({ variant = "All variants" }: { variant?: string }) {
+  if (variant === "All variants") return <div className="docs-preview-row docs-preview-centered"><Button>Default</Button><Button variant="secondary">Secondary</Button><Button variant="outline">Outline</Button><Button variant="ghost">Ghost</Button><Button variant="destructive">Delete item</Button><Button variant="link">View details</Button></div>;
+  if (variant === "Sizes") return <div className="docs-preview-row docs-preview-centered"><Button size="xs">Extra small</Button><Button size="sm">Small</Button><Button>Default</Button><Button size="lg">Large</Button></div>;
+  if (variant === "Icon only") return <div className="docs-preview-row docs-preview-centered"><Button size="icon" aria-label="Search"><Search /></Button><Button size="icon" variant="outline" aria-label="Settings"><Settings /></Button><Button size="icon" variant="ghost" aria-label="More actions"><MoreHorizontal /></Button></div>;
+  if (variant === "Icon with title") return <div className="docs-preview-row docs-preview-centered"><Button><Plus />Add item</Button><Button variant="outline"><Download />Download</Button></div>;
+  if (variant === "Loading") return <div className="docs-preview-row docs-preview-centered"><Button disabled aria-busy="true"><span className="docs-spinner" aria-hidden="true" />Saving…</Button></div>;
+  if (variant === "Disabled") return <div className="docs-preview-row docs-preview-centered"><Button disabled>Default</Button><Button disabled variant="outline">Unavailable</Button><Button disabled variant="destructive">Delete item</Button></div>;
+  if (variant === "Form actions") return <div className="docs-preview-actions"><Button variant="ghost">Cancel</Button><Button variant="outline">Save draft</Button><Button>Submit</Button></div>;
+  if (variant === "Destructive confirmation") return <div className="docs-preview-actions"><Button variant="outline">Cancel</Button><Button variant="destructive">Delete item</Button></div>;
+  if (variant === "Link action") return <div className="docs-preview-copy">Use a <Button variant="link">link-style button</Button> for an in-page action. Use an anchor for navigation.</div>;
+  const variants: Record<string, ReactNode> = { Default: <Button>Default</Button>, Secondary: <Button variant="secondary">Secondary</Button>, Outline: <Button variant="outline">Outline</Button>, Ghost: <Button variant="ghost">Ghost</Button>, Destructive: <Button variant="destructive">Delete item</Button>, Link: <Button variant="link">View details</Button> };
+  return <div className="docs-preview-row docs-preview-centered">{variants[variant] ?? variants.Default}</div>;
+}
+
 function Preview({ name, variant }: { name: string; variant?: string }) {
   const [enabled, setEnabled] = useState(true);
-  if (name === "Button") return <div className="docs-preview-row"><Button>Default</Button><Button variant="secondary">Secondary</Button><Button variant="outline">Outline</Button><Button variant="ghost">Ghost</Button><Button variant="destructive">Delete</Button><Button variant="link">Link</Button></div>;
+  if (name === "Button") return <ButtonPreview variant={variant} />;
   if (name === "Card") return <Card><CardHeader><CardTitle>Card title</CardTitle><CardDescription>A surface for related content.</CardDescription></CardHeader><CardContent><Button size="sm">Continue</Button></CardContent></Card>;
   if (name === "Input") return <div className="docs-preview-form"><Label htmlFor="docs-input">Component name</Label><Input id="docs-input" placeholder="Select" /></div>;
   if (name === "Select") return <div className="docs-preview-form"><Label htmlFor="docs-select">Release channel</Label><Select id="docs-select" defaultValue="stable"><option value="stable">Stable</option><option value="canary">Canary</option></Select></div>;
