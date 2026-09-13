@@ -121,7 +121,20 @@ function ComponentPreview({ name, variant }: { name: string; variant?: string })
   if (name === "Command") { const [query, setQuery] = useState(""); return <Command className="max-w-sm"><CommandInput value={query} onValueChange={setQuery} placeholder="Search commands..." /><CommandList><CommandGroup heading="Actions"><CommandItem value="new project" query={query}>New project</CommandItem><CommandItem value="open settings" query={query}>Open settings</CommandItem></CommandGroup><CommandEmpty>No matching commands.</CommandEmpty></CommandList></Command>; }
   if (name === "Calendar") return <Calendar value="2026-09-13" onChange={() => undefined} />;
   if (name === "Pagination") return <Pagination page={variant === "First page" ? 1 : 3} pageCount={10} onPageChange={() => undefined} />;
-  if (name === "Textarea") return <div className="docs-preview-form"><Label htmlFor="docs-textarea">Message</Label><Textarea id="docs-textarea" placeholder="Describe the change" rows={4} /><span className="showcase-muted">Markdown is supported.</span></div>;
+  if (name === "Textarea") {
+    if (variant === "Field") return <div className="docs-preview-form"><Label htmlFor="docs-textarea-field">Message</Label><Textarea id="docs-textarea-field" placeholder="Describe the change" rows={4} /><span className="showcase-muted">Markdown is supported.</span></div>;
+    if (variant === "Disabled") return <Textarea disabled placeholder="Unavailable" rows={4} />;
+    if (variant === "Invalid") return <div className="docs-preview-form"><Textarea aria-invalid="true" defaultValue="Invalid message" rows={4} /><span className="docs-error" role="alert">Enter a valid message.</span></div>;
+    if (variant === "Button") return <div className="docs-preview-form"><Textarea placeholder="Write a reply" rows={3} /><Button>Send message</Button></div>;
+    if (variant === "RTL") return <div dir="rtl"><Textarea placeholder="اكتب رسالة" rows={4} /></div>;
+    return <Textarea placeholder="Describe the change" rows={4} />;
+  }
+  if (name === "Separator") {
+    if (variant === "Menu") return <div className="docs-preview-form"><span>Workspace</span><Separator /><span>Account</span></div>;
+    if (variant === "List") return <div className="docs-preview-form"><span>First item</span><Separator /><span>Second item</span></div>;
+    if (variant === "RTL") return <div dir="rtl" className="docs-preview-form"><span>القائمة</span><Separator /><span>الحساب</span></div>;
+    return <div className={variant === "Vertical" ? "flex h-10 items-center" : "w-full"}><Separator orientation={variant === "Vertical" ? "vertical" : "horizontal"} /></div>;
+  }
   if (name === "Toggle") return <Toggle pressed={variant === "On"} onPressedChange={() => undefined}>Bold</Toggle>;
   if (name === "Toggle Group") return <ToggleGroup defaultValue="week"><ToggleGroupItem value="day">Day</ToggleGroupItem><ToggleGroupItem value="week">Week</ToggleGroupItem><ToggleGroupItem value="month">Month</ToggleGroupItem></ToggleGroup>;
   if (name === "Table") return <Table><TableCaption>Recent workspace activity</TableCaption><TableHeader><TableRow><TableHead>Event</TableHead><TableHead>Status</TableHead></TableRow></TableHeader><TableBody><TableRow><TableCell>Sync completed</TableCell><TableCell>Ready</TableCell></TableRow><TableRow><TableCell>Report queued</TableCell><TableCell>Waiting</TableCell></TableRow></TableBody><TableFooter><TableRow><TableCell colSpan={2}>2 events</TableCell></TableRow></TableFooter></Table>;
@@ -139,7 +152,23 @@ function ComponentPreview({ name, variant }: { name: string; variant?: string })
   if (name === "Event Calendar") { const events: CalendarEvent[] = [{ id: "review", title: "Project review", start: new Date("2026-09-15T10:00:00"), end: new Date("2026-09-15T11:00:00") }, { id: "sync", title: "Workspace sync", start: new Date("2026-09-18T14:00:00"), end: new Date("2026-09-18T15:00:00") }]; return <EventCalendar events={events} view={variant === "Week" ? "week" : variant === "Day" ? "day" : "month"} date={new Date("2026-09-13")} onDateChange={() => undefined} onViewChange={() => undefined} onEventClick={() => undefined} onSlotClick={() => undefined} />; }
   if (name === "Avatar") return <div className="docs-preview-row docs-preview-centered"><Avatar><AvatarFallback>GP</AvatarFallback></Avatar></div>;
   if (name === "Progress") return <div className="docs-preview-form"><Progress value={variant === "Determinate" ? 64 : 32} /><span className="showcase-muted">{variant === "Determinate" ? "64% complete" : "32% complete"}</span></div>;
-  if (name === "Skeleton") return <div className="docs-preview-form"><Skeleton className={variant === "Block" ? "h-20 w-full" : "h-4 w-40"} /></div>;
+  if (name === "Skeleton") {
+    if (variant === "Avatar") return <div className="flex items-center gap-3"><Skeleton className="size-10 rounded-full" /><div className="grid gap-2"><Skeleton className="h-4 w-28" /><Skeleton className="h-3 w-40" /></div></div>;
+    if (variant === "Card") return <div className="grid gap-3"><Skeleton className="h-24 w-full" /><Skeleton className="h-5 w-36" /><Skeleton className="h-4 w-56" /></div>;
+    if (variant === "Text") return <div className="grid gap-2"><Skeleton className="h-4 w-full" /><Skeleton className="h-4 w-5/6" /><Skeleton className="h-4 w-2/3" /></div>;
+    if (variant === "Form") return <div className="grid gap-3"><Skeleton className="h-4 w-20" /><Skeleton className="h-9 w-full" /><Skeleton className="h-9 w-24" /></div>;
+    if (variant === "Table") return <div className="grid gap-2">{[1, 2, 3].map((row) => <Skeleton key={row} className="h-8 w-full" />)}</div>;
+    if (variant === "RTL") return <div dir="rtl" className="grid gap-2"><Skeleton className="h-4 w-40" /><Skeleton className="h-4 w-56" /></div>;
+    return <div className="docs-preview-form"><Skeleton className={variant === "Block" ? "h-20 w-full" : "h-4 w-40"} /></div>;
+  }
+  if (name === "Spinner") {
+    if (variant === "Button") return <Button disabled><Spinner aria-label="Loading" />Saving</Button>;
+    if (variant === "Badge") return <Badge><Spinner aria-label="Loading" />Generating</Badge>;
+    if (variant === "Input Group") return <div className="docs-input-group-preview"><Input placeholder="Loading search" disabled /><Spinner aria-label="Loading search" /></div>;
+    if (variant === "Empty") return <Empty title="Loading projects" description="Fetching the latest workspace data." action={<Spinner aria-label="Loading projects" />} />;
+    if (variant === "RTL") return <div dir="rtl" className="docs-preview-row docs-preview-centered"><Spinner aria-label="جار التحميل" /><span>جار التحميل</span></div>;
+    return <div className="docs-preview-row docs-preview-centered"><Spinner aria-label="Loading" /><span className="showcase-muted">Loading results</span></div>;
+  }
   if (name === "Separator") return <div className={variant === "Vertical" ? "flex h-10 items-center" : "w-full"}><Separator orientation={variant === "Vertical" ? "vertical" : "horizontal"} /></div>;
   if (name === "Tabs") return <Tabs value={tab} onValueChange={setTab}><TabsList><TabsTrigger value="one">Overview</TabsTrigger><TabsTrigger value="two">Details</TabsTrigger></TabsList><TabsContent value="one">Overview content</TabsContent><TabsContent value="two">Details content</TabsContent></Tabs>;
   if (name === "Tooltip") return <Tooltip content="Copy"><Button variant="outline">Hover or focus</Button></Tooltip>;
@@ -234,7 +263,15 @@ function Preview({ name, variant }: { name: string; variant?: string }) {
   if (name === "Card") return <CardPreview variant={variant} />;
   if (name === "Input") return <InputPreview variant={variant} />;
   if (name === "Select") return <div className="docs-preview-form"><Label htmlFor="docs-select">Release channel</Label><Select id="docs-select" defaultValue="stable"><option value="stable">Stable</option><option value="canary">Canary</option></Select></div>;
-  if (name === "Switch") return <div className="docs-preview-row"><Switch checked={enabled} onCheckedChange={setEnabled} /><span className="showcase-muted">{enabled ? "Enabled" : "Disabled"}</span></div>;
+  if (name === "Switch") {
+    if (variant === "Description") return <div className="docs-check-row"><Switch checked={enabled} onCheckedChange={setEnabled} aria-label="Notifications" /><span><strong>Notifications</strong><small className="showcase-muted">Receive workspace updates.</small></span></div>;
+    if (variant === "Choice Card") return <div className="docs-card-setting"><span><strong>Weekly digest</strong><small className="showcase-muted">Send a summary every Monday.</small></span><Switch checked={enabled} onCheckedChange={setEnabled} aria-label="Weekly digest" /></div>;
+    if (variant === "Disabled") return <div className="docs-preview-row"><Switch disabled aria-label="Unavailable setting" /><span className="showcase-muted">Unavailable</span></div>;
+    if (variant === "Invalid") return <div className="docs-preview-form"><div className="docs-preview-row"><Switch aria-invalid="true" aria-label="Required setting" /><span>Required setting</span></div><span className="docs-error" role="alert">Choose a value.</span></div>;
+    if (variant === "Size") return <div className="docs-preview-row"><Switch className="scale-90" aria-label="Compact" /><Switch aria-label="Default" /><Switch className="scale-110" aria-label="Large" /></div>;
+    if (variant === "RTL") return <div dir="rtl" className="docs-preview-row"><Switch checked={enabled} onCheckedChange={setEnabled} aria-label="الإشعارات" /><span>الإشعارات</span></div>;
+    return <div className="docs-preview-row"><Switch checked={variant === "On" ? true : enabled} onCheckedChange={setEnabled} aria-label="Setting" /><span className="showcase-muted">{enabled ? "Enabled" : "Disabled"}</span></div>;
+  }
   if (name === "Badge") return <BadgePreview variant={variant} />;
   if (name === "Alert") return <AlertPreview variant={variant} />;
   return <ComponentPreview name={name} variant={variant} />;
