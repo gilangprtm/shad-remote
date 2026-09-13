@@ -99,6 +99,10 @@ function OverlayFrame({ open, onOpenChange, title, children, side = "center", cl
   );
 }
 
+export function Dialog({ open, onOpenChange, title, children }: { open: boolean; onOpenChange: (open: boolean) => void; title: string; children: ReactNode }) {
+  return <OverlayFrame open={open} onOpenChange={onOpenChange} title={title}>{children}</OverlayFrame>;
+}
+
 export function AlertDialog({ open, onOpenChange, title, description, confirmLabel = "Confirm", onConfirm, children }: { open: boolean; onOpenChange: (open: boolean) => void; title: string; description?: ReactNode; confirmLabel?: string; onConfirm?: () => void; children?: ReactNode }) {
   return <OverlayFrame open={open} onOpenChange={onOpenChange} title={title} closeOnOverlayClick={false}><div className="grid gap-4">{description && <p className="text-sm text-muted-foreground">{description}</p>}{children}<div className="flex justify-end gap-2"><button type="button" className="rounded-md border px-3 py-2 text-sm" onClick={() => onOpenChange(false)}>Cancel</button><button type="button" className="rounded-md bg-primary px-3 py-2 text-sm text-primary-foreground" onClick={() => { onConfirm?.(); onOpenChange(false); }}>{confirmLabel}</button></div></div></OverlayFrame>;
 }

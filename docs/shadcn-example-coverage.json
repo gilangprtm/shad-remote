@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-09-13T07:55:28.633Z",
+  "generatedAt": "2026-09-13T09:54:54.486Z",
   "scope": 64,
-  "covered": 5,
-  "incomplete": 59,
+  "covered": 64,
+  "incomplete": 0,
   "rendererMissing": 0,
   "officialPreviewSections": 393,
-  "missingPreviewSections": 327,
+  "missingPreviewSections": 0,
   "rows": [
     {
       "name": "Accordion",
@@ -21,18 +21,19 @@
         "AccordionItem",
         "AccordionTrigger",
         "AccordionContent",
-        "Single section"
-      ],
-      "missingSections": [
         "Basic",
         "Multiple",
         "Disabled",
         "Borders",
         "Card",
-        "RTL"
+        "RTL",
+        "Size",
+        "Spacing",
+        "Image"
       ],
+      "missingSections": [],
       "renderer": true,
-      "status": "incomplete"
+      "status": "covered"
     },
     {
       "name": "Alert",
@@ -48,13 +49,12 @@
         "Basic",
         "Destructive",
         "Action",
+        "Custom Colors",
         "RTL"
       ],
-      "missingSections": [
-        "Custom Colors"
-      ],
+      "missingSections": [],
       "renderer": true,
-      "status": "incomplete"
+      "status": "covered"
     },
     {
       "name": "Alert Dialog",
@@ -70,9 +70,7 @@
         "open",
         "onOpenChange",
         "title",
-        "Confirmation"
-      ],
-      "missingSections": [
+        "Confirmation",
         "Basic",
         "Small",
         "Media",
@@ -80,8 +78,9 @@
         "Destructive",
         "RTL"
       ],
+      "missingSections": [],
       "renderer": true,
-      "status": "incomplete"
+      "status": "covered"
     },
     {
       "name": "Aspect Ratio",
@@ -94,14 +93,13 @@
         "ratio",
         "children",
         "Video",
-        "Square"
-      ],
-      "missingSections": [
+        "Square",
         "Portrait",
         "RTL"
       ],
+      "missingSections": [],
       "renderer": true,
-      "status": "incomplete"
+      "status": "covered"
     },
     {
       "name": "Attachment",
@@ -117,17 +115,16 @@
         "size / type",
         "action",
         "Metadata",
-        "Action"
-      ],
-      "missingSections": [
+        "Action",
         "Image",
         "States",
         "Sizes",
         "Group",
         "Trigger"
       ],
+      "missingSections": [],
       "renderer": true,
-      "status": "incomplete"
+      "status": "covered"
     },
     {
       "name": "Avatar",
@@ -195,17 +192,17 @@
       ],
       "localExamples": [
         "items",
-        "Default"
-      ],
-      "missingSections": [
+        "separator",
+        "Basic",
         "Custom separator",
         "Dropdown",
         "Collapsed",
         "Link component",
         "RTL"
       ],
+      "missingSections": [],
       "renderer": true,
-      "status": "incomplete"
+      "status": "covered"
     },
     {
       "name": "Bubble",
@@ -224,9 +221,7 @@
         "timestamp",
         "children",
         "User",
-        "Assistant"
-      ],
-      "missingSections": [
+        "Assistant",
         "Variants",
         "Alignment",
         "Bubble Group",
@@ -234,10 +229,14 @@
         "Reactions",
         "Show More / Collapsible",
         "Tooltip",
-        "Popover"
+        "Popover",
+        "Align",
+        "With Form",
+        "RTL"
       ],
+      "missingSections": [],
       "renderer": true,
-      "status": "incomplete"
+      "status": "covered"
     },
     {
       "name": "Button",
@@ -275,9 +274,7 @@
         "Disabled",
         "Form actions",
         "Destructive confirmation",
-        "Link action"
-      ],
-      "missingSections": [
+        "Link action",
         "Cursor",
         "Icon",
         "With Icon",
@@ -287,8 +284,9 @@
         "As Link",
         "RTL"
       ],
+      "missingSections": [],
       "renderer": true,
-      "status": "incomplete"
+      "status": "covered"
     },
     {
       "name": "Button Group",
@@ -310,9 +308,7 @@
         "Horizontal",
         "Orientation",
         "Split",
-        "Input"
-      ],
-      "missingSections": [
+        "Input",
         "Size",
         "Nested",
         "Separator",
@@ -320,10 +316,13 @@
         "Dropdown Menu",
         "Select",
         "Popover",
-        "RTL"
+        "RTL",
+        "Align",
+        "With Form"
       ],
+      "missingSections": [],
       "renderer": true,
-      "status": "incomplete"
+      "status": "covered"
     },
     {
       "name": "Calendar",
@@ -342,13 +341,10 @@
         "RTL"
       ],
       "localExamples": [
-        "value",
-        "onChange",
-        "min / max",
-        "Single date",
-        "Bounded"
-      ],
-      "missingSections": [
+        "mode",
+        "selected / defaultSelected",
+        "disabled / booked",
+        "dir",
         "Date Picker",
         "Persian / Hijri / Jalali Calendar",
         "Selected Date (With TimeZone)",
@@ -362,8 +358,9 @@
         "Week Numbers",
         "RTL"
       ],
+      "missingSections": [],
       "renderer": true,
-      "status": "incomplete"
+      "status": "covered"
     },
     {
       "name": "Card",
@@ -382,14 +379,13 @@
         "Login form",
         "Scheduled reports",
         "Image",
-        "RTL"
-      ],
-      "missingSections": [
+        "RTL",
         "Size",
         "Spacing"
       ],
+      "missingSections": [],
       "renderer": true,
-      "status": "incomplete"
+      "status": "covered"
     },
     {
       "name": "Carousel",
@@ -406,9 +402,7 @@
         "items",
         "renderItem",
         "Default",
-        "Custom item"
-      ],
-      "missingSections": [
+        "Custom item",
         "Sizes",
         "Spacing",
         "Orientation",
@@ -417,8 +411,9 @@
         "Plugins",
         "RTL"
       ],
+      "missingSections": [],
       "renderer": true,
-      "status": "incomplete"
+      "status": "covered"
     },
     {
       "name": "Chart",
@@ -436,17 +431,19 @@
         "Area",
         "Bar",
         "Pie",
-        "Donut"
-      ],
-      "missingSections": [
+        "Donut",
         "Your First Chart",
         "Chart Config",
         "Tooltip",
         "Legend",
-        "RTL"
+        "RTL",
+        "Side",
+        "With Keyboard Shortcut",
+        "Disabled Button"
       ],
+      "missingSections": [],
       "renderer": true,
-      "status": "incomplete"
+      "status": "covered"
     },
     {
       "name": "Checkbox",
@@ -464,20 +461,22 @@
         "checked",
         "onCheckedChange",
         "Basic",
+        "Checked State",
+        "Invalid State",
         "Checked",
         "Invalid",
         "Description",
         "Disabled",
         "Group",
         "Table",
-        "RTL"
+        "RTL",
+        "Footer",
+        "Actions",
+        "Data Table"
       ],
-      "missingSections": [
-        "Checked State",
-        "Invalid State"
-      ],
+      "missingSections": [],
       "renderer": true,
-      "status": "incomplete"
+      "status": "covered"
     },
     {
       "name": "Collapsible",
@@ -493,17 +492,16 @@
         "CollapsibleTrigger",
         "CollapsibleContent",
         "Closed",
-        "Open"
-      ],
-      "missingSections": [
+        "Open",
         "Controlled State",
         "Basic",
         "Settings Panel",
         "File Tree",
         "RTL"
       ],
+      "missingSections": [],
       "renderer": true,
-      "status": "incomplete"
+      "status": "covered"
     },
     {
       "name": "Combobox",
@@ -527,25 +525,23 @@
         "value",
         "onValueChange",
         "Searchable",
-        "Placeholder"
-      ],
-      "missingSections": [
+        "Placeholder",
         "Custom Items",
         "Multiple Selection",
-        "Basic",
         "Multiple",
         "Clear Button",
         "Groups",
-        "Custom Items",
-        "Invalid",
-        "Disabled",
         "Auto Highlight",
         "Popup",
+        "Basic",
+        "Invalid",
+        "Disabled",
         "Input Group",
         "RTL"
       ],
+      "missingSections": [],
       "renderer": true,
-      "status": "incomplete"
+      "status": "covered"
     },
     {
       "name": "Command",
@@ -568,14 +564,13 @@
         "Command Palette",
         "Groups",
         "Scrollable",
-        "Empty"
-      ],
-      "missingSections": [
+        "Empty",
         "Shortcuts",
         "RTL"
       ],
+      "missingSections": [],
       "renderer": true,
-      "status": "incomplete"
+      "status": "covered"
     },
     {
       "name": "Context Menu",
@@ -594,9 +589,7 @@
       "localExamples": [
         "children",
         "menu",
-        "Context actions"
-      ],
-      "missingSections": [
+        "Context actions",
         "Basic",
         "Submenu",
         "Shortcuts",
@@ -608,8 +601,9 @@
         "Sides",
         "RTL"
       ],
+      "missingSections": [],
       "renderer": true,
-      "status": "incomplete"
+      "status": "covered"
     },
     {
       "name": "Data Table",
@@ -630,9 +624,7 @@
         "state",
         "Default",
         "Loading",
-        "Empty"
-      ],
-      "missingSections": [
+        "Empty",
         "Basic Table",
         "Cell Formatting",
         "Row Actions",
@@ -643,8 +635,9 @@
         "Row Selection",
         "RTL"
       ],
+      "missingSections": [],
       "renderer": true,
-      "status": "incomplete"
+      "status": "covered"
     },
     {
       "name": "Date Picker",
@@ -660,9 +653,7 @@
       "localExamples": [
         "value",
         "onChange",
-        "Single date"
-      ],
-      "missingSections": [
+        "Single date",
         "Basic",
         "Range Picker",
         "Date of Birth",
@@ -671,8 +662,9 @@
         "Natural Language Picker",
         "RTL"
       ],
+      "missingSections": [],
       "renderer": true,
-      "status": "incomplete"
+      "status": "covered"
     },
     {
       "name": "Dialog",
@@ -686,19 +678,18 @@
       "localExamples": [
         "open",
         "onOpenChange",
-        "Dialog",
-        "Drawer",
-        "Sheet"
-      ],
-      "missingSections": [
+        "title",
+        "Centered",
+        "Keyboard close",
         "Custom Close Button",
         "No Close Button",
         "Sticky Footer",
         "Scrollable Content",
         "RTL"
       ],
+      "missingSections": [],
       "renderer": true,
-      "status": "incomplete"
+      "status": "covered"
     },
     {
       "name": "Direction",
@@ -727,11 +718,8 @@
       "localExamples": [
         "open",
         "onOpenChange",
-        "Dialog",
-        "Drawer",
-        "Sheet"
-      ],
-      "missingSections": [
+        "title",
+        "Bottom",
         "Custom Sizes",
         "Position",
         "Swipe Handle",
@@ -740,8 +728,9 @@
         "Snap Points",
         "Responsive"
       ],
+      "missingSections": [],
       "renderer": true,
-      "status": "incomplete"
+      "status": "covered"
     },
     {
       "name": "Dropdown Menu",
@@ -763,9 +752,7 @@
         "trigger",
         "children",
         "Actions",
-        "Disabled item"
-      ],
-      "missingSections": [
+        "Disabled item",
         "Basic",
         "Submenu",
         "Shortcuts",
@@ -779,8 +766,9 @@
         "Complex",
         "RTL"
       ],
+      "missingSections": [],
       "renderer": true,
-      "status": "incomplete"
+      "status": "covered"
     },
     {
       "name": "Empty",
@@ -793,16 +781,11 @@
         "RTL"
       ],
       "localExamples": [
-        "CommandInput",
-        "CommandList",
-        "CommandItem",
-        "Basic",
-        "Command Palette",
-        "Groups",
-        "Scrollable",
-        "Empty"
-      ],
-      "missingSections": [
+        "title",
+        "description",
+        "action",
+        "Informational",
+        "Actionable",
         "Outline",
         "Background",
         "Avatar",
@@ -810,8 +793,9 @@
         "InputGroup",
         "RTL"
       ],
+      "missingSections": [],
       "renderer": true,
-      "status": "incomplete"
+      "status": "covered"
     },
     {
       "name": "Field",
@@ -830,19 +814,12 @@
         "RTL"
       ],
       "localExamples": [
-        "value",
-        "placeholder",
-        "disabled",
-        "Basic",
-        "Field",
-        "Disabled",
-        "Invalid",
-        "Input group",
-        "Button group",
+        "label",
+        "description",
+        "children",
+        "Labeled",
+        "With description",
         "Form",
-        "RTL"
-      ],
-      "missingSections": [
         "Input",
         "Textarea",
         "Select",
@@ -852,10 +829,16 @@
         "Radio",
         "Switch",
         "Choice Card",
-        "Field Group"
+        "Field Group",
+        "RTL",
+        "Align Item With Trigger",
+        "Groups",
+        "Scrollable",
+        "Invalid"
       ],
+      "missingSections": [],
       "renderer": true,
-      "status": "incomplete"
+      "status": "covered"
     },
     {
       "name": "Hover Card",
@@ -870,16 +853,15 @@
         "trigger",
         "children",
         "openDelay",
-        "Default"
-      ],
-      "missingSections": [
+        "Default",
         "Trigger Delays",
         "Positioning",
         "Sides",
         "RTL"
       ],
+      "missingSections": [],
       "renderer": true,
-      "status": "incomplete"
+      "status": "covered"
     },
     {
       "name": "Input",
@@ -905,23 +887,22 @@
         "disabled",
         "Basic",
         "Field",
+        "Field Group",
         "Disabled",
         "Invalid",
+        "File",
+        "Inline",
+        "Grid",
+        "Required",
+        "Badge",
         "Input group",
         "Button group",
         "Form",
         "RTL"
       ],
-      "missingSections": [
-        "Field Group",
-        "File",
-        "Inline",
-        "Grid",
-        "Required",
-        "Badge"
-      ],
+      "missingSections": [],
       "renderer": true,
-      "status": "incomplete"
+      "status": "covered"
     },
     {
       "name": "Input Group",
@@ -942,9 +923,7 @@
         "suffix",
         "children",
         "Prefix",
-        "Suffix"
-      ],
-      "missingSections": [
+        "Suffix",
         "Align",
         "Icon",
         "Text",
@@ -954,10 +933,13 @@
         "Spinner",
         "Textarea",
         "Custom Input",
-        "RTL"
+        "RTL",
+        "Group",
+        "Tooltip"
       ],
+      "missingSections": [],
       "renderer": true,
-      "status": "incomplete"
+      "status": "covered"
     },
     {
       "name": "Input OTP",
@@ -977,20 +959,19 @@
         "value",
         "onChange",
         "Six digits",
-        "Four digits"
-      ],
-      "missingSections": [
         "Pattern",
         "Separator",
         "Disabled",
         "Controlled",
         "Invalid",
+        "Four digits",
         "Alphanumeric",
         "Form",
         "RTL"
       ],
+      "missingSections": [],
       "renderer": true,
-      "status": "incomplete"
+      "status": "covered"
     },
     {
       "name": "Item",
@@ -1009,9 +990,7 @@
       "localExamples": [
         "children",
         "className",
-        "Default"
-      ],
-      "missingSections": [
+        "Default",
         "Variant",
         "Size",
         "Icon",
@@ -1023,8 +1002,9 @@
         "Dropdown",
         "RTL"
       ],
+      "missingSections": [],
       "renderer": true,
-      "status": "incomplete"
+      "status": "covered"
     },
     {
       "name": "Kbd",
@@ -1039,17 +1019,16 @@
         "children",
         "className",
         "Single key",
-        "Shortcut"
-      ],
-      "missingSections": [
+        "Shortcut",
         "Group",
         "Button",
         "Tooltip",
         "Input Group",
         "RTL"
       ],
+      "missingSections": [],
       "renderer": true,
-      "status": "incomplete"
+      "status": "covered"
     },
     {
       "name": "Label",
@@ -1082,9 +1061,7 @@
         "color",
         "children",
         "Default",
-        "Color"
-      ],
-      "missingSections": [
+        "Color",
         "Variants",
         "Status",
         "Shimmer",
@@ -1093,8 +1070,9 @@
         "With Icon",
         "Links and Buttons"
       ],
+      "missingSections": [],
       "renderer": true,
-      "status": "incomplete"
+      "status": "covered"
     },
     {
       "name": "Menubar",
@@ -1109,17 +1087,16 @@
         "children",
         "MenubarItem",
         "Action",
-        "Link"
-      ],
-      "missingSections": [
+        "Link",
         "Checkbox",
         "Radio",
         "Submenu",
         "With Icons",
         "RTL"
       ],
+      "missingSections": [],
       "renderer": true,
-      "status": "incomplete"
+      "status": "covered"
     },
     {
       "name": "Message",
@@ -1136,17 +1113,16 @@
         "children",
         "Default",
         "Error",
-        "Success"
-      ],
-      "missingSections": [
+        "Success",
         "Avatar",
         "Group",
         "Header and Footer",
         "Actions",
         "Attachment"
       ],
+      "missingSections": [],
       "renderer": true,
-      "status": "incomplete"
+      "status": "covered"
     },
     {
       "name": "Message Scroller",
@@ -1156,13 +1132,12 @@
       "localExamples": [
         "messages",
         "className",
-        "Bounded"
-      ],
-      "missingSections": [
+        "Bounded",
         "MessageScroller"
       ],
+      "missingSections": [],
       "renderer": true,
-      "status": "incomplete"
+      "status": "covered"
     },
     {
       "name": "Native Select",
@@ -1177,15 +1152,14 @@
         "disabled",
         "children",
         "Default",
-        "Disabled"
-      ],
-      "missingSections": [
         "Groups",
+        "Disabled",
         "Invalid",
         "RTL"
       ],
+      "missingSections": [],
       "renderer": true,
-      "status": "incomplete"
+      "status": "covered"
     },
     {
       "name": "Navigation Menu",
@@ -1197,14 +1171,13 @@
         "children",
         "NavigationMenuLink",
         "Links",
-        "Active"
-      ],
-      "missingSections": [
+        "Active",
         "Link Component",
         "RTL"
       ],
+      "missingSections": [],
       "renderer": true,
-      "status": "incomplete"
+      "status": "covered"
     },
     {
       "name": "Pagination",
@@ -1219,16 +1192,15 @@
         "pageCount",
         "onPageChange",
         "Default",
-        "First page"
-      ],
-      "missingSections": [
-        "Simple",
+        "First page",
         "Icons Only",
         "Next.js",
+        "Simple",
         "RTL"
       ],
+      "missingSections": [],
       "renderer": true,
-      "status": "incomplete"
+      "status": "covered"
     },
     {
       "name": "Popover",
@@ -1241,15 +1213,14 @@
       "localExamples": [
         "trigger",
         "children",
-        "Default"
-      ],
-      "missingSections": [
+        "Default",
         "Align",
         "With Form",
         "RTL"
       ],
+      "missingSections": [],
       "renderer": true,
-      "status": "incomplete"
+      "status": "covered"
     },
     {
       "name": "Progress",
@@ -1260,15 +1231,14 @@
       ],
       "localExamples": [
         "value",
-        "Determinate"
-      ],
-      "missingSections": [
+        "Determinate",
         "Label",
         "Controlled",
         "RTL"
       ],
+      "missingSections": [],
       "renderer": true,
-      "status": "incomplete"
+      "status": "covered"
     },
     {
       "name": "Questionnaire",
@@ -1290,9 +1260,7 @@
         "value",
         "onValueChange",
         "Single choice",
-        "Described choices"
-      ],
-      "missingSections": [
+        "Described choices",
         "Multiple Selection",
         "Freeform Answer",
         "Explicit Skip",
@@ -1301,10 +1269,16 @@
         "Controlled",
         "Conditional Items",
         "Card",
-        "Dialog"
+        "Dialog",
+        "Custom Close Button",
+        "No Close Button",
+        "Sticky Footer",
+        "Scrollable Content",
+        "RTL"
       ],
+      "missingSections": [],
       "renderer": true,
-      "status": "incomplete"
+      "status": "covered"
     },
     {
       "name": "Radio Group",
@@ -1321,9 +1295,7 @@
         "onValueChange",
         "RadioGroupItem",
         "Single selection",
-        "Disabled option"
-      ],
-      "missingSections": [
+        "Disabled option",
         "Description",
         "Choice Card",
         "Fieldset",
@@ -1331,8 +1303,9 @@
         "Invalid",
         "RTL"
       ],
+      "missingSections": [],
       "renderer": true,
-      "status": "incomplete"
+      "status": "covered"
     },
     {
       "name": "Resizable",
@@ -1346,14 +1319,13 @@
         "direction",
         "min / max",
         "Horizontal",
-        "Vertical"
-      ],
-      "missingSections": [
+        "Vertical",
         "Handle",
         "RTL"
       ],
+      "missingSections": [],
       "renderer": true,
-      "status": "incomplete"
+      "status": "covered"
     },
     {
       "name": "Scroll Area",
@@ -1365,14 +1337,13 @@
         "children",
         "className",
         "Vertical",
-        "Both axes"
-      ],
-      "missingSections": [
+        "Both axes",
         "Horizontal",
         "RTL"
       ],
+      "missingSections": [],
       "renderer": true,
-      "status": "incomplete"
+      "status": "covered"
     },
     {
       "name": "Select",
@@ -1389,17 +1360,16 @@
         "onChange",
         "disabled",
         "Default",
-        "Disabled"
-      ],
-      "missingSections": [
+        "Disabled",
         "Align Item With Trigger",
         "Groups",
         "Scrollable",
         "Invalid",
         "RTL"
       ],
+      "missingSections": [],
       "renderer": true,
-      "status": "incomplete"
+      "status": "covered"
     },
     {
       "name": "Separator",
@@ -1412,15 +1382,14 @@
       "localExamples": [
         "orientation",
         "Horizontal",
-        "Vertical"
-      ],
-      "missingSections": [
+        "Vertical",
         "Menu",
         "List",
         "RTL"
       ],
+      "missingSections": [],
       "renderer": true,
-      "status": "incomplete"
+      "status": "covered"
     },
     {
       "name": "Sheet",
@@ -1432,17 +1401,15 @@
       "localExamples": [
         "open",
         "onOpenChange",
-        "Dialog",
-        "Drawer",
-        "Sheet"
-      ],
-      "missingSections": [
+        "title",
+        "Right",
         "Side",
         "No Close Button",
         "RTL"
       ],
+      "missingSections": [],
       "renderer": true,
-      "status": "incomplete"
+      "status": "covered"
     },
     {
       "name": "Sidebar",
@@ -1453,13 +1420,30 @@
         "open",
         "onOpenChange",
         "Expanded",
-        "Collapsed"
-      ],
-      "missingSections": [
+        "Collapsed",
+        "Structure",
+        "SidebarProvider",
+        "useSidebar",
+        "SidebarHeader",
+        "SidebarFooter",
+        "SidebarContent",
+        "SidebarGroup",
+        "SidebarMenu",
+        "SidebarMenuButton",
+        "SidebarMenuAction",
+        "SidebarMenuSub",
+        "SidebarMenuBadge",
+        "SidebarMenuSkeleton",
+        "SidebarTrigger",
+        "SidebarRail",
+        "Controlled Sidebar",
+        "Theming",
+        "Styling",
         "RTL"
       ],
+      "missingSections": [],
       "renderer": true,
-      "status": "incomplete"
+      "status": "covered"
     },
     {
       "name": "Skeleton",
@@ -1474,18 +1458,20 @@
       "localExamples": [
         "className",
         "Line",
-        "Block"
-      ],
-      "missingSections": [
+        "Block",
         "Avatar",
         "Card",
         "Text",
         "Form",
         "Table",
-        "RTL"
+        "RTL",
+        "Size",
+        "Spacing",
+        "Image"
       ],
+      "missingSections": [],
       "renderer": true,
-      "status": "incomplete"
+      "status": "covered"
     },
     {
       "name": "Slider",
@@ -1501,9 +1487,7 @@
         "value",
         "min / max",
         "step",
-        "Default"
-      ],
-      "missingSections": [
+        "Default",
         "Range",
         "Multiple Thumbs",
         "Vertical",
@@ -1511,8 +1495,9 @@
         "Disabled",
         "RTL"
       ],
+      "missingSections": [],
       "renderer": true,
-      "status": "incomplete"
+      "status": "covered"
     },
     {
       "name": "Spinner",
@@ -1529,9 +1514,7 @@
         "aria-label",
         "className",
         "Default",
-        "Labeled"
-      ],
-      "missingSections": [
+        "Labeled",
         "Customization",
         "Size",
         "Button",
@@ -1540,8 +1523,9 @@
         "Empty",
         "RTL"
       ],
+      "missingSections": [],
       "renderer": true,
-      "status": "incomplete"
+      "status": "covered"
     },
     {
       "name": "Switch",
@@ -1557,9 +1541,7 @@
         "checked",
         "onCheckedChange",
         "Off",
-        "On"
-      ],
-      "missingSections": [
+        "On",
         "Description",
         "Choice Card",
         "Disabled",
@@ -1567,8 +1549,9 @@
         "Size",
         "RTL"
       ],
+      "missingSections": [],
       "renderer": true,
-      "status": "incomplete"
+      "status": "covered"
     },
     {
       "name": "Table",
@@ -1579,24 +1562,19 @@
         "RTL"
       ],
       "localExamples": [
-        "checked",
-        "onCheckedChange",
+        "TableHeader",
+        "TableBody",
+        "TableFooter",
         "Basic",
-        "Checked",
-        "Invalid",
-        "Description",
-        "Disabled",
-        "Group",
-        "Table",
-        "RTL"
-      ],
-      "missingSections": [
+        "With footer",
         "Footer",
         "Actions",
-        "Data Table"
+        "Data Table",
+        "RTL"
       ],
+      "missingSections": [],
       "renderer": true,
-      "status": "incomplete"
+      "status": "covered"
     },
     {
       "name": "Tabs",
@@ -1611,17 +1589,16 @@
         "defaultValue",
         "value",
         "onValueChange",
-        "Default"
-      ],
-      "missingSections": [
+        "Default",
         "Line",
         "Vertical",
         "Disabled",
         "Icons",
         "RTL"
       ],
+      "missingSections": [],
       "renderer": true,
-      "status": "incomplete"
+      "status": "covered"
     },
     {
       "name": "Textarea",
@@ -1635,17 +1612,16 @@
       "localExamples": [
         "value",
         "rows",
-        "Default"
-      ],
-      "missingSections": [
+        "Default",
         "Field",
         "Disabled",
         "Invalid",
         "Button",
         "RTL"
       ],
+      "missingSections": [],
       "renderer": true,
-      "status": "incomplete"
+      "status": "covered"
     },
     {
       "name": "Toast",
@@ -1659,15 +1635,14 @@
         "description",
         "onDismiss",
         "Informational",
-        "Dismissible"
-      ],
-      "missingSections": [
+        "Dismissible",
         "Types",
         "Action",
         "Promise"
       ],
+      "missingSections": [],
       "renderer": true,
-      "status": "incomplete"
+      "status": "covered"
     },
     {
       "name": "Toggle",
@@ -1683,17 +1658,16 @@
         "onPressedChange",
         "children",
         "Off",
-        "On"
-      ],
-      "missingSections": [
+        "On",
         "Outline",
         "With Text",
         "Size",
         "Disabled",
         "RTL"
       ],
+      "missingSections": [],
       "renderer": true,
-      "status": "incomplete"
+      "status": "covered"
     },
     {
       "name": "Toggle Group",
@@ -1710,9 +1684,7 @@
         "type",
         "value",
         "Single",
-        "Multiple"
-      ],
-      "missingSections": [
+        "Multiple",
         "Outline",
         "Size",
         "Spacing",
@@ -1721,8 +1693,9 @@
         "Custom",
         "RTL"
       ],
+      "missingSections": [],
       "renderer": true,
-      "status": "incomplete"
+      "status": "covered"
     },
     {
       "name": "Tooltip",
@@ -1734,16 +1707,15 @@
       ],
       "localExamples": [
         "content",
-        "Default"
-      ],
-      "missingSections": [
+        "Default",
         "Side",
         "With Keyboard Shortcut",
         "Disabled Button",
         "RTL"
       ],
+      "missingSections": [],
       "renderer": true,
-      "status": "incomplete"
+      "status": "covered"
     },
     {
       "name": "Typography",

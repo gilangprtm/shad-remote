@@ -31,7 +31,7 @@ const aliases = new Map([
 ]);
 
 function componentLine(name) {
-  return registrySource.split("\n").find((line) => line.includes(`name: "${name}"`)) ?? "";
+  return registrySource.split("\n").find((line) => line.includes(`, name: "${name}", description:`)) ?? "";
 }
 function localVariants(name) {
   return [...componentLine(name).matchAll(/\{ name: "([^"]+)"/g)].map((match) => match[1]);

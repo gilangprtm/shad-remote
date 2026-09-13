@@ -19,13 +19,13 @@ import { Popover } from "../../core/popover/Popover";
 import { Slider } from "../../core/controls/Controls";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../../core/accordion/Accordion";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "../../core/collapsible/Collapsible";
-import { Spinner, Kbd, AspectRatio, ScrollArea, Field, NativeSelect } from "../../core/misc/Misc";
+import { Spinner, Kbd, KbdGroup, AspectRatio, ScrollArea, Field, NativeSelect } from "../../core/misc/Misc";
 import { Direction, Empty, HoverCard, Marker, Message, MessageScroller, Typography, Calendar, Toast } from "../../core/foundation/Foundation";
-import { Dialog } from "../../core/dialog/Dialog";
-import { AlertDialog, Drawer, Sheet } from "../../core/overlay/Overlay";
-import { Attachment, Bubble, Questionnaire } from "../../core/foundation/ExtendedFoundation";
+import { Dialog, AlertDialog, Drawer, Sheet } from "../../core/overlay/Overlay";
+import { Attachment, AttachmentAction, AttachmentActions, AttachmentContent, AttachmentDescription, AttachmentGroup, AttachmentImage, AttachmentMedia, AttachmentTitle, AttachmentTrigger, Bubble, Questionnaire } from "../../core/foundation/ExtendedFoundation";
+import { CalendarGrid } from "../../components/calendar/CalendarGrid";
 import { InputGroup, InputOTP, Carousel, Resizable } from "../../core/advanced/Advanced";
-import { DropdownMenu, DropdownMenuItem, ContextMenu, Menubar, MenubarItem, NavigationMenu, NavigationMenuLink, Combobox } from "../../core/menus/Menus";
+import { DropdownMenu, DropdownMenuItem, DropdownMenuSeparator, ContextMenu, Menubar, MenubarItem, NavigationMenu, NavigationMenuLink, Combobox } from "../../core/menus/Menus";
 import { ButtonGroup, ToggleGroup, ToggleGroupItem } from "../../core/controls/Controls";
 import { Toggle } from "../../core/toggle/Toggle";
 import { Command, CommandInput, CommandList, CommandGroup, CommandItem, CommandEmpty } from "../../core/command/Command";
@@ -117,10 +117,30 @@ function ComponentPreview({ name, variant }: { name: string; variant?: string })
     if (variant === "RTL") return <div dir="rtl"><Breadcrumb items={[{ label: "مساحة العمل", href: "#workspace" }, { label: "المشروع" }]} /></div>;
     return <Breadcrumb items={[{ label: "Workspace", href: "#workspace" }, { label: "Projects", href: "#projects" }, { label: "Remote UI" }]} />;
   };
-  if (name === "Button Group") return <ButtonGroup><Button variant="outline">Previous</Button><Button variant="outline">Next</Button></ButtonGroup>;
+  if (name === "Button Group") {
+    if (variant === "Size") return <ButtonGroup><Button size="sm">Back</Button><Button size="sm">Next</Button></ButtonGroup>;
+    if (variant === "Nested") return <ButtonGroup><Button>Publish</Button><Button size="icon" aria-label="More publish actions">⋯</Button></ButtonGroup>;
+    if (variant === "Separator") return <div className="docs-preview-row"><ButtonGroup><Button>Save</Button><Button variant="outline">Preview</Button></ButtonGroup></div>;
+    if (variant === "Input Group") return <ButtonGroup><Input aria-label="Search" placeholder="Search" /><Button>Search</Button></ButtonGroup>;
+    if (variant === "Dropdown Menu") return <ButtonGroup><Button>Publish</Button><Button size="icon" aria-label="More publish actions">⋯</Button></ButtonGroup>;
+    if (variant === "Select") return <ButtonGroup><Select defaultValue="stable"><option value="stable">Stable</option><option value="canary">Canary</option></Select><Button>Deploy</Button></ButtonGroup>;
+    if (variant === "Popover") return <ButtonGroup><Button>Export</Button><Button variant="outline">Options</Button></ButtonGroup>;
+    if (variant === "RTL") return <div dir="rtl"><ButtonGroup><Button>السابق</Button><Button>التالي</Button></ButtonGroup></div>;
+    return <ButtonGroup><Button variant="outline">Previous</Button><Button variant="outline">Next</Button></ButtonGroup>;
+  };
   if (name === "Command") { const [query, setQuery] = useState(""); return <Command className="max-w-sm"><CommandInput value={query} onValueChange={setQuery} placeholder="Search commands..." /><CommandList><CommandGroup heading="Actions"><CommandItem value="new project" query={query}>New project</CommandItem><CommandItem value="open settings" query={query}>Open settings</CommandItem></CommandGroup><CommandEmpty>No matching commands.</CommandEmpty></CommandList></Command>; }
-  if (name === "Calendar") return <Calendar value="2026-09-13" onChange={() => undefined} />;
-  if (name === "Pagination") return <Pagination page={variant === "First page" ? 1 : 3} pageCount={10} onPageChange={() => undefined} />;
+  if (name === "Calendar") {
+    if (variant === "Date Picker") return <DatePicker defaultValue={new Date("2026-09-13")} onChange={() => undefined} />;
+    if (variant === "Persian / Hijri / Jalali Calendar") return <div className="docs-preview-copy">Unsupported locally: CalendarGrid uses Gregorian Date values; provide an alternate-calendar adapter in the consumer.</div>;
+    if (variant === "Selected Date (With TimeZone)") return <div className="docs-preview-copy">Unsupported locally: CalendarGrid does not model a named time zone; normalize Date values in the consumer.</div>;
+    if (variant === "Date and Time Picker") return <div className="docs-preview-copy">Unsupported locally: CalendarGrid selects dates only; compose a consumer-owned time input.</div>;
+    if (variant === "Month and Year Selector") return <CalendarGrid defaultMonth={new Date("2026-09-01")} onMonthChange={() => undefined} />;
+    if (variant === "Presets") return <div className="grid gap-3"><div className="flex flex-wrap gap-2"><Button size="sm" variant="outline">Today</Button><Button size="sm" variant="outline">Next 7 days</Button></div><CalendarGrid defaultMonth={new Date("2026-09-01")} defaultSelected={new Date("2026-09-13")} /></div>;
+    if (variant === "Custom Cell Size") return <CalendarGrid cellSize="lg" defaultMonth={new Date("2026-09-01")} defaultSelected={new Date("2026-09-13")} />;
+    if (["Basic", "Range Calendar", "Booked dates", "Week Numbers", "RTL"].includes(variant ?? "")) return <CalendarGrid mode={variant === "Range Calendar" ? "range" : "single"} defaultMonth={new Date("2026-09-01")} defaultSelected={variant === "Range Calendar" ? { from: new Date("2026-09-10"), to: new Date("2026-09-14") } : new Date("2026-09-13")} booked={variant === "Booked dates" ? new Date("2026-09-18") : undefined} weekNumbers={variant === "Week Numbers"} dir={variant === "RTL" ? "rtl" : "ltr"} onSelect={() => undefined} />;
+    return <CalendarGrid defaultMonth={new Date("2026-09-01")} defaultSelected={new Date("2026-09-13")} onSelect={() => undefined} />;
+  }
+  if (name === "Pagination") { if (variant === "Icons Only") return <Pagination page={3} pageCount={10} iconOnly onPageChange={() => undefined} />; if (variant === "Next.js") return <Pagination page={3} pageCount={10} onPageChange={() => undefined} />; return <div dir={variant === "RTL" ? "rtl" : undefined}><Pagination page={variant === "First page" ? 1 : 3} pageCount={10} onPageChange={() => undefined} /></div>; }
   if (name === "Textarea") {
     if (variant === "Field") return <div className="docs-preview-form"><Label htmlFor="docs-textarea-field">Message</Label><Textarea id="docs-textarea-field" placeholder="Describe the change" rows={4} /><span className="showcase-muted">Markdown is supported.</span></div>;
     if (variant === "Disabled") return <Textarea disabled placeholder="Unavailable" rows={4} />;
@@ -135,15 +155,76 @@ function ComponentPreview({ name, variant }: { name: string; variant?: string })
     if (variant === "RTL") return <div dir="rtl" className="docs-preview-form"><span>القائمة</span><Separator /><span>الحساب</span></div>;
     return <div className={variant === "Vertical" ? "flex h-10 items-center" : "w-full"}><Separator orientation={variant === "Vertical" ? "vertical" : "horizontal"} /></div>;
   }
-  if (name === "Toggle") return <Toggle pressed={variant === "On"} onPressedChange={() => undefined}>Bold</Toggle>;
-  if (name === "Toggle Group") return <ToggleGroup defaultValue="week"><ToggleGroupItem value="day">Day</ToggleGroupItem><ToggleGroupItem value="week">Week</ToggleGroupItem><ToggleGroupItem value="month">Month</ToggleGroupItem></ToggleGroup>;
-  if (name === "Table") return <Table><TableCaption>Recent workspace activity</TableCaption><TableHeader><TableRow><TableHead>Event</TableHead><TableHead>Status</TableHead></TableRow></TableHeader><TableBody><TableRow><TableCell>Sync completed</TableCell><TableCell>Ready</TableCell></TableRow><TableRow><TableCell>Report queued</TableCell><TableCell>Waiting</TableCell></TableRow></TableBody><TableFooter><TableRow><TableCell colSpan={2}>2 events</TableCell></TableRow></TableFooter></Table>;
-  if (name === "Data Table") return <DataTable data={[{ name: "Weekly report", status: "Ready" }, { name: "Workspace sync", status: "Running" }]} columns={[{ key: "name", header: "Job" }, { key: "status", header: "Status" }]} />;
-  if (name === "Chart") { const kind: "line" | "bar" | "area" | "pie" | "donut" = variant === "Bar" ? "bar" : variant === "Area" ? "area" : variant === "Pie" ? "pie" : variant === "Donut" ? "donut" : "line"; const definition = { kind, series: [{ key: "desktop", label: "Desktop" }, { key: "mobile", label: "Mobile" }], title: "Visitors by device", description: "Last 3 months" }; return <Chart definition={definition} state={{ status: "ready", data: [{ desktop: 7324, mobile: 6250 }, { desktop: 8110, mobile: 7250 }, { desktop: 9020, mobile: 8250 }] }} />; }
-  if (name === "Radio Group") return <RadioGroup defaultValue="pro" className="grid gap-3"><label className="flex items-start gap-3"><RadioGroupItem value="starter" /><span><strong>Starter</strong><small className="showcase-muted block">For individuals and small teams.</small></span></label><label className="flex items-start gap-3"><RadioGroupItem value="pro" /><span><strong>Pro</strong><small className="showcase-muted block">For growing businesses.</small></span></label><label className="flex items-start gap-3"><RadioGroupItem value="enterprise" disabled={variant === "Disabled"} /><span><strong>Enterprise</strong><small className="showcase-muted block">For large teams.</small></span></label></RadioGroup>;
-  if (name === "Sidebar") return <SidebarProvider open={variant !== "Collapsed"}><div className="flex min-h-48 w-full"><Sidebar><SidebarHeader><strong>Workspace</strong></SidebarHeader><SidebarContent><nav className="grid gap-1 text-sm"><a href="#overview" className="rounded px-2 py-1 hover:bg-muted">Overview</a><a href="#projects" className="rounded px-2 py-1 hover:bg-muted">Projects</a></nav></SidebarContent><SidebarFooter><span className="text-xs">Account</span></SidebarFooter></Sidebar><SidebarInset><div className="p-4 text-sm">Main content area</div></SidebarInset></div></SidebarProvider>;
-  if (name === "Date Picker") return variant === "Range" ? <DateRangePicker defaultValue={{ from: new Date("2026-01-20"), to: new Date("2026-02-09") }} onChange={() => undefined} /> : <DatePicker defaultValue={new Date("2026-09-15")} onChange={() => undefined} />;
-  if (name === "Item") return <Item><Avatar><AvatarFallback>GP</AvatarFallback></Avatar><div><strong>Workspace sync</strong><small className="showcase-muted block">Your profile has been verified.</small></div><Button size="sm" variant="outline">Open</Button></Item>;
+  if (name === "Toggle") {
+    if (variant === "Outline") return <Toggle className="border" aria-label="Bold">Bold</Toggle>;
+    if (variant === "With Text") return <Toggle>Italic</Toggle>;
+    if (variant === "Size") return <Toggle className="h-9 px-4">Large</Toggle>;
+    if (variant === "Disabled") return <Toggle disabled>Unavailable</Toggle>;
+    if (variant === "RTL") return <div dir="rtl"><Toggle>إشارة مرجعية</Toggle></div>;
+    return <Toggle pressed={variant === "On"} onPressedChange={() => undefined}>Bold</Toggle>;
+  }
+  if (name === "Toggle Group") {
+    const items = (itemClass?: string) => <><ToggleGroupItem value="day" className={itemClass}>Day</ToggleGroupItem><ToggleGroupItem value="week" className={itemClass}>Week</ToggleGroupItem><ToggleGroupItem value="month" className={itemClass}>Month</ToggleGroupItem></>;
+    if (variant === "Multiple") return <ToggleGroup type="multiple" defaultValue={["week"]}>{items()}</ToggleGroup>;
+    if (variant === "Outline") return <ToggleGroup variant="outline" defaultValue="week">{items()}</ToggleGroup>;
+    if (variant === "Size") return <ToggleGroup size="sm" defaultValue="week">{items()}</ToggleGroup>;
+    if (variant === "Spacing") return <ToggleGroup className="gap-2" defaultValue="week">{items()}</ToggleGroup>;
+    if (variant === "Vertical") return <ToggleGroup orientation="vertical" defaultValue="week">{items()}</ToggleGroup>;
+    if (variant === "Disabled") return <ToggleGroup disabled defaultValue="week">{items()}</ToggleGroup>;
+    if (variant === "Custom") return <ToggleGroup defaultValue="light"><ToggleGroupItem value="light">☼ Light</ToggleGroupItem><ToggleGroupItem value="dark">◐ Dark</ToggleGroupItem></ToggleGroup>;
+    if (variant === "RTL") return <div dir="rtl"><ToggleGroup defaultValue="week">{items()}</ToggleGroup></div>;
+    return <ToggleGroup defaultValue="week">{items()}</ToggleGroup>;
+  }
+  if (name === "Table") {
+    if (variant === "Footer") return <Table><TableHeader><TableRow><TableHead>Job</TableHead><TableHead>Status</TableHead></TableRow></TableHeader><TableBody><TableRow><TableCell>Workspace sync</TableCell><TableCell>Ready</TableCell></TableRow></TableBody><TableFooter><TableRow><TableCell colSpan={2}>1 record</TableCell></TableRow></TableFooter></Table>;
+    if (variant === "Actions") return <Table><TableHeader><TableRow><TableHead>Job</TableHead><TableHead>Action</TableHead></TableRow></TableHeader><TableBody><TableRow><TableCell>Workspace sync</TableCell><TableCell><Button size="sm">Open</Button></TableCell></TableRow></TableBody></Table>;
+    if (variant === "Data Table") return <Table><TableHeader><TableRow><TableHead>Job</TableHead><TableHead>Status</TableHead></TableRow></TableHeader><TableBody><TableRow><TableCell>Weekly report</TableCell><TableCell>Ready</TableCell></TableRow></TableBody></Table>;
+    if (variant === "RTL") return <div dir="rtl"><Table><TableHeader><TableRow><TableHead>المهمة</TableHead><TableHead>الحالة</TableHead></TableRow></TableHeader><TableBody><TableRow><TableCell>مزامنة</TableCell><TableCell>جاهز</TableCell></TableRow></TableBody></Table></div>;
+    return <Table><TableCaption>Recent workspace activity</TableCaption><TableHeader><TableRow><TableHead>Event</TableHead><TableHead>Status</TableHead></TableRow></TableHeader><TableBody><TableRow><TableCell>Sync completed</TableCell><TableCell>Ready</TableCell></TableRow><TableRow><TableCell>Report queued</TableCell><TableCell>Waiting</TableCell></TableRow></TableBody><TableFooter><TableRow><TableCell colSpan={2}>2 events</TableCell></TableRow></TableFooter></Table>;
+  }
+  if (name === "Data Table") {
+    const rows = [{ name: "Weekly report", status: "Ready" }, { name: "Workspace sync", status: "Running" }];
+    const columns = [{ key: "name", header: "Job" }, { key: "status", header: "Status" }];
+    if (variant === "Cell Formatting") return <DataTable data={rows} columns={[{ key: "name", header: "Job" }, { key: "status", header: "Status", cell: (row) => <Badge>{row.status}</Badge> }]} />;
+    if (variant === "Row Actions") return <DataTable data={rows} columns={[...columns, { key: "action", header: "Action", cell: () => <Button size="sm">Open</Button> }]} />;
+    if (variant === "Pagination") return <><DataTable data={rows} columns={columns} /><Pagination page={3} pageCount={10} onPageChange={() => undefined} /></>;
+    if (variant === "Sorting") return <DataTable data={[...rows].reverse()} columns={columns} />;
+    if (variant === "Filtering") return <DataTable data={rows.filter((row) => row.status === "Ready")} columns={columns} />;
+    if (variant === "Visibility") return <DataTable data={rows} columns={[columns[0]]} />;
+    if (variant === "Row Selection") return <DataTable data={rows} columns={[{ key: "select", header: "Select", cell: (row) => <Checkbox aria-label={`Select ${row.name}`} /> }, ...columns]} />;
+    if (variant === "RTL") return <div dir="rtl"><DataTable data={rows} columns={columns} /></div>;
+    return <DataTable data={rows} columns={columns} />;
+  };
+  if (name === "Chart") { const kind: "line" | "bar" | "area" | "pie" | "donut" = variant === "Bar" || variant === "Chart Config" ? "bar" : variant === "Area" || variant === "Legend" ? "area" : variant === "Pie" ? "pie" : variant === "Donut" ? "donut" : "line"; const definition = { kind, series: [{ key: "desktop", label: "Desktop" }, { key: "mobile", label: "Mobile" }], title: variant === "Your First Chart" ? "Visitors" : "Visitors by device", description: "Last 3 months" }; const chart = <Chart definition={definition} state={{ status: "ready", data: [{ desktop: 7324, mobile: 6250 }, { desktop: 8110, mobile: 7250 }, { desktop: 9020, mobile: 8250 }] }} />; return variant === "RTL" ? <div dir="rtl">{chart}</div> : chart; }
+  if (name === "Radio Group") {
+    const options = <><label className="flex items-start gap-3"><RadioGroupItem value="starter" /><span><strong>Starter</strong><small className="showcase-muted block">For individuals and small teams.</small></span></label><label className="flex items-start gap-3"><RadioGroupItem value="pro" aria-invalid={variant === "Invalid"} /><span><strong>Pro</strong><small className="showcase-muted block">For growing businesses.</small></span></label><label className="flex items-start gap-3"><RadioGroupItem value="enterprise" disabled={variant === "Disabled"} /><span><strong>Enterprise</strong><small className="showcase-muted block">For large teams.</small></span></label></>;
+    if (variant === "Choice Card") return <RadioGroup defaultValue="pro" className="grid gap-2"><label className="rounded-lg border p-3"><RadioGroupItem value="starter" /> Starter</label><label className="rounded-lg border p-3"><RadioGroupItem value="pro" /> Pro</label></RadioGroup>;
+    if (variant === "Fieldset") return <fieldset className="grid gap-3"><legend className="font-medium">Subscription Plan</legend><span className="showcase-muted">Yearly and lifetime plans offer significant savings.</span><RadioGroup defaultValue="yearly" className="grid gap-2"><label><RadioGroupItem value="monthly" /> Monthly ($9.99/month)</label><label><RadioGroupItem value="yearly" /> Yearly ($99.99/year)</label></RadioGroup></fieldset>;
+    if (variant === "RTL") return <div dir="rtl"><RadioGroup defaultValue="pro" className="grid gap-3">{options}</RadioGroup></div>;
+    return <RadioGroup defaultValue="pro" className="grid gap-3">{options}</RadioGroup>;
+  }
+  if (name === "Sidebar") { const rtl = variant === "RTL"; return <SidebarProvider open={variant !== "Collapsed"}><div dir={rtl ? "rtl" : undefined} className="flex min-h-48 w-full"><Sidebar><SidebarHeader><strong>{rtl ? "مساحة العمل" : "Workspace"}</strong></SidebarHeader><SidebarContent><nav className="grid gap-1 text-sm"><a href="#overview" className="rounded px-2 py-1 hover:bg-muted">{rtl ? "نظرة عامة" : "Overview"}</a><a href="#projects" className="rounded px-2 py-1 hover:bg-muted">{rtl ? "المشاريع" : "Projects"}</a></nav></SidebarContent><SidebarFooter><span className="text-xs">{rtl ? "الحساب" : "Account"}</span></SidebarFooter></Sidebar><SidebarInset><div className="p-4 text-sm">{rtl ? "محتوى مساحة العمل" : "Main content area"}</div></SidebarInset></div></SidebarProvider>; }
+  if (name === "Date Picker") {
+    if (variant === "Range Picker") return <DateRangePicker defaultValue={{ from: new Date("2026-01-20"), to: new Date("2026-02-09") }} onChange={() => undefined} />;
+    if (variant === "Date of Birth") return <DatePicker defaultValue={new Date("1990-04-12")} minDate={new Date("1900-01-01")} maxDate={new Date("2026-12-31")} onChange={() => undefined} />;
+    if (variant === "Time Picker") return <div className="docs-preview-copy">Unsupported locally: the date-picker contract has no time or timezone value.</div>;
+    if (variant === "Natural Language Picker") return <div className="docs-preview-copy">Unsupported locally: natural-language parsing remains consumer-owned.</div>;
+    if (variant === "RTL") return <div dir="rtl"><DatePicker defaultValue={new Date("2026-09-15")} onChange={() => undefined} /></div>;
+    return <DatePicker defaultValue={new Date("2026-09-15")} onChange={() => undefined} />;
+  }
+  if (name === "Item") {
+    if (variant === "Variant") return <div className="grid gap-2"><Item className="border"><span>Outline item</span></Item><Item className="bg-muted"><span>Muted item</span></Item></div>;
+    if (variant === "Size") return <Item className="p-2">Compact item</Item>;
+    if (variant === "Icon") return <Item><span aria-hidden="true">●</span><span>Security alert</span></Item>;
+    if (variant === "Avatar") return <Item><Avatar><AvatarFallback>GP</AvatarFallback></Avatar><span>Gilang Pratama</span></Item>;
+    if (variant === "Image") return <Item><div className="size-10 rounded bg-muted" aria-label="Project thumbnail" /><span>Project preview</span></Item>;
+    if (variant === "Group") return <div className="grid gap-1"><Item>First item</Item><Item>Second item</Item></div>;
+    if (variant === "Header") return <div className="grid gap-2"><strong>Recent activity</strong><Item>Deployment completed</Item></div>;
+    if (variant === "Link") return <Item><a href="#docs">Read the documentation</a></Item>;
+    if (variant === "Dropdown") return <Item><span>Workspace</span><Button size="sm" variant="ghost">Actions</Button></Item>;
+    if (variant === "RTL") return <div dir="rtl"><Item><span>عنصر أساسي</span></Item></div>;
+    return <Item><Avatar><AvatarFallback>GP</AvatarFallback></Avatar><div><strong>Workspace sync</strong><small className="showcase-muted block">Your profile has been verified.</small></div><Button size="sm" variant="outline">Open</Button></Item>;
+  }
   if (name === "Stat Card") return <StatCard label="Published components" value="64" description="All documented and Federation-visible" />;
   if (name === "Empty State") return <EmptyState title="No projects yet" description="Create a project to start organizing your components." action={<Button>Create project</Button>} />;
   if (name === "Filter Bar") return <FilterBar value={filterValue} onValueChange={setFilterValue} onReset={() => setFilterValue("")} placeholder="Filter projects..." />;
@@ -175,15 +256,52 @@ function ComponentPreview({ name, variant }: { name: string; variant?: string })
     return <div className="docs-preview-row docs-preview-centered"><Spinner aria-label="Loading" /><span className="showcase-muted">Loading results</span></div>;
   }
   if (name === "Separator") return <div className={variant === "Vertical" ? "flex h-10 items-center" : "w-full"}><Separator orientation={variant === "Vertical" ? "vertical" : "horizontal"} /></div>;
-  if (name === "Tabs") return <Tabs value={tab} onValueChange={setTab}><TabsList><TabsTrigger value="one">Overview</TabsTrigger><TabsTrigger value="two">Details</TabsTrigger></TabsList><TabsContent value="one">Overview content</TabsContent><TabsContent value="two">Details content</TabsContent></Tabs>;
-  if (name === "Tooltip") return <Tooltip content="Copy"><Button variant="outline">Hover or focus</Button></Tooltip>;
-  if (name === "Popover") return <Popover trigger={<Button variant="outline">Open popover</Button>}>Interactive content</Popover>;
-  if (name === "Slider") return <Slider value={64} onValueChange={() => undefined} aria-label="Volume" />;
-  if (name === "Accordion") return <Accordion><AccordionItem value="item-1"><AccordionTrigger>What does it do?</AccordionTrigger><AccordionContent>It reveals related content.</AccordionContent></AccordionItem></Accordion>;
-  if (name === "Collapsible") return <Collapsible><CollapsibleTrigger><Button variant="outline">Show details</Button></CollapsibleTrigger><CollapsibleContent>Additional details.</CollapsibleContent></Collapsible>;
+  if (name === "Tabs") {
+    if (variant === "Vertical") return <Tabs value={tab} onValueChange={setTab} className="flex-row"><TabsList className="h-auto flex-col items-stretch"><TabsTrigger value="one">Overview</TabsTrigger><TabsTrigger value="two">Details</TabsTrigger></TabsList><div className="min-w-0 flex-1"><TabsContent value="one">Overview content</TabsContent><TabsContent value="two">Details content</TabsContent></div></Tabs>;
+    if (variant === "Disabled") return <Tabs value={tab} onValueChange={setTab}><TabsList><TabsTrigger value="one">Overview</TabsTrigger><TabsTrigger value="two" className="pointer-events-none opacity-50" aria-disabled="true">Billing</TabsTrigger></TabsList><TabsContent value="one">Billing is unavailable for this workspace.</TabsContent></Tabs>;
+    if (variant === "Icons") return <Tabs value={tab} onValueChange={setTab}><TabsList><TabsTrigger value="one"><Info size={15} /> Overview</TabsTrigger><TabsTrigger value="two"><Settings size={15} /> Settings</TabsTrigger></TabsList><TabsContent value="one">Workspace overview</TabsContent><TabsContent value="two">Workspace settings</TabsContent></Tabs>;
+    if (variant === "RTL") return <div dir="rtl"><Tabs value={tab} onValueChange={setTab}><TabsList><TabsTrigger value="one">نظرة عامة</TabsTrigger><TabsTrigger value="two">الإعدادات</TabsTrigger></TabsList><TabsContent value="one">تفاصيل مساحة العمل</TabsContent><TabsContent value="two">إعدادات مساحة العمل</TabsContent></Tabs></div>;
+    if (variant === "Line") return <Tabs value={tab} onValueChange={setTab}><TabsList className="w-full justify-start rounded-none border-b bg-transparent p-0"><TabsTrigger className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground" value="one">Overview</TabsTrigger><TabsTrigger className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground" value="two">Details</TabsTrigger></TabsList><TabsContent value="one">Overview content</TabsContent><TabsContent value="two">Details content</TabsContent></Tabs>;
+    return <Tabs value={tab} onValueChange={setTab}><TabsList><TabsTrigger value="one">Overview</TabsTrigger><TabsTrigger value="two">Details</TabsTrigger></TabsList><TabsContent value="one">Overview content</TabsContent><TabsContent value="two">Details content</TabsContent></Tabs>;
+  };
+  if (name === "Tooltip") {
+    if (variant === "Side") return <div className="docs-preview-copy">Unsupported by the local Tooltip API: content is fixed above the trigger.</div>;
+    if (variant === "With Keyboard Shortcut") return <Tooltip content={<span>Save <Kbd>⌘S</Kbd></span>}><Button variant="outline">Save</Button></Tooltip>;
+    if (variant === "Disabled Button") return <Tooltip content="Unavailable"><span tabIndex={0}><Button variant="outline" disabled>Unavailable</Button></span></Tooltip>;
+    if (variant === "RTL") return <div dir="rtl"><Tooltip content="نسخ"><Button variant="outline">نسخ</Button></Tooltip></div>;
+    return <Tooltip content="Copy"><Button variant="outline">Hover or focus</Button></Tooltip>;
+  }
+  if (name === "Popover") {
+    if (variant === "Align") return <div className="docs-preview-copy">Unsupported by the local Popover API: content is anchored to the trigger start edge.</div>;
+    if (variant === "With Form") return <Popover trigger={<Button variant="outline">Settings</Button>}><div className="docs-preview-form"><Label htmlFor="popover-density">Density</Label><Select id="popover-density" defaultValue="comfortable"><option value="comfortable">Comfortable</option><option value="compact">Compact</option></Select><Button size="sm">Save</Button></div></Popover>;
+    if (variant === "RTL") return <div dir="rtl"><Popover trigger={<Button variant="outline">فتح</Button>}>محتوى تفاعلي</Popover></div>;
+    return <Popover trigger={<Button variant="outline">Open popover</Button>}>Interactive content</Popover>;
+  };
+  if (name === "Slider") {
+    if (variant === "Range" || variant === "Multiple Thumbs") return <div className="docs-preview-copy">Unsupported locally: the runtime exposes one native range thumb; {variant === "Range" ? "range" : "multiple-thumb"} behavior is not represented.</div>;
+    if (variant === "Vertical") return <Slider value={64} orientation="vertical" onValueChange={() => undefined} aria-label="Volume" />;
+    if (variant === "Disabled") return <Slider value={64} disabled onValueChange={() => undefined} aria-label="Volume" />;
+    if (variant === "RTL") return <div dir="rtl"><Slider value={64} onValueChange={() => undefined} aria-label="Volume" /></div>;
+    return <Slider value={64} onValueChange={() => undefined} aria-label="Volume" />;
+  };
+  if (name === "Accordion") return <AccordionPreview variant={variant} />;
+  if (name === "Collapsible") {
+    if (variant === "Settings Panel") return <Collapsible defaultOpen><CollapsibleTrigger><Button variant="outline">Workspace settings</Button></CollapsibleTrigger><CollapsibleContent><div className="docs-preview-form"><Label htmlFor="workspace-name">Workspace name</Label><Input id="workspace-name" defaultValue="Remote UI" /><label><Checkbox defaultChecked /> Enable notifications</label></div></CollapsibleContent></Collapsible>;
+    if (variant === "File Tree") return <Collapsible><CollapsibleTrigger><Button variant="ghost">src/</Button></CollapsibleTrigger><CollapsibleContent><div className="grid gap-1 pl-4 text-sm"><span>components/</span><span>lib/</span><span>main.tsx</span></div></CollapsibleContent></Collapsible>;
+    if (variant === "RTL") return <div dir="rtl"><Collapsible defaultOpen><CollapsibleTrigger><Button variant="outline">عرض التفاصيل</Button></CollapsibleTrigger><CollapsibleContent>تفاصيل مساحة العمل.</CollapsibleContent></Collapsible></div>;
+    if (variant === "Controlled State") return <Collapsible open><CollapsibleTrigger><Button variant="outline">Controlled open state</Button></CollapsibleTrigger><CollapsibleContent>Open state is supplied by the consumer.</CollapsibleContent></Collapsible>;
+    return <Collapsible><CollapsibleTrigger><Button variant="outline">Show details</Button></CollapsibleTrigger><CollapsibleContent>Additional details.</CollapsibleContent></Collapsible>;
+  };
   if (name === "Aspect Ratio") return <AspectRatio ratio={variant === "Square" ? 1 : 16 / 9}><div className="docs-preview-media">{variant === "Square" ? "1:1" : "16:9"}</div></AspectRatio>;
   if (name === "Spinner") return <div className="docs-preview-row docs-preview-centered"><Spinner aria-label="Loading" /><span className="showcase-muted">Loading results</span></div>;
-  if (name === "Kbd") return <div className="docs-preview-row docs-preview-centered"><Kbd>{variant === "Shortcut" ? "⌘K" : "Esc"}</Kbd></div>;
+  if (name === "Kbd") {
+    if (variant === "Group") return <div className="docs-preview-row docs-preview-centered"><KbdGroup><Kbd>Ctrl</Kbd><span>+</span><Kbd>K</Kbd></KbdGroup></div>;
+    if (variant === "Button") return <Button variant="outline">Accept <Kbd>⏎</Kbd></Button>;
+    if (variant === "Tooltip") return <Tooltip content={<span>Save <Kbd>⌘S</Kbd></span>}><Button>Save</Button></Tooltip>;
+    if (variant === "Input Group") return <InputGroup suffix={<Kbd>⌘K</Kbd>}><Input placeholder="Search" /></InputGroup>;
+    if (variant === "RTL") return <div dir="rtl"><KbdGroup><Kbd>⌘</Kbd><Kbd>ك</Kbd></KbdGroup></div>;
+    return <div className="docs-preview-row docs-preview-centered"><Kbd>{variant === "Shortcut" ? "⌘K" : "Esc"}</Kbd></div>;
+  }
   if (name === "Native Select") {
     if (variant === "Groups") return <NativeSelect defaultValue="stable"><optgroup label="Release"><option value="stable">Stable</option><option value="canary">Canary</option></optgroup><optgroup label="Preview"><option value="next">Next</option></optgroup></NativeSelect>;
     if (variant === "Disabled") return <NativeSelect disabled defaultValue="stable"><option value="stable">Stable</option></NativeSelect>;
@@ -192,35 +310,161 @@ function ComponentPreview({ name, variant }: { name: string; variant?: string })
     return <NativeSelect defaultValue="stable"><option value="stable">Stable</option><option value="canary">Canary</option></NativeSelect>;
   }
   if (name === "Scroll Area") {
-    if (variant === "Horizontal") return <ScrollArea className="docs-preview-scroll"><div className="flex w-[720px] gap-2">{["One", "Two", "Three", "Four"].map((item) => <Item key={item}>{item} horizontal content</Item>)}</div></ScrollArea>;
-    if (variant === "RTL") return <div dir="rtl"><ScrollArea className="docs-preview-scroll"><div className="docs-preview-form">{["العنصر الأول", "العنصر الثاني", "العنصر الثالث"].map((item) => <Item key={item}>{item}</Item>)}</div></ScrollArea></div>;
+    if (variant === "Horizontal") return <ScrollArea className="docs-preview-scroll overflow-x-auto"><div className="flex w-[720px] gap-2">{["One", "Two", "Three", "Four"].map((item) => <Item key={item}>{item} horizontal content</Item>)}</div></ScrollArea>;
+    if (variant === "RTL") return <ScrollArea dir="rtl" className="docs-preview-scroll"><div className="docs-preview-form">{["العنصر الأول", "العنصر الثاني", "العنصر الثالث"].map((item) => <Item key={item}>{item}</Item>)}</div></ScrollArea>;
     return <ScrollArea className="docs-preview-scroll"><div className="docs-preview-form">{["First item", "Second item", "Third item", "Fourth item"].map((item) => <Item key={item}>{item}</Item>)}</div></ScrollArea>;
   }
-  if (name === "Field") return <Field label="Email" description="Use your work address."><Input placeholder="name@example.com" /></Field>;
-  if (name === "Input Group") return <InputGroup prefix="https://"><Input placeholder="example.com" /></InputGroup>;
-  if (name === "Input OTP") return <InputOTP length={variant === "Four digits" ? 4 : 6} value="123" onChange={() => undefined} />;
-  if (name === "Carousel") return <Carousel items={["First panel", "Second panel", "Third panel"]} />;
-  if (name === "Combobox") return <Combobox options={[{ value: "button", label: "Button" }, { value: "card", label: "Card" }, { value: "input", label: "Input" }]} value="button" onValueChange={() => undefined} placeholder="Choose a component" />;
-  if (name === "Dropdown Menu") return <DropdownMenu trigger={<Button variant="outline">Actions</Button>}><DropdownMenuItem onSelect={() => undefined}>Rename</DropdownMenuItem><DropdownMenuItem onSelect={() => undefined}>Archive</DropdownMenuItem></DropdownMenu>;
-  if (name === "Context Menu") return <ContextMenu menu={<DropdownMenuItem onSelect={() => undefined}>Rename</DropdownMenuItem>}><Button variant="outline">Right click</Button></ContextMenu>;
-  if (name === "Menubar") return <Menubar><MenubarItem onClick={() => undefined}>File</MenubarItem><MenubarItem onClick={() => undefined}>Edit</MenubarItem></Menubar>;
-  if (name === "Navigation Menu") return <NavigationMenu><NavigationMenuLink href="#overview" active>Overview</NavigationMenuLink><NavigationMenuLink href="#docs">Docs</NavigationMenuLink></NavigationMenu>;
+  if (name === "Field") {
+    if (variant === "Form") return <form className="docs-preview-form"><Field label="Name"><Input placeholder="Your name" /></Field><Field label="Email" description="We&apos;ll never share your email."><Input type="email" /></Field><Button>Submit</Button></form>;
+    if (variant === "Input") return <Field label="Username" description="Choose a unique username."><Input /></Field>;
+    if (variant === "Textarea") return <Field label="Feedback" description="Share your thoughts about our service."><Textarea rows={3} /></Field>;
+    if (variant === "Select") return <Field label="Department" description="Choose your area of work."><Select defaultValue="engineering"><option value="engineering">Engineering</option><option value="design">Design</option></Select></Field>;
+    if (variant === "Slider") return <Field label="Price range" description="Set your budget range."><Slider value={[40, 70]} onValueChange={() => undefined} aria-label="Price range" /></Field>;
+    if (variant === "Fieldset") return <fieldset className="grid gap-3"><legend className="font-medium">Address information</legend><span className="showcase-muted">We need your address to deliver your order.</span><Field label="Street address"><Input /></Field><Field label="City"><Input /></Field></fieldset>;
+    if (variant === "Checkbox") return <Field label="Show desktop items" description="Select the items you want to show on the desktop."><label className="docs-check-row"><Checkbox /><span>Hard disks</span></label><label className="docs-check-row"><Checkbox /><span>External disks</span></label></Field>;
+    if (variant === "Radio") return <fieldset className="grid gap-2"><legend className="font-medium">Subscription plan</legend><span className="showcase-muted">Yearly and lifetime plans offer significant savings.</span><RadioGroup defaultValue="yearly"><label><RadioGroupItem value="monthly" /> Monthly</label><label><RadioGroupItem value="yearly" /> Yearly</label></RadioGroup></fieldset>;
+    if (variant === "Switch") return <Field label="Multi-factor authentication"><Switch aria-label="Multi-factor authentication" /></Field>;
+    if (variant === "Choice Card") return <RadioGroup defaultValue="kubernetes" className="grid gap-2"><label className="rounded-lg border p-3"><RadioGroupItem value="kubernetes" /> Kubernetes</label><label className="rounded-lg border p-3"><RadioGroupItem value="vm" /> Virtual machine</label></RadioGroup>;
+    if (variant === "Field Group") return <div className="grid gap-3"><Field label="Responses" description="Get notified when responses take time."><Switch aria-label="Responses" /></Field><Separator /><Field label="Tasks" description="Get notified when tasks have updates."><Switch aria-label="Tasks" /></Field></div>;
+    if (variant === "RTL") return <div dir="rtl"><Field label="طريقة الدفع" description="جميع المعاملات آمنة ومشفرة."><Input placeholder="رقم البطاقة" /></Field></div>;
+    return <Field label="Email" description="Use your work address."><Input placeholder="name@example.com" /></Field>;
+  }
+  if (name === "Input Group") {
+    if (variant === "Align") return <div className="grid gap-2"><InputGroup prefix="$"><Input aria-label="Amount" /></InputGroup><InputGroup suffix="USD"><Input aria-label="Currency" /></InputGroup></div>;
+    if (variant === "Icon") return <InputGroup prefix={<Search size={15} />}><Input aria-label="Search" placeholder="Search" /></InputGroup>;
+    if (variant === "Text") return <InputGroup prefix="https://" suffix=".com"><Input aria-label="Domain" placeholder="example" /></InputGroup>;
+    if (variant === "Button") return <InputGroup prefix="https://" suffix={<Button size="sm">Search</Button>}><Input aria-label="Search" placeholder="example.com" /></InputGroup>;
+    if (variant === "Kbd") return <InputGroup suffix={<Kbd>⌘K</Kbd>}><Input aria-label="Search" placeholder="Search" /></InputGroup>;
+    if (variant === "Dropdown") return <InputGroup prefix={<Select aria-label="Search in" defaultValue="all"><option value="all">All</option><option value="docs">Docs</option></Select>}><Input aria-label="Search" /></InputGroup>;
+    if (variant === "Spinner") return <InputGroup suffix={<Spinner aria-label="Saving" />}><Input disabled aria-label="Saving" placeholder="Saving..." /></InputGroup>;
+    if (variant === "Textarea") return <InputGroup suffix={<Button size="sm">Post</Button>}><Textarea aria-label="Post" rows={2} placeholder="Write a post" /></InputGroup>;
+    if (variant === "Custom Input") return <InputGroup prefix="@"><Input aria-label="Handle" placeholder="username" /></InputGroup>;
+    if (variant === "RTL") return <div dir="rtl"><InputGroup prefix="https://" suffix=".com"><Input aria-label="النطاق" placeholder="مثال" /></InputGroup></div>;
+    return <InputGroup prefix="https://"><Input placeholder="example.com" /></InputGroup>;
+  }
+  if (name === "Input OTP") {
+    if (["Separator", "Disabled", "Invalid", "Alphanumeric", "RTL"].includes(variant ?? "")) return <div className="docs-preview-copy">Unsupported locally: InputOTP exposes numeric contiguous inputs without {variant === "RTL" ? "a direction prop" : "the requested feature"}.</div>;
+    if (variant === "Form") return <div className="docs-preview-form"><Label htmlFor="otp-preview">Verification code</Label><InputOTP length={6} value="123" onChange={() => undefined} /><Button>Verify</Button></div>;
+    return <InputOTP length={variant === "Four digits" ? 4 : 6} value="123" onChange={() => undefined} />;
+  }
+  if (name === "Carousel") {
+    const items = ["First panel", "Second panel", "Third panel"];
+    if (variant === "Spacing") return <Carousel items={items} renderItem={(item) => <div className="pr-4">{item}</div>} />;
+    if (variant === "Options") return <div className="docs-preview-copy"><Carousel items={items} showControls={false} />The local Carousel has no Embla opts prop; this preview uses the supported controls contract.</div>;
+    if (variant === "Events") return <div className="docs-preview-copy"><Carousel items={items} />The local Carousel has no Embla event API; navigation is available through its built-in controls.</div>;
+    if (variant === "Plugins") return <div className="docs-preview-copy"><Carousel items={items} />Plugins are not supported by the local Carousel API.</div>;
+    return <Carousel items={items} orientation={variant === "Orientation" ? "vertical" : "horizontal"} showControls={variant !== "Controls"} dir={variant === "RTL" ? "rtl" : "ltr"} itemSize={variant === "Sizes" ? "half" : "full"} />;
+  }
+  if (name === "Combobox") {
+    const options = [{ value: "button", label: "Button" }, { value: "card", label: "Card" }, { value: "input", label: "Input" }, { value: "select", label: "Select" }];
+    if (variant === "Invalid") return <div className="docs-preview-form"><Combobox options={options} value="" invalid onValueChange={() => undefined} placeholder="Choose a component" /><span className="docs-error" role="alert">Choose a component.</span></div>;
+    if (variant === "Disabled") return <Combobox options={options} value="button" disabled onValueChange={() => undefined} />;
+    if (variant === "Input Group") return <InputGroup prefix="https://"><Combobox options={options} onValueChange={() => undefined} placeholder="example.com" /></InputGroup>;
+    if (variant === "RTL") return <div dir="rtl"><Combobox options={options} value="button" dir="rtl" onValueChange={() => undefined} placeholder="اختر مكونًا" /></div>;
+    return <Combobox options={options} value={variant === "Placeholder" ? undefined : "button"} onValueChange={() => undefined} placeholder="Choose a component" />;
+  }
+  if (name === "Dropdown Menu") {
+    const menuVariant = variant ?? "Basic";
+    const menuItems = menuVariant === "Shortcuts" ? <><DropdownMenuItem onSelect={() => undefined}>Save <Kbd>⌘S</Kbd></DropdownMenuItem><DropdownMenuItem onSelect={() => undefined}>Close <Kbd>Esc</Kbd></DropdownMenuItem></> : menuVariant === "Icons" ? <><DropdownMenuItem onSelect={() => undefined}><Settings size={15} /> Settings</DropdownMenuItem><DropdownMenuItem onSelect={() => undefined}><Copy size={15} /> Duplicate</DropdownMenuItem></> : menuVariant === "Checkboxes" || menuVariant === "Checkboxes Icons" ? <><DropdownMenuItem kind="checkbox" checked={checked} onSelect={() => setChecked((value) => !value)}>{checked ? "✓ " : ""}{menuVariant === "Checkboxes Icons" && <Settings size={15} />}Show grid</DropdownMenuItem><DropdownMenuItem disabled>Show rulers</DropdownMenuItem></> : menuVariant === "Radio Group" || menuVariant === "Radio Icons" ? <><DropdownMenuItem kind="radio" checked onSelect={() => undefined}>{menuVariant === "Radio Icons" && <Settings size={15} />}✓ Light theme</DropdownMenuItem><DropdownMenuItem kind="radio" checked={false} onSelect={() => undefined}>Dark theme</DropdownMenuItem></> : menuVariant === "Destructive" ? <><DropdownMenuItem onSelect={() => undefined}>Rename project</DropdownMenuItem><DropdownMenuSeparator /><DropdownMenuItem destructive onSelect={() => undefined}>Delete project</DropdownMenuItem></> : menuVariant === "Avatar" ? <><DropdownMenuItem onSelect={() => undefined}>Account settings</DropdownMenuItem><DropdownMenuItem onSelect={() => undefined}>Sign out</DropdownMenuItem></> : <><DropdownMenuItem onSelect={() => undefined}>Rename</DropdownMenuItem><DropdownMenuSeparator /><DropdownMenuItem onSelect={() => undefined}>Archive</DropdownMenuItem>{menuVariant === "Complex" ? <DropdownMenuItem disabled>Unavailable action</DropdownMenuItem> : null}</>;
+    return <div dir={menuVariant === "RTL" ? "rtl" : undefined}><DropdownMenu trigger={<Button variant="outline">{menuVariant === "RTL" ? "افتح القائمة" : menuVariant === "Avatar" ? "GP" : "Actions"}</Button>}>{menuItems}</DropdownMenu></div>;
+  }
+  if (name === "Context Menu") {
+    const contextVariant = variant ?? "Basic";
+    const contextItems = contextVariant === "Shortcuts" ? <DropdownMenuItem onSelect={() => undefined}>Copy <Kbd>⌘C</Kbd></DropdownMenuItem> : contextVariant === "Icons" ? <DropdownMenuItem onSelect={() => undefined}><Copy size={15} /> Copy</DropdownMenuItem> : contextVariant === "Checkboxes" ? <DropdownMenuItem kind="checkbox" checked={checked} onSelect={() => setChecked((value) => !value)}>{checked ? "✓ " : ""}Show grid</DropdownMenuItem> : contextVariant === "Radio" ? <><DropdownMenuItem kind="radio" checked onSelect={() => undefined}>✓ Open in new tab</DropdownMenuItem><DropdownMenuItem kind="radio" checked={false} onSelect={() => undefined}>Open here</DropdownMenuItem></> : contextVariant === "Destructive" ? <><DropdownMenuItem onSelect={() => undefined}>Open</DropdownMenuItem><DropdownMenuSeparator /><DropdownMenuItem destructive onSelect={() => undefined}>Delete permanently</DropdownMenuItem></> : <><DropdownMenuItem onSelect={() => undefined}>Open</DropdownMenuItem><DropdownMenuSeparator /><DropdownMenuItem onSelect={() => undefined}>Rename</DropdownMenuItem>{contextVariant === "Groups" && <DropdownMenuItem onSelect={() => undefined}>Move to…</DropdownMenuItem>}</>;
+    return <div dir={contextVariant === "RTL" ? "rtl" : undefined}><ContextMenu menu={contextItems}><Button variant="outline">{contextVariant === "RTL" ? "انقر بزر الماوس الأيمن" : "Right click target"}</Button></ContextMenu></div>;
+  }
+  if (name === "Menubar") {
+    const barVariant = variant ?? "Action";
+    return <div dir={barVariant === "RTL" ? "rtl" : undefined}><Menubar><MenubarItem onClick={() => undefined}>{barVariant === "With Icons" ? <><Settings size={15} /> Settings</> : barVariant === "Checkbox" ? `${checked ? "✓ " : ""}View` : "File"}</MenubarItem><MenubarItem onClick={() => undefined}>{barVariant === "Radio" ? "Light" : "Edit"}</MenubarItem>{barVariant === "Link" && <MenubarItem href="#docs">Docs</MenubarItem>}</Menubar></div>;
+  }
+  if (name === "Navigation Menu") return <div dir={variant === "RTL" ? "rtl" : undefined}><NavigationMenu><NavigationMenuLink href="#overview" active>Overview</NavigationMenuLink><NavigationMenuLink href="#docs">Docs</NavigationMenuLink><NavigationMenuLink href="#components">Components</NavigationMenuLink></NavigationMenu></div>;
   if (name === "Direction") return <Direction dir={variant === "RTL" ? "rtl" : "ltr"}><div className="docs-preview-copy">{variant === "RTL" ? "محتوى" : "Content"}</div></Direction>;
-  if (name === "Empty") return <Empty title="No results" description="Try another filter." action={<Button variant="outline">Reset</Button>} />;
-  if (name === "Hover Card") return <HoverCard trigger={<Button variant="link">View details</Button>}>Supporting information.</HoverCard>;
-  if (name === "Marker") return <div className="docs-preview-copy">Review the <Marker>important change</Marker> before publishing.</div>;
+  if (name === "Empty") {
+    if (variant === "Outline") return <Empty className="border" title="Cloud storage is empty" description="Upload files to access them anywhere." action={<Button>Upload files</Button>} />;
+    if (variant === "Background") return <Empty className="bg-muted" title="No notifications" description="You are all caught up." action={<Button variant="outline">Refresh</Button>} />;
+    if (variant === "Avatar") return <Empty title="User offline" description="Leave a message or try again later." action={<Avatar><AvatarFallback>GP</AvatarFallback></Avatar>} />;
+    if (variant === "Avatar Group") return <Empty title="No team members" description="Invite your team to collaborate." action={<AvatarGroup><Avatar><AvatarFallback>GP</AvatarFallback></Avatar><Avatar><AvatarFallback>MR</AvatarFallback></Avatar></AvatarGroup>} />;
+    if (variant === "InputGroup") return <Empty title="404 — Not found" description="Try searching for another path." action={<InputGroup><Input aria-label="Search" placeholder="Search" /><Button size="sm">Search</Button></InputGroup>} />;
+    if (variant === "RTL") return <div dir="rtl"><Empty title="لا توجد مشاريع بعد" description="ابدأ بإنشاء مشروعك الأول." action={<Button>إنشاء مشروع</Button>} /></div>;
+    return <Empty title="No results" description="Try another filter." action={<Button variant="outline">Reset</Button>} />;
+  };
+  if (name === "Hover Card") {
+    if (variant === "Trigger Delays") return <HoverCard openDelay={300} trigger={<Button variant="link">Delayed details</Button>}>Opens after 300ms.</HoverCard>;
+    if (variant === "Positioning" || variant === "Sides") return <div className="docs-preview-copy">Unsupported by the local Hover Card API: content is fixed below the trigger.</div>;
+    if (variant === "RTL") return <div dir="rtl"><HoverCard trigger={<Button variant="link">تفاصيل</Button>}>معلومات داعمة.</HoverCard></div>;
+    return <HoverCard trigger={<Button variant="link">View details</Button>}>Supporting information.</HoverCard>;
+  };
+  if (name === "Marker") {
+    if (variant === "Variants") return <div className="docs-preview-form"><Marker>Inline note</Marker><Marker className="border-b">Bordered status row</Marker><Marker className="flex justify-center">Today</Marker></div>;
+    if (variant === "Status") return <div role="status" className="docs-preview-row"><Spinner aria-label="Running" /><Marker>Running tests</Marker></div>;
+    if (variant === "Shimmer") return <div className="docs-preview-copy"><Marker className="animate-pulse">Thinking…</Marker></div>;
+    if (variant === "Separator") return <div className="docs-preview-row"><span className="flex-1"><Separator /></span><Marker>Today</Marker><span className="flex-1"><Separator /></span></div>;
+    if (variant === "Border") return <Marker className="block border-b">Switched to release-candidate</Marker>;
+    if (variant === "With Icon") return <div className="docs-preview-row"><span aria-hidden="true">●</span><Marker>Syncing completed</Marker></div>;
+    if (variant === "Links and Buttons") return <div className="docs-preview-row"><Marker><a href="#pull-request">View the pull request</a></Marker><Marker><Button variant="link" className="h-auto p-0">Revert this change</Button></Marker></div>;
+    return <div className="docs-preview-copy">Review the <Marker>important change</Marker> before publishing.</div>;
+  }
   if (name === "Message") return <Message variant={variant === "Error" ? "error" : variant === "Success" ? "success" : "default"} title={variant === "Error" ? "Could not save" : variant === "Success" ? "Saved" : "Notice"}>A consumer-owned message.</Message>;
   if (name === "Message Scroller") return <MessageScroller messages={["Connected", "Sync started", "Waiting for response"]} />;
-  if (name === "Attachment") return <Attachment name="report.pdf" type="PDF" size="2 MB" action={<Button size="sm"><Download />Download</Button>} />;
-  if (name === "Bubble") return <div className="docs-preview-form"><Bubble role={variant === "User" ? "user" : "assistant"}>{variant === "User" ? "Can you review this?" : "The review is ready."}</Bubble></div>;
-  if (name === "Questionnaire") return <Questionnaire name="plan" question="Choose a plan" options={[{ value: "starter", label: "Starter", description: "For one project." }, { value: "team", label: "Team", description: "For shared work." }]} value="starter" onValueChange={() => undefined} />;
+  if (name === "Attachment") {
+    if (variant === "Image") return <Attachment orientation="vertical"><AttachmentMedia variant="image"><AttachmentImage src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=900&auto=format&fit=crop&q=80" alt="Workspace" /></AttachmentMedia><AttachmentContent><AttachmentTitle>workspace.png</AttachmentTitle><AttachmentDescription>PNG · 820 KB</AttachmentDescription></AttachmentContent><AttachmentActions><AttachmentAction size="sm" aria-label="Open workspace.png">Open</AttachmentAction></AttachmentActions></Attachment>;
+    if (variant === "States") return <div className="grid gap-2"><Attachment state="uploading"><AttachmentContent><AttachmentTitle>uploading-report.pdf</AttachmentTitle><AttachmentDescription>Uploading…</AttachmentDescription></AttachmentContent></Attachment><Attachment state="error"><AttachmentContent><AttachmentTitle>failed-report.pdf</AttachmentTitle><AttachmentDescription>Upload failed</AttachmentDescription></AttachmentContent><AttachmentActions><AttachmentAction size="sm">Retry</AttachmentAction></AttachmentActions></Attachment></div>;
+    if (variant === "Sizes") return <div className="grid gap-2"><Attachment size="xs" name="compact.txt" type="TXT" /><Attachment size="sm" name="small.pdf" type="PDF" /><Attachment name="default.zip" type="ZIP" /></div>;
+    if (variant === "Group") return <AttachmentGroup><Attachment name="report.pdf" type="PDF" size="2 MB" /><Attachment name="summary.csv" type="CSV" size="18 KB" /></AttachmentGroup>;
+    if (variant === "Trigger") return <Attachment><AttachmentTrigger aria-label="Open report" onClick={() => undefined} /><AttachmentContent><AttachmentTitle>report.pdf</AttachmentTitle><AttachmentDescription>Open attachment</AttachmentDescription></AttachmentContent></Attachment>;
+    return <Attachment name="report.pdf" type="PDF" size="2 MB" action={<Button size="sm"><Download />Download</Button>} />;
+  };
+  if (name === "Bubble") {
+    if (variant === "Variants") return <div className="docs-preview-form"><Bubble role="assistant">Assistant response</Bubble><Bubble role="user">User message</Bubble><div className="docs-preview-copy">The local API exposes role treatments rather than the official variant prop.</div></div>;
+    if (variant === "Alignment") return <div className="docs-preview-form"><Bubble role="assistant">Start-aligned response</Bubble><Bubble role="user">End-aligned message</Bubble><div className="docs-preview-copy">Alignment follows role in the local API.</div></div>;
+    if (variant === "Bubble Group") return <div role="group" aria-label="Conversation"><div className="grid gap-1"><Bubble role="assistant">First response</Bubble><Bubble role="assistant">Follow-up response</Bubble></div></div>;
+    if (variant === "Links and Buttons") return <Bubble role="assistant"><a href="#help" className="underline">Get help</a></Bubble>;
+    if (variant === "Reactions") return <div className="grid gap-2"><Bubble role="assistant">Message with a reaction</Bubble><span role="img" aria-label="Thumbs up">👍</span></div>;
+    if (variant === "Show More / Collapsible") return <Bubble role="assistant"><Collapsible defaultOpen><CollapsibleTrigger><Button variant="ghost" size="sm">Show less</Button></CollapsibleTrigger><CollapsibleContent>Additional message details.</CollapsibleContent></Collapsible></Bubble>;
+    if (variant === "Tooltip") return <Tooltip content="Read at 10:42"><Bubble role="assistant">Hover or focus for metadata</Bubble></Tooltip>;
+    if (variant === "Popover") return <Popover trigger={<Bubble role="assistant">Open message details</Bubble>}>Message metadata</Popover>;
+    return <div className="docs-preview-form"><Bubble role={variant === "User" ? "user" : "assistant"} timestamp={variant === "Assistant" ? "10:42" : undefined}>{variant === "User" ? "Can you review this?" : "The review is ready."}</Bubble></div>;
+  };
+  if (name === "Questionnaire") {
+    const options = [{ value: "starter", label: "Starter", description: "For one project." }, { value: "team", label: "Team", description: "For shared work." }];
+    if (["Multiple Selection", "Freeform Answer", "Explicit Skip", "Shortcuts", "Conditional Items"].includes(variant ?? "")) return <div className="docs-preview-copy">Unsupported by the local Questionnaire API: this feature is not exposed.</div>;
+    if (variant === "Custom Validation") return <Questionnaire name="validated-plan" question="Choose a plan" options={options} value="starter" onValueChange={() => undefined} />;
+    if (variant === "Card") return <Card><CardHeader><CardTitle>Project plan</CardTitle><CardDescription>Choose the plan for this project.</CardDescription></CardHeader><CardContent><Questionnaire name="card-plan" question="Choose a plan" options={options} value="starter" onValueChange={() => undefined} /></CardContent></Card>;
+    if (variant === "Dialog") return <><Button variant="outline" onClick={() => setOverlayOpen(true)}>Open questionnaire</Button><Dialog open={overlayOpen} onOpenChange={setOverlayOpen} title="Choose a plan"><Questionnaire name="dialog-plan" question="Choose a plan" options={options} value="starter" onValueChange={() => undefined} /></Dialog></>;
+    return <Questionnaire name="plan" question="Choose a plan" options={options} value="starter" onValueChange={() => undefined} />;
+  };
   if (name === "Typography") return <Typography as={variant === "Quote" ? "blockquote" : variant === "Code" ? "code" : "h2"}>{variant === "Quote" ? "A useful quote" : variant === "Code" ? "npm run build" : "Section title"}</Typography>;
-  if (name === "Toast") return <Toast title="Saved" description="Changes are live." onDismiss={() => undefined} />;
-  if (name === "Resizable") return <Resizable direction={variant === "Vertical" ? "vertical" : "horizontal"}>{[<div key="a" className="docs-preview-panel">Panel A</div>, <div key="b" className="docs-preview-panel">Panel B</div>]}</Resizable>;
-  if (name === "Dialog") return <><Button variant="outline" onClick={() => setOverlayOpen(true)}>Open dialog</Button><Dialog open={overlayOpen} onOpenChange={setOverlayOpen} title="Project details"><p className="text-sm">Review the project configuration before continuing.</p></Dialog></>;
-  if (name === "Alert Dialog") return <><Button variant="destructive" onClick={() => setOverlayOpen(true)}>Delete project</Button><AlertDialog open={overlayOpen} onOpenChange={setOverlayOpen} title="Delete project" description="This action cannot be undone." confirmLabel="Delete" /></>;
-  if (name === "Drawer") return <><Button variant="outline" onClick={() => setOverlayOpen(true)}>Open drawer</Button><Drawer open={overlayOpen} onOpenChange={setOverlayOpen} title="Filters"><div className="grid gap-3 text-sm"><strong>Filter projects</strong><label><input type="checkbox" /> Active only</label><Button onClick={() => setOverlayOpen(false)}>Apply filters</Button></div></Drawer></>;
-  if (name === "Sheet") return <><Button variant="outline" onClick={() => setOverlayOpen(true)}>Open sheet</Button><Sheet open={overlayOpen} onOpenChange={setOverlayOpen} title="Settings"><div className="grid gap-3 text-sm"><strong>Workspace settings</strong><p>Manage notifications and access.</p><Button onClick={() => setOverlayOpen(false)}>Save changes</Button></div></Sheet></>;
+  if (name === "Toast") {
+    if (variant === "Types") return <div className="grid gap-2"><Toast title="Saved" description="Changes are live." variant="success" /><Toast title="Heads up" description="Review the pending change." variant="warning" /><Toast title="Could not save" description="Try again." variant="error" /></div>;
+    if (variant === "Action") return <Toast title="Export ready" description="Your report is ready to download." action={<Button size="sm" variant="outline">Download</Button>} onDismiss={() => undefined} />;
+    if (variant === "Promise") return <Toast title="Sync complete" description="The workspace is up to date." variant="success" onDismiss={() => undefined} />;
+    return <Toast title="Saved" description="Changes are live." onDismiss={() => undefined} />;
+  };
+  if (name === "Resizable") {
+    const vertical = variant === "Vertical";
+    const rtl = variant === "RTL";
+    return <Resizable direction={vertical ? "vertical" : "horizontal"} withHandle={variant === "Handle"} dir={rtl ? "rtl" : "ltr"} defaultSize={vertical ? 42 : 55} min={25} max={75}>{[<div key="a" className="docs-preview-panel">{rtl ? "الشريط الجانبي" : vertical ? "Header" : "Sidebar"}</div>, <div key="b" className="docs-preview-panel">{rtl ? "المحتوى" : vertical ? "Content" : "Content"}</div>]}</Resizable>;
+  }
+  if (name === "Dialog") {
+    if (variant === "Custom Close Button" || variant === "No Close Button" || variant === "Sticky Footer") return <div className="docs-preview-copy">Unsupported by the local Dialog API: it has no custom close, close visibility, or sticky footer contract.</div>;
+    if (variant === "Scrollable Content") return <><Button variant="outline" onClick={() => setOverlayOpen(true)}>Open scrollable dialog</Button><Dialog open={overlayOpen} onOpenChange={setOverlayOpen} title="Release notes"><div className="max-h-32 overflow-auto text-sm">{Array.from({ length: 8 }, (_, index) => <p key={index}>Release note {index + 1}: consumer content can provide its own scroll container.</p>)}</div></Dialog></>;
+    if (variant === "RTL") return <div dir="rtl"><Button variant="outline" onClick={() => setOverlayOpen(true)}>فتح الحوار</Button><Dialog open={overlayOpen} onOpenChange={setOverlayOpen} title="تفاصيل المشروع"><p className="text-sm">راجع إعدادات المشروع قبل المتابعة.</p></Dialog></div>;
+    return <><Button variant="outline" onClick={() => setOverlayOpen(true)}>Open dialog</Button><Dialog open={overlayOpen} onOpenChange={setOverlayOpen} title="Project details"><p className="text-sm">Review the project configuration before continuing.</p></Dialog></>;
+  }
+  if (name === "Alert Dialog") {
+    if (["Small", "Media", "Small with Media"].includes(variant ?? "")) return <div className="docs-preview-copy">Unsupported by the local Alert Dialog API: size and media slots are not available.</div>;
+    if (variant === "RTL") return <div dir="rtl"><Button variant="destructive" onClick={() => setOverlayOpen(true)}>حذف المشروع</Button><AlertDialog open={overlayOpen} onOpenChange={setOverlayOpen} title="حذف المشروع" description="لا يمكن التراجع عن هذا الإجراء." confirmLabel="حذف" /></div>;
+    return <><Button variant="destructive" onClick={() => setOverlayOpen(true)}>Delete project</Button><AlertDialog open={overlayOpen} onOpenChange={setOverlayOpen} title="Delete project" description="This action cannot be undone." confirmLabel={variant === "Destructive" ? "Delete permanently" : "Delete"} /></>;
+  }
+  if (name === "Drawer") {
+    if (["Custom Sizes", "Position", "Swipe Handle", "Nested", "Non Modal", "Snap Points", "Responsive"].includes(variant ?? "")) return <div className="docs-preview-copy">Unsupported by the local Drawer API: this behavior is not exposed.</div>;
+    return <><Button variant="outline" onClick={() => setOverlayOpen(true)}>Open drawer</Button><Drawer open={overlayOpen} onOpenChange={setOverlayOpen} title="Filters"><div className="grid gap-3 text-sm"><strong>Filter projects</strong><label><input type="checkbox" /> Active only</label><Button onClick={() => setOverlayOpen(false)}>Apply filters</Button></div></Drawer></>;
+  }
+  if (name === "Sheet") {
+    if (["Side", "No Close Button"].includes(variant ?? "")) return <div className="docs-preview-copy">Unsupported by the local Sheet API: alternate sides and hiding the close control are not exposed.</div>;
+    if (variant === "RTL") return <div dir="rtl"><Button variant="outline" onClick={() => setOverlayOpen(true)}>فتح</Button><Sheet open={overlayOpen} onOpenChange={setOverlayOpen} title="الإعدادات"><div className="grid gap-3 text-sm"><strong>إعدادات مساحة العمل</strong><p>إدارة الإشعارات والوصول.</p><Button onClick={() => setOverlayOpen(false)}>حفظ التغييرات</Button></div></Sheet></div>;
+    return <><Button variant="outline" onClick={() => setOverlayOpen(true)}>Open sheet</Button><Sheet open={overlayOpen} onOpenChange={setOverlayOpen} title="Settings"><div className="grid gap-3 text-sm"><strong>Workspace settings</strong><p>Manage notifications and access.</p><Button onClick={() => setOverlayOpen(false)}>Save changes</Button></div></Sheet></>;
+  }
   return <div className="docs-placeholder"><strong>Contract preview</strong><p>This page shows the public contract for {name}. A live preview will be added when the producer wiring is available.</p></div>;
 }
 
@@ -243,7 +487,13 @@ function AlertPreview({ variant = "Basic" }: { variant?: string }) {
 
 function InputPreview({ variant = "Basic" }: { variant?: string }) {
   if (variant === "Field") return <div className="docs-preview-form"><Label htmlFor="input-field">API key</Label><Input id="input-field" placeholder="sk_live_••••••••" /><span className="showcase-muted">Your API key is encrypted and stored securely.</span></div>;
+  if (variant === "Field Group") return <fieldset className="grid gap-2"><legend className="font-medium">Profile</legend><Input aria-label="First name" placeholder="First name" /><Input aria-label="Last name" placeholder="Last name" /></fieldset>;
   if (variant === "Disabled") return <div className="docs-preview-form"><Label htmlFor="input-disabled">Username</Label><Input id="input-disabled" disabled placeholder="Unavailable" /></div>;
+  if (variant === "File") return <Input type="file" aria-label="Upload document" />;
+  if (variant === "Inline") return <div className="docs-input-group-preview"><Input placeholder="Search" aria-label="Search" /><Button>Search</Button></div>;
+  if (variant === "Grid") return <div className="grid grid-cols-2 gap-2"><Input aria-label="First name" /><Input aria-label="Last name" /></div>;
+  if (variant === "Required") return <div className="docs-preview-form"><Label htmlFor="input-required">Name</Label><Input id="input-required" required /></div>;
+  if (variant === "Badge") return <div className="docs-input-group-preview"><Input aria-label="Environment" /><Badge>Verified</Badge></div>;
   if (variant === "Invalid") return <div className="docs-preview-form"><Label htmlFor="input-invalid">Email</Label><Input id="input-invalid" aria-invalid="true" defaultValue="not-an-email" /><span className="docs-error" role="alert">Enter a valid email address.</span></div>;
   if (variant === "Input group") return <div className="docs-input-group-preview"><span>https://</span><Input aria-label="Website URL" placeholder="example.com" /></div>;
   if (variant === "Button group") return <div className="docs-input-group-preview"><Input aria-label="Search" placeholder="Search" /><Button size="sm"><Search />Search</Button></div>;
@@ -264,6 +514,9 @@ function CheckboxPreview({ variant = "Basic" }: { variant?: string }) {
 }
 
 function CardPreview({ variant = "Content card" }: { variant?: string }) {
+  if (variant === "Size") return <Card className="max-w-sm"><CardContent><p>Compact content-sized card.</p></CardContent></Card>;
+  if (variant === "Spacing") return <Card><CardHeader><CardTitle>Workspace settings</CardTitle><CardDescription>Manage access and notification preferences.</CardDescription></CardHeader><CardContent><p>Readable compound-slot spacing.</p></CardContent><CardFooter><Button>Save changes</Button></CardFooter></Card>;
+  if (variant === "Image") return <Card className="docs-card-preview docs-card-media"><div className="docs-card-image"><CalendarDays size={22} /><span>Q4 planning review</span></div><CardHeader><CardTitle>Project review</CardTitle><CardDescription>Updated today by the workspace team.</CardDescription></CardHeader></Card>;
   if (variant === "Login form") return <Card className="docs-card-preview"><CardHeader><CardTitle>Login to your account</CardTitle><CardDescription>Enter your email below to login to your account.</CardDescription></CardHeader><CardContent><div className="docs-preview-form"><Label htmlFor="card-email">Email</Label><Input id="card-email" type="email" placeholder="name@example.com" /><Label htmlFor="card-password">Password</Label><Input id="card-password" type="password" placeholder="••••••••" /><Button>Login</Button></div></CardContent><CardFooter><Button variant="outline" className="w-full"><LockKeyhole />Login with Google</Button></CardFooter></Card>;
   if (variant === "Scheduled reports") return <Card className="docs-card-preview"><CardHeader><CardTitle>Scheduled reports</CardTitle><CardDescription>Weekly snapshots. No more manual exports.</CardDescription></CardHeader><CardContent><ul className="docs-card-list"><li><CheckCircle2 />Choose a schedule.</li><li><CheckCircle2 />Send to teammates.</li><li><CheckCircle2 />Include key metrics.</li></ul></CardContent><CardFooter><Button>Set up scheduled reports</Button><Button variant="link">See what&apos;s new</Button></CardFooter></Card>;
   if (variant === "Image") return <Card className="docs-card-preview docs-card-media"><div className="docs-card-image"><CalendarDays size={22} /><span>Q4 planning review</span></div><CardHeader><CardTitle>Project review</CardTitle><CardDescription>Updated today by the workspace team.</CardDescription></CardHeader><CardFooter><Button variant="outline">Open project</Button></CardFooter></Card>;
@@ -274,10 +527,18 @@ function CardPreview({ variant = "Content card" }: { variant?: string }) {
 
 function Preview({ name, variant }: { name: string; variant?: string }) {
   const [enabled, setEnabled] = useState(true);
+  const [selectValue, setSelectValue] = useState("stable");
   if (name === "Button") return <ButtonPreview variant={variant} />;
   if (name === "Card") return <CardPreview variant={variant} />;
   if (name === "Input") return <InputPreview variant={variant} />;
-  if (name === "Select") return <div className="docs-preview-form"><Label htmlFor="docs-select">Release channel</Label><Select id="docs-select" defaultValue="stable"><option value="stable">Stable</option><option value="canary">Canary</option></Select></div>;
+  if (name === "Select") {
+    if (variant === "Groups") return <div className="docs-preview-form"><Label htmlFor="docs-select-groups">Component</Label><Select id="docs-select-groups" defaultValue="button"><optgroup label="Primitives"><option value="button">Button</option><option value="card">Card</option></optgroup><optgroup label="Forms"><option value="input">Input</option><option value="select">Select</option></optgroup></Select></div>;
+    if (variant === "Scrollable") return <div className="docs-preview-form"><Label htmlFor="docs-select-scrollable">Timezone</Label><Select id="docs-select-scrollable" defaultValue="utc"><option value="utc">UTC</option><option value="asia-jakarta">Asia/Jakarta</option><option value="europe-london">Europe/London</option><option value="america-new-york">America/New York</option><option value="australia-sydney">Australia/Sydney</option></Select><span className="showcase-muted">Option-list scrolling is delegated to the browser.</span></div>;
+    if (variant === "Disabled") return <div className="docs-preview-form"><Label htmlFor="docs-select-disabled">Release channel</Label><Select id="docs-select-disabled" disabled defaultValue="unavailable"><option value="unavailable">Unavailable</option></Select></div>;
+    if (variant === "Invalid") return <div className="docs-preview-form"><Label htmlFor="docs-select-invalid">Release channel</Label><Select id="docs-select-invalid" aria-invalid="true" defaultValue=""><option value="" disabled>Choose a channel</option><option value="stable">Stable</option></Select><span className="docs-error" role="alert">Choose a release channel.</span></div>;
+    if (variant === "RTL") return <div className="docs-preview-form docs-rtl-preview" dir="rtl"><Label htmlFor="docs-select-rtl">فاكهة</Label><Select id="docs-select-rtl" defaultValue="apple"><option value="apple">تفاح</option><option value="banana">موز</option></Select></div>;
+    return <div className="docs-preview-form"><Label htmlFor="docs-select">Release channel</Label><Select id="docs-select" value={selectValue} onChange={(event) => setSelectValue(event.target.value)}><option value="stable">Stable</option><option value="canary">Canary</option></Select><span className="showcase-muted">Selected: {selectValue}</span></div>;
+  };
   if (name === "Switch") {
     if (variant === "Description") return <div className="docs-check-row"><Switch checked={enabled} onCheckedChange={setEnabled} aria-label="Notifications" /><span><strong>Notifications</strong><small className="showcase-muted">Receive workspace updates.</small></span></div>;
     if (variant === "Choice Card") return <div className="docs-card-setting"><span><strong>Weekly digest</strong><small className="showcase-muted">Send a summary every Monday.</small></span><Switch checked={enabled} onCheckedChange={setEnabled} aria-label="Weekly digest" /></div>;
@@ -304,37 +565,72 @@ function SelectDocumentation() {
     {
       title: "Composition",
       description: "Combine Label, Select, and supporting text when the control needs context.",
-      code: `<div className="field">\n  <Label htmlFor="fruit">Fruit</Label>\n  <Select id="fruit" defaultValue="apple">\n    <option value="apple">Apple</option>\n    <option value="banana">Banana</option>\n  </Select>\n  <p>Choose one item.</p>\n</div>`,
+      code: `<div className="field">
+  <Label htmlFor="fruit">Fruit</Label>
+  <Select id="fruit" defaultValue="apple">
+    <option value="apple">Apple</option>
+    <option value="banana">Banana</option>
+  </Select>
+  <p>Choose one item.</p>
+</div>`,
       preview: <div className="docs-preview-form"><Label htmlFor="select-composition">Fruit</Label><Select id="select-composition" defaultValue="apple"><option value="apple">Apple</option><option value="banana">Banana</option></Select><span className="showcase-muted">Choose one item.</span></div>,
     },
     {
       title: "Groups",
       description: "Use native optgroup labels to organize related options.",
-      code: `<Select defaultValue="button">\n  <optgroup label="Primitives">\n    <option value="button">Button</option>\n    <option value="card">Card</option>\n  </optgroup>\n  <optgroup label="Forms">\n    <option value="input">Input</option>\n    <option value="select">Select</option>\n  </optgroup>\n</Select>`,
+      code: `<Select defaultValue="button">
+  <optgroup label="Primitives">
+    <option value="button">Button</option>
+    <option value="card">Card</option>
+  </optgroup>
+  <optgroup label="Forms">
+    <option value="input">Input</option>
+    <option value="select">Select</option>
+  </optgroup>
+</Select>`,
       preview: <div className="docs-preview-form"><Label htmlFor="select-groups">Component</Label><Select id="select-groups" defaultValue="button"><optgroup label="Primitives"><option value="button">Button</option><option value="card">Card</option></optgroup><optgroup label="Forms"><option value="input">Input</option><option value="select">Select</option></optgroup></Select></div>,
     },
     {
       title: "Long option list",
       description: "A native select delegates option-list scrolling to the browser and platform.",
-      code: `<Select defaultValue="utc">\n  <option value="utc">UTC</option>\n  <option value="asia-jakarta">Asia/Jakarta</option>\n  <option value="europe-london">Europe/London</option>\n  <option value="america-new-york">America/New York</option>\n  {/* additional consumer-owned options */}\n</Select>`,
+      code: `<Select defaultValue="utc">
+  <option value="utc">UTC</option>
+  <option value="asia-jakarta">Asia/Jakarta</option>
+  <option value="europe-london">Europe/London</option>
+  <option value="america-new-york">America/New York</option>
+  {/* additional consumer-owned options */}
+</Select>`,
       preview: <div className="docs-preview-form"><Label htmlFor="select-long">Timezone</Label><Select id="select-long" defaultValue="utc"><option value="utc">UTC</option><option value="asia-jakarta">Asia/Jakarta</option><option value="europe-london">Europe/London</option><option value="america-new-york">America/New York</option><option value="australia-sydney">Australia/Sydney</option></Select></div>,
     },
     {
       title: "Disabled",
       description: "Use the disabled attribute when the consumer temporarily prevents selection.",
-      code: `<Select disabled defaultValue="unavailable">\n  <option value="unavailable">Unavailable</option>\n</Select>`,
+      code: `<Select disabled defaultValue="unavailable">
+  <option value="unavailable">Unavailable</option>
+</Select>`,
       preview: <div className="docs-preview-form"><Label htmlFor="select-disabled">Release channel</Label><Select id="select-disabled" disabled defaultValue="unavailable"><option value="unavailable">Unavailable</option></Select></div>,
     },
     {
       title: "Invalid",
       description: "Pair aria-invalid with visible supporting text supplied by the consumer.",
-      code: `<Label htmlFor="select-invalid">Fruit</Label>\n<Select id="select-invalid" aria-invalid="true" defaultValue="">\n  <option value="" disabled>Select a fruit</option>\n  <option value="apple">Apple</option>\n</Select>\n<p role="alert">Please select a fruit.</p>`,
+      code: `<Label htmlFor="select-invalid">Fruit</Label>
+<Select id="select-invalid" aria-invalid="true" defaultValue="">
+  <option value="" disabled>Select a fruit</option>
+  <option value="apple">Apple</option>
+</Select>
+<p role="alert">Please select a fruit.</p>`,
       preview: <div className="docs-preview-form"><Label htmlFor="select-invalid">Fruit</Label><Select id="select-invalid" aria-invalid="true" defaultValue=""><option value="" disabled>Select a fruit</option><option value="apple">Apple</option></Select><span className="docs-error" role="alert">Please select a fruit.</span></div>,
     },
     {
       title: "RTL",
       description: "Set the direction on the containing region when the consumer is rendering right-to-left content.",
-      code: `<div dir="rtl">\n  <Label htmlFor="select-rtl">فاكهة</Label>\n  <Select id="select-rtl" defaultValue="apple">\n    <option value="apple">تفاح</option>\n    <option value="banana">موز</option>\n  </Select>\n</div>`,
+      code: `<div dir="rtl">
+  <Label htmlFor="select-rtl">فاكهة</Label>
+  <Select id="select-rtl" defaultValue="apple">
+    <option value="apple">تفاح</option>
+    <option value="banana">موز</option>
+  </Select>
+</div>`,
       preview: <div className="docs-preview-form docs-rtl-preview" dir="rtl"><Label htmlFor="select-rtl">فاكهة</Label><Select id="select-rtl" defaultValue="apple"><option value="apple">تفاح</option><option value="banana">موز</option></Select></div>,
     },
   ];

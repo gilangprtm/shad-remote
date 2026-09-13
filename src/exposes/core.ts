@@ -19,12 +19,35 @@ export { Avatar, AvatarImage, AvatarFallback, AvatarBadge, AvatarGroup, AvatarGr
 export { Toggle } from "../core/toggle/Toggle";
 export { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "../core/accordion/Accordion";
 export { Collapsible, CollapsibleTrigger, CollapsibleContent } from "../core/collapsible/Collapsible";
-export { Spinner, Kbd, AspectRatio, ScrollArea, Item, Field, NativeSelect } from "../core/misc/Misc";
+export { Spinner, Kbd, KbdGroup, AspectRatio, ScrollArea, Item, Field, NativeSelect } from "../core/misc/Misc";
 export { Direction, Empty, HoverCard, Marker, Message, MessageScroller, Typography, Calendar, Toast } from "../core/foundation/Foundation";
-export { Attachment, Bubble, Questionnaire } from "../core/foundation/ExtendedFoundation";
-export type { QuestionnaireOption } from "../core/foundation/ExtendedFoundation";
+export {
+  Attachment,
+  AttachmentAction,
+  AttachmentActions,
+  AttachmentContent,
+  AttachmentDescription,
+  AttachmentGroup,
+  AttachmentImage,
+  AttachmentMedia,
+  AttachmentTitle,
+  AttachmentTrigger,
+  Bubble,
+  Questionnaire,
+} from "../core/foundation/ExtendedFoundation";
+export type {
+  AttachmentActionProps,
+  AttachmentImageProps,
+  AttachmentMediaProps,
+  AttachmentOrientation,
+  AttachmentProps,
+  AttachmentSize,
+  AttachmentState,
+  AttachmentTriggerProps,
+  QuestionnaireOption,
+} from "../core/foundation/ExtendedFoundation";
 export { ButtonGroup, ToggleGroup, ToggleGroupItem, Slider } from "../core/controls/Controls";
-export { AlertDialog, Drawer, Sheet } from "../core/overlay/Overlay";
+export { Dialog, AlertDialog, Drawer, Sheet } from "../core/overlay/Overlay";
 export { Command, CommandInput, CommandList, CommandEmpty, CommandGroup, CommandItem, useCommandQuery } from "../core/command/Command";
 export { DropdownMenu, DropdownMenuItem, DropdownMenuSeparator, ContextMenu, Menubar, MenubarItem, NavigationMenu, NavigationMenuLink, Combobox } from "../core/menus/Menus";
 export { InputGroup, InputOTP, Carousel, Resizable } from "../core/advanced/Advanced";

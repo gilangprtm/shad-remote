@@ -38,6 +38,6 @@ export function Calendar({ value, onChange, min, max, className }: { value?: str
   return <input type="date" value={value ?? ""} min={min} max={max} onChange={(event) => onChange?.(event.target.value)} aria-label="Calendar date" className={cn("h-9 rounded-md border border-input bg-background px-3 text-sm", className)} />;
 }
 
-export function Toast({ title, description, onDismiss }: { title: ReactNode; description?: ReactNode; onDismiss?: () => void }) {
-  return <div role="status" className="rounded-lg border bg-background p-4 text-sm shadow-md"><div className="flex items-start justify-between gap-3"><div><strong>{title}</strong>{description && <p className="mt-1 text-muted-foreground">{description}</p>}</div>{onDismiss && <button type="button" aria-label="Dismiss notification" onClick={onDismiss}>×</button>}</div></div>;
+export function Toast({ title, description, action, variant = "default", onDismiss }: { title: ReactNode; description?: ReactNode; action?: ReactNode; variant?: "default" | "success" | "warning" | "error"; onDismiss?: () => void }) {
+  return <div role={variant === "error" ? "alert" : "status"} className={cn("rounded-lg border bg-background p-4 text-sm shadow-md", variant === "error" && "border-destructive text-destructive", variant === "success" && "border-green-600/40", variant === "warning" && "border-amber-600/40")}><div className="flex items-start justify-between gap-3"><div><strong>{title}</strong>{description && <p className="mt-1 text-muted-foreground">{description}</p>}{action && <div className="mt-3">{action}</div>}</div>{onDismiss && <button type="button" aria-label="Dismiss notification" onClick={onDismiss}>×</button>}</div></div>;
 }
