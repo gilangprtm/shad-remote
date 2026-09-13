@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-09-13T04:56:12.764Z",
+  "generatedAt": "2026-09-13T04:57:41.369Z",
   "upstreamCount": 64,
   "counts": {
-    "documented": 28,
-    "runtime-only": 36,
+    "documented": 36,
+    "runtime-only": 28,
     "source-only": 0,
     "missing": 0
   },
@@ -26,15 +26,15 @@
       "name": "Alert Dialog",
       "source": true,
       "federation": true,
-      "docs": false,
-      "status": "runtime-only"
+      "docs": true,
+      "status": "documented"
     },
     {
       "name": "Aspect Ratio",
       "source": true,
       "federation": true,
-      "docs": false,
-      "status": "runtime-only"
+      "docs": true,
+      "status": "documented"
     },
     {
       "name": "Attachment",
@@ -89,8 +89,8 @@
       "name": "Calendar",
       "source": true,
       "federation": true,
-      "docs": false,
-      "status": "runtime-only"
+      "docs": true,
+      "status": "documented"
     },
     {
       "name": "Card",
@@ -103,8 +103,8 @@
       "name": "Carousel",
       "source": true,
       "federation": true,
-      "docs": false,
-      "status": "runtime-only"
+      "docs": true,
+      "status": "documented"
     },
     {
       "name": "Chart",
@@ -131,8 +131,8 @@
       "name": "Combobox",
       "source": true,
       "federation": true,
-      "docs": false,
-      "status": "runtime-only"
+      "docs": true,
+      "status": "documented"
     },
     {
       "name": "Command",
@@ -145,8 +145,8 @@
       "name": "Context Menu",
       "source": true,
       "federation": true,
-      "docs": false,
-      "status": "runtime-only"
+      "docs": true,
+      "status": "documented"
     },
     {
       "name": "Data Table",
@@ -166,8 +166,8 @@
       "name": "Dialog",
       "source": true,
       "federation": true,
-      "docs": false,
-      "status": "runtime-only"
+      "docs": true,
+      "status": "documented"
     },
     {
       "name": "Direction",
@@ -187,8 +187,8 @@
       "name": "Dropdown Menu",
       "source": true,
       "federation": true,
-      "docs": false,
-      "status": "runtime-only"
+      "docs": true,
+      "status": "documented"
     },
     {
       "name": "Empty",
