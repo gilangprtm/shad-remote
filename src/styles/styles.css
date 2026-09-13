@@ -143,6 +143,20 @@
 @keyframes docs-spin { to { transform: rotate(360deg); } }
 @media (prefers-reduced-motion: reduce) { .docs-spinner { animation: none; } }
 .docs-preview-form { display: grid; width: min(100%, 320px); gap: 8px; }
+.docs-badge-blue { background: #eff6ff; color: #1d4ed8; }
+.docs-badge-green { background: #f0fdf4; color: #15803d; }
+.docs-badge-purple { background: #faf5ff; color: #7e22ce; }
+.docs-badge-red { background: #fef2f2; color: #b91c1c; }
+.docs-alert-action-row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.docs-input-group-preview { display: flex; width: min(100%, 360px); align-items: center; gap: 8px; }
+.docs-input-group-preview > span { color: var(--muted-foreground); font-size: 13px; white-space: nowrap; }
+.docs-input-group-preview [data-slot="input"] { flex: 1; }
+.docs-check-list { display: grid; width: min(100%, 360px); gap: 10px; }
+.docs-check-list > strong { font-size: 13px; }
+.docs-check-row { display: flex; align-items: flex-start; gap: 9px; width: fit-content; cursor: pointer; font-size: 13px; line-height: 1.4; }
+.docs-check-row > span { display: grid; gap: 3px; }
+.docs-check-row small { display: block; font-size: 12px; }
+.docs-preview-row [data-slot="badge"] svg { width: 12px; height: 12px; }
 .docs-card-preview { width: min(100%, 420px); }
 .docs-card-preview .docs-preview-form { width: 100%; }
 .docs-card-preview .edjavu-card-footer { flex-wrap: wrap; gap: 8px; }

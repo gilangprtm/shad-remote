@@ -1,5 +1,5 @@
 import { useEffect, useState, type ReactNode } from "react";
-import { ArrowLeft, ArrowRight, CalendarDays, Check, CheckCircle2, Copy, Download, LockKeyhole, Mail, MoreHorizontal, Plus, Search, Settings } from "lucide-react";
+import { ArrowLeft, ArrowRight, CalendarDays, Check, CheckCircle2, CircleAlert, Copy, Download, Info, LockKeyhole, Mail, MoreHorizontal, Plus, Search, Settings } from "lucide-react";
 import { Badge } from "../../core/badge/Badge";
 import { Button } from "../../core/button/Button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../../core/card/Card";
@@ -48,8 +48,9 @@ function ButtonPreview({ variant = "All variants" }: { variant?: string }) {
 function ComponentPreview({ name, variant }: { name: string; variant?: string }) {
   const [checked, setChecked] = useState(false);
   const [tab, setTab] = useState("one");
-  if (name === "Checkbox") return <label className="docs-preview-row docs-preview-centered"><Checkbox checked={checked} onCheckedChange={(value) => setChecked(value === true)} /><span>{checked ? "Selected" : "Not selected"}</span></label>;
-  if (name === "Alert") return <Alert title={variant === "Destructive" ? "Action failed" : "Notice"}><AlertDescription>{variant === "Destructive" ? "Try the action again." : "The component is ready to use."}</AlertDescription></Alert>;
+  if (name === "Checkbox") return <CheckboxPreview variant={variant} />;
+  if (name === "Alert") return <AlertPreview variant={variant} />;
+  if (name === "Input") return <InputPreview variant={variant} />;
   if (name === "Avatar") return <div className="docs-preview-row docs-preview-centered"><Avatar><AvatarFallback>GP</AvatarFallback></Avatar></div>;
   if (name === "Progress") return <div className="docs-preview-form"><Progress value={variant === "Determinate" ? 64 : 32} /><span className="showcase-muted">{variant === "Determinate" ? "64% complete" : "32% complete"}</span></div>;
   if (name === "Skeleton") return <div className="docs-preview-form"><Skeleton className={variant === "Block" ? "h-20 w-full" : "h-4 w-40"} /></div>;
@@ -90,6 +91,44 @@ function ComponentPreview({ name, variant }: { name: string; variant?: string })
   return <div className="docs-placeholder"><strong>Contract preview</strong><p>This page shows the public contract for {name}. A live preview will be added when the producer wiring is available.</p></div>;
 }
 
+function BadgePreview({ variant = "Default" }: { variant?: string }) {
+  if (variant === "With icon") return <div className="docs-preview-row docs-preview-centered"><Badge><Check />Verified</Badge><Badge variant="outline"><Info />Documentation</Badge></div>;
+  if (variant === "With spinner") return <div className="docs-preview-row docs-preview-centered"><Badge><span className="docs-spinner" aria-hidden="true" />Generating</Badge><Badge variant="destructive"><span className="docs-spinner" aria-hidden="true" />Deleting</Badge></div>;
+  if (variant === "Link") return <div className="docs-preview-row docs-preview-centered"><Badge variant="link"><a href="#badge-api">Open badge API</a></Badge></div>;
+  if (variant === "Custom colors") return <div className="docs-preview-row docs-preview-centered"><Badge className="docs-badge-blue">Blue</Badge><Badge className="docs-badge-green">Green</Badge><Badge className="docs-badge-purple">Purple</Badge><Badge className="docs-badge-red">Red</Badge></div>;
+  if (variant === "RTL") return <div className="docs-preview-row docs-preview-centered" dir="rtl"><Badge>شارة</Badge><Badge variant="secondary">ثانوي</Badge><Badge variant="outline">مخطط</Badge></div>;
+  return <div className="docs-preview-row docs-preview-centered"><Badge>Default</Badge><Badge variant="secondary">Secondary</Badge><Badge variant="destructive">Destructive</Badge><Badge variant="outline">Outline</Badge></div>;
+}
+
+function AlertPreview({ variant = "Basic" }: { variant?: string }) {
+  if (variant === "Destructive") return <Alert variant="destructive" title="Payment failed"><AlertDescription>Your payment could not be processed. Try another card.</AlertDescription></Alert>;
+  if (variant === "Action") return <Alert title="New feature available"><AlertDescription><span className="docs-alert-action-row">Scheduled reports are now available.<Button size="sm" variant="outline">Learn more</Button></span></AlertDescription></Alert>;
+  if (variant === "RTL") return <Alert dir="rtl" title="تم الحفظ"><AlertDescription>تم حفظ التغييرات بنجاح.</AlertDescription></Alert>;
+  return <Alert title="Payment successful"><AlertDescription>Your payment of $29.99 has been processed. A receipt has been sent to your email address.</AlertDescription></Alert>;
+}
+
+function InputPreview({ variant = "Basic" }: { variant?: string }) {
+  if (variant === "Field") return <div className="docs-preview-form"><Label htmlFor="input-field">API key</Label><Input id="input-field" placeholder="sk_live_••••••••" /><span className="showcase-muted">Your API key is encrypted and stored securely.</span></div>;
+  if (variant === "Disabled") return <div className="docs-preview-form"><Label htmlFor="input-disabled">Username</Label><Input id="input-disabled" disabled placeholder="Unavailable" /></div>;
+  if (variant === "Invalid") return <div className="docs-preview-form"><Label htmlFor="input-invalid">Email</Label><Input id="input-invalid" aria-invalid="true" defaultValue="not-an-email" /><span className="docs-error" role="alert">Enter a valid email address.</span></div>;
+  if (variant === "Input group") return <div className="docs-input-group-preview"><span>https://</span><Input aria-label="Website URL" placeholder="example.com" /></div>;
+  if (variant === "Button group") return <div className="docs-input-group-preview"><Input aria-label="Search" placeholder="Search" /><Button size="sm"><Search />Search</Button></div>;
+  if (variant === "Form") return <div className="docs-preview-form"><Label htmlFor="form-name">Name</Label><Input id="form-name" placeholder="Your name" /><Label htmlFor="form-email">Email</Label><Input id="form-email" type="email" placeholder="name@example.com" /><span className="showcase-muted">We&apos;ll never share your email.</span><Button>Submit</Button></div>;
+  if (variant === "RTL") return <div className="docs-preview-form" dir="rtl"><Label htmlFor="input-rtl">مفتاح API</Label><Input id="input-rtl" placeholder="مفتاح API" /></div>;
+  return <div className="docs-preview-form"><Label htmlFor="input-basic">Website URL</Label><Input id="input-basic" placeholder="https://example.com" /></div>;
+}
+
+function CheckboxPreview({ variant = "Basic" }: { variant?: string }) {
+  if (variant === "Checked") return <label className="docs-check-row"><Checkbox checked onCheckedChange={() => undefined} /><span>Accept terms and conditions</span></label>;
+  if (variant === "Invalid") return <label className="docs-check-row"><Checkbox aria-invalid="true" onCheckedChange={() => undefined} /><span><strong>Accept terms and conditions</strong><small className="docs-error">You must accept the terms.</small></span></label>;
+  if (variant === "Description") return <label className="docs-check-row"><Checkbox onCheckedChange={() => undefined} /><span><strong>Enable notifications</strong><small className="showcase-muted">You can enable or disable notifications at any time.</small></span></label>;
+  if (variant === "Disabled") return <label className="docs-check-row"><Checkbox disabled /><span>Unavailable option</span></label>;
+  if (variant === "Group") return <div className="docs-check-list"><strong>Show these items on the desktop:</strong>{["Hard disks", "External disks", "Connected servers"].map((item) => <label className="docs-check-row" key={item}><Checkbox onCheckedChange={() => undefined} /><span>{item}</span></label>)}</div>;
+  if (variant === "Table") return <div className="docs-check-list"><strong>Select the items you want to show:</strong>{["Sarah Chen · Admin", "Marcus Rodriguez · User", "Priya Patel · Editor"].map((item) => <label className="docs-check-row" key={item}><Checkbox onCheckedChange={() => undefined} /><span>{item}</span></label>)}</div>;
+  if (variant === "RTL") return <label className="docs-check-row" dir="rtl"><Checkbox onCheckedChange={() => undefined} /><span>قبول الشروط والأحكام</span></label>;
+  return <label className="docs-check-row"><Checkbox onCheckedChange={() => undefined} /><span>Accept terms and conditions</span></label>;
+}
+
 function CardPreview({ variant = "Content card" }: { variant?: string }) {
   if (variant === "Login form") return <Card className="docs-card-preview"><CardHeader><CardTitle>Login to your account</CardTitle><CardDescription>Enter your email below to login to your account.</CardDescription></CardHeader><CardContent><div className="docs-preview-form"><Label htmlFor="card-email">Email</Label><Input id="card-email" type="email" placeholder="name@example.com" /><Label htmlFor="card-password">Password</Label><Input id="card-password" type="password" placeholder="••••••••" /><Button>Login</Button></div></CardContent><CardFooter><Button variant="outline" className="w-full"><LockKeyhole />Login with Google</Button></CardFooter></Card>;
   if (variant === "Scheduled reports") return <Card className="docs-card-preview"><CardHeader><CardTitle>Scheduled reports</CardTitle><CardDescription>Weekly snapshots. No more manual exports.</CardDescription></CardHeader><CardContent><ul className="docs-card-list"><li><CheckCircle2 />Choose a schedule.</li><li><CheckCircle2 />Send to teammates.</li><li><CheckCircle2 />Include key metrics.</li></ul></CardContent><CardFooter><Button>Set up scheduled reports</Button><Button variant="link">See what&apos;s new</Button></CardFooter></Card>;
@@ -103,10 +142,11 @@ function Preview({ name, variant }: { name: string; variant?: string }) {
   const [enabled, setEnabled] = useState(true);
   if (name === "Button") return <ButtonPreview variant={variant} />;
   if (name === "Card") return <CardPreview variant={variant} />;
-  if (name === "Input") return <div className="docs-preview-form"><Label htmlFor="docs-input">Component name</Label><Input id="docs-input" placeholder="Select" /></div>;
+  if (name === "Input") return <InputPreview variant={variant} />;
   if (name === "Select") return <div className="docs-preview-form"><Label htmlFor="docs-select">Release channel</Label><Select id="docs-select" defaultValue="stable"><option value="stable">Stable</option><option value="canary">Canary</option></Select></div>;
   if (name === "Switch") return <div className="docs-preview-row"><Switch checked={enabled} onCheckedChange={setEnabled} /><span className="showcase-muted">{enabled ? "Enabled" : "Disabled"}</span></div>;
-  if (name === "Badge") return <div className="docs-preview-row docs-preview-centered"><Badge>Stable</Badge><Badge variant="secondary">Preview</Badge><Badge variant="outline">Optional</Badge><Badge variant="destructive">Deprecated</Badge></div>;
+  if (name === "Badge") return <BadgePreview variant={variant} />;
+  if (name === "Alert") return <AlertPreview variant={variant} />;
   return <ComponentPreview name={name} variant={variant} />;
 }
 
