@@ -151,7 +151,12 @@ function ComponentPreview({ name, variant }: { name: string; variant?: string })
   if (name === "File Uploader") { const addFiles = (selected: File[]) => setUploadFiles(selected.map((file, index) => ({ id: `${file.name}-${index}`, file, name: file.name, size: file.size, type: file.type, progress: 0, status: "queued" }))); return <FileUploader files={uploadFiles} multiple accept={["application/pdf", "image/png"]} onFilesSelected={addFiles} onRemove={(id) => setUploadFiles((items) => items.filter((item) => item.id !== id))} onRetry={() => undefined} onCancel={() => undefined} onUpload={() => undefined} />; }
   if (name === "Event Calendar") { const events: CalendarEvent[] = [{ id: "review", title: "Project review", start: new Date("2026-09-15T10:00:00"), end: new Date("2026-09-15T11:00:00") }, { id: "sync", title: "Workspace sync", start: new Date("2026-09-18T14:00:00"), end: new Date("2026-09-18T15:00:00") }]; return <EventCalendar events={events} view={variant === "Week" ? "week" : variant === "Day" ? "day" : "month"} date={new Date("2026-09-13")} onDateChange={() => undefined} onViewChange={() => undefined} onEventClick={() => undefined} onSlotClick={() => undefined} />; }
   if (name === "Avatar") return <div className="docs-preview-row docs-preview-centered"><Avatar><AvatarFallback>GP</AvatarFallback></Avatar></div>;
-  if (name === "Progress") return <div className="docs-preview-form"><Progress value={variant === "Determinate" ? 64 : 32} /><span className="showcase-muted">{variant === "Determinate" ? "64% complete" : "32% complete"}</span></div>;
+  if (name === "Progress") {
+    if (variant === "Label") return <div className="docs-preview-form"><div className="flex justify-between text-sm"><span>Upload progress</span><span>64%</span></div><Progress value={64} /> </div>;
+    if (variant === "Controlled") return <div className="docs-preview-form"><Progress value={72} /><span className="showcase-muted">Consumer-controlled: 72%</span></div>;
+    if (variant === "RTL") return <div dir="rtl" className="docs-preview-form"><Progress value={64} /><span className="showcase-muted">٦٤٪ مكتمل</span></div>;
+    return <div className="docs-preview-form"><Progress value={variant === "Determinate" ? 64 : 32} /><span className="showcase-muted">{variant === "Determinate" ? "64% complete" : "32% complete"}</span></div>;
+  }
   if (name === "Skeleton") {
     if (variant === "Avatar") return <div className="flex items-center gap-3"><Skeleton className="size-10 rounded-full" /><div className="grid gap-2"><Skeleton className="h-4 w-28" /><Skeleton className="h-3 w-40" /></div></div>;
     if (variant === "Card") return <div className="grid gap-3"><Skeleton className="h-24 w-full" /><Skeleton className="h-5 w-36" /><Skeleton className="h-4 w-56" /></div>;
@@ -177,10 +182,20 @@ function ComponentPreview({ name, variant }: { name: string; variant?: string })
   if (name === "Accordion") return <Accordion><AccordionItem value="item-1"><AccordionTrigger>What does it do?</AccordionTrigger><AccordionContent>It reveals related content.</AccordionContent></AccordionItem></Accordion>;
   if (name === "Collapsible") return <Collapsible><CollapsibleTrigger><Button variant="outline">Show details</Button></CollapsibleTrigger><CollapsibleContent>Additional details.</CollapsibleContent></Collapsible>;
   if (name === "Aspect Ratio") return <AspectRatio ratio={variant === "Square" ? 1 : 16 / 9}><div className="docs-preview-media">{variant === "Square" ? "1:1" : "16:9"}</div></AspectRatio>;
-  if (name === "Scroll Area") return <ScrollArea className="docs-preview-scroll"><div className="docs-preview-form">{["First item", "Second item", "Third item", "Fourth item"].map((item) => <Item key={item}>{item}</Item>)}</div></ScrollArea>;
   if (name === "Spinner") return <div className="docs-preview-row docs-preview-centered"><Spinner aria-label="Loading" /><span className="showcase-muted">Loading results</span></div>;
   if (name === "Kbd") return <div className="docs-preview-row docs-preview-centered"><Kbd>{variant === "Shortcut" ? "⌘K" : "Esc"}</Kbd></div>;
-  if (name === "Native Select") return <NativeSelect defaultValue="stable"><option value="stable">Stable</option><option value="canary">Canary</option></NativeSelect>;
+  if (name === "Native Select") {
+    if (variant === "Groups") return <NativeSelect defaultValue="stable"><optgroup label="Release"><option value="stable">Stable</option><option value="canary">Canary</option></optgroup><optgroup label="Preview"><option value="next">Next</option></optgroup></NativeSelect>;
+    if (variant === "Disabled") return <NativeSelect disabled defaultValue="stable"><option value="stable">Stable</option></NativeSelect>;
+    if (variant === "Invalid") return <div className="docs-preview-form"><NativeSelect aria-invalid="true" defaultValue=""><option value="">Choose a channel</option><option value="stable">Stable</option></NativeSelect><span className="docs-error" role="alert">Choose a release channel.</span></div>;
+    if (variant === "RTL") return <div dir="rtl"><NativeSelect defaultValue="stable"><option value="stable">مستقر</option><option value="canary">تجريبي</option></NativeSelect></div>;
+    return <NativeSelect defaultValue="stable"><option value="stable">Stable</option><option value="canary">Canary</option></NativeSelect>;
+  }
+  if (name === "Scroll Area") {
+    if (variant === "Horizontal") return <ScrollArea className="docs-preview-scroll"><div className="flex w-[720px] gap-2">{["One", "Two", "Three", "Four"].map((item) => <Item key={item}>{item} horizontal content</Item>)}</div></ScrollArea>;
+    if (variant === "RTL") return <div dir="rtl"><ScrollArea className="docs-preview-scroll"><div className="docs-preview-form">{["العنصر الأول", "العنصر الثاني", "العنصر الثالث"].map((item) => <Item key={item}>{item}</Item>)}</div></ScrollArea></div>;
+    return <ScrollArea className="docs-preview-scroll"><div className="docs-preview-form">{["First item", "Second item", "Third item", "Fourth item"].map((item) => <Item key={item}>{item}</Item>)}</div></ScrollArea>;
+  }
   if (name === "Field") return <Field label="Email" description="Use your work address."><Input placeholder="name@example.com" /></Field>;
   if (name === "Input Group") return <InputGroup prefix="https://"><Input placeholder="example.com" /></InputGroup>;
   if (name === "Input OTP") return <InputOTP length={variant === "Four digits" ? 4 : 6} value="123" onChange={() => undefined} />;
