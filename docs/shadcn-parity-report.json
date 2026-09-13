@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-09-13T04:57:41.369Z",
+  "generatedAt": "2026-09-13T05:01:28.674Z",
   "upstreamCount": 64,
   "counts": {
-    "documented": 36,
-    "runtime-only": 28,
+    "documented": 64,
+    "runtime-only": 0,
     "source-only": 0,
     "missing": 0
   },
@@ -40,8 +40,8 @@
       "name": "Attachment",
       "source": true,
       "federation": true,
-      "docs": false,
-      "status": "runtime-only"
+      "docs": true,
+      "status": "documented"
     },
     {
       "name": "Avatar",
@@ -68,8 +68,8 @@
       "name": "Bubble",
       "source": true,
       "federation": true,
-      "docs": false,
-      "status": "runtime-only"
+      "docs": true,
+      "status": "documented"
     },
     {
       "name": "Button",
@@ -124,8 +124,8 @@
       "name": "Collapsible",
       "source": true,
       "federation": true,
-      "docs": false,
-      "status": "runtime-only"
+      "docs": true,
+      "status": "documented"
     },
     {
       "name": "Combobox",
@@ -173,15 +173,15 @@
       "name": "Direction",
       "source": true,
       "federation": true,
-      "docs": false,
-      "status": "runtime-only"
+      "docs": true,
+      "status": "documented"
     },
     {
       "name": "Drawer",
       "source": true,
       "federation": true,
-      "docs": false,
-      "status": "runtime-only"
+      "docs": true,
+      "status": "documented"
     },
     {
       "name": "Dropdown Menu",
@@ -194,22 +194,22 @@
       "name": "Empty",
       "source": true,
       "federation": true,
-      "docs": false,
-      "status": "runtime-only"
+      "docs": true,
+      "status": "documented"
     },
     {
       "name": "Field",
       "source": true,
       "federation": true,
-      "docs": false,
-      "status": "runtime-only"
+      "docs": true,
+      "status": "documented"
     },
     {
       "name": "Hover Card",
       "source": true,
       "federation": true,
-      "docs": false,
-      "status": "runtime-only"
+      "docs": true,
+      "status": "documented"
     },
     {
       "name": "Input",
@@ -222,29 +222,29 @@
       "name": "Input Group",
       "source": true,
       "federation": true,
-      "docs": false,
-      "status": "runtime-only"
+      "docs": true,
+      "status": "documented"
     },
     {
       "name": "Input OTP",
       "source": true,
       "federation": true,
-      "docs": false,
-      "status": "runtime-only"
+      "docs": true,
+      "status": "documented"
     },
     {
       "name": "Item",
       "source": true,
       "federation": true,
-      "docs": false,
-      "status": "runtime-only"
+      "docs": true,
+      "status": "documented"
     },
     {
       "name": "Kbd",
       "source": true,
       "federation": true,
-      "docs": false,
-      "status": "runtime-only"
+      "docs": true,
+      "status": "documented"
     },
     {
       "name": "Label",
@@ -257,50 +257,50 @@
       "name": "Marker",
       "source": true,
       "federation": true,
-      "docs": false,
-      "status": "runtime-only"
+      "docs": true,
+      "status": "documented"
     },
     {
       "name": "Menubar",
       "source": true,
       "federation": true,
-      "docs": false,
-      "status": "runtime-only"
+      "docs": true,
+      "status": "documented"
     },
     {
       "name": "Message",
       "source": true,
       "federation": true,
-      "docs": false,
-      "status": "runtime-only"
+      "docs": true,
+      "status": "documented"
     },
     {
       "name": "Message Scroller",
       "source": true,
       "federation": true,
-      "docs": false,
-      "status": "runtime-only"
+      "docs": true,
+      "status": "documented"
     },
     {
       "name": "Native Select",
       "source": true,
       "federation": true,
-      "docs": false,
-      "status": "runtime-only"
+      "docs": true,
+      "status": "documented"
     },
     {
       "name": "Navigation Menu",
       "source": true,
       "federation": true,
-      "docs": false,
-      "status": "runtime-only"
+      "docs": true,
+      "status": "documented"
     },
     {
       "name": "Pagination",
       "source": true,
       "federation": true,
-      "docs": false,
-      "status": "runtime-only"
+      "docs": true,
+      "status": "documented"
     },
     {
       "name": "Popover",
@@ -320,29 +320,29 @@
       "name": "Questionnaire",
       "source": true,
       "federation": true,
-      "docs": false,
-      "status": "runtime-only"
+      "docs": true,
+      "status": "documented"
     },
     {
       "name": "Radio Group",
       "source": true,
       "federation": true,
-      "docs": false,
-      "status": "runtime-only"
+      "docs": true,
+      "status": "documented"
     },
     {
       "name": "Resizable",
       "source": true,
       "federation": true,
-      "docs": false,
-      "status": "runtime-only"
+      "docs": true,
+      "status": "documented"
     },
     {
       "name": "Scroll Area",
       "source": true,
       "federation": true,
-      "docs": false,
-      "status": "runtime-only"
+      "docs": true,
+      "status": "documented"
     },
     {
       "name": "Select",
@@ -362,8 +362,8 @@
       "name": "Sheet",
       "source": true,
       "federation": true,
-      "docs": false,
-      "status": "runtime-only"
+      "docs": true,
+      "status": "documented"
     },
     {
       "name": "Sidebar",
@@ -390,8 +390,8 @@
       "name": "Spinner",
       "source": true,
       "federation": true,
-      "docs": false,
-      "status": "runtime-only"
+      "docs": true,
+      "status": "documented"
     },
     {
       "name": "Switch",
@@ -425,15 +425,15 @@
       "name": "Toast",
       "source": true,
       "federation": true,
-      "docs": false,
-      "status": "runtime-only"
+      "docs": true,
+      "status": "documented"
     },
     {
       "name": "Toggle",
       "source": true,
       "federation": true,
-      "docs": false,
-      "status": "runtime-only"
+      "docs": true,
+      "status": "documented"
     },
     {
       "name": "Toggle Group",
@@ -453,8 +453,8 @@
       "name": "Typography",
       "source": true,
       "federation": true,
-      "docs": false,
-      "status": "runtime-only"
+      "docs": true,
+      "status": "documented"
     }
   ]
 }
