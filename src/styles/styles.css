@@ -148,6 +148,10 @@
 .docs-badge-purple { background: #faf5ff; color: #7e22ce; }
 .docs-badge-red { background: #fef2f2; color: #b91c1c; }
 .docs-alert-action-row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.docs-alert-amber { border-color: #f59e0b; background: #fffbeb; color: #92400e; }
+.docs-accordion-bordered { border: 1px solid var(--border); border-radius: 0.5rem; padding: 0 1rem; }
+.docs-accordion-card { width: min(100%, 480px); }
+.docs-avatar-group { align-items: center; }
 .docs-input-group-preview { display: flex; width: min(100%, 360px); align-items: center; gap: 8px; }
 .docs-input-group-preview > span { color: var(--muted-foreground); font-size: 13px; white-space: nowrap; }
 .docs-input-group-preview [data-slot="input"] { flex: 1; }

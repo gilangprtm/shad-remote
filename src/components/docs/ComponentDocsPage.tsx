@@ -70,6 +70,16 @@ function ButtonPreview({ variant = "All variants" }: { variant?: string }) {
   return <div className="docs-preview-row docs-preview-centered">{variants[variant] ?? variants.Default}</div>;
 }
 
+function AccordionPreview({ variant = "Basic" }: { variant?: string }) {
+  const item = (value: string, title: string, content: string, disabled = false) => <AccordionItem value={value} disabled={disabled}><AccordionTrigger>{title}</AccordionTrigger><AccordionContent>{content}</AccordionContent></AccordionItem>;
+  if (variant === "Multiple") return <Accordion>{item("notifications", "Notification settings", "Manage email and push notifications.")}{item("privacy", "Privacy and security", "Review access and security preferences.")}</Accordion>;
+  if (variant === "Disabled") return <Accordion>{item("available", "Available settings", "This section can be opened.")}{item("premium", "Premium feature", "This feature is unavailable on the current plan.", true)}</Accordion>;
+  if (variant === "Borders") return <Accordion className="docs-accordion-bordered">{item("billing", "How does billing work?", "Billing is charged at the beginning of each cycle.")}{item("security", "Is my data secure?", "Your workspace data is protected.")}</Accordion>;
+  if (variant === "Card") return <Card className="docs-accordion-card"><CardHeader><CardTitle>Subscription & billing</CardTitle><CardDescription>Common questions about your plan.</CardDescription></CardHeader><CardContent><Accordion>{item("plans", "What plans are available?", "Starter, Professional, and Enterprise plans are available.")}{item("cancel", "How do I cancel?", "You can cancel from workspace settings.")}</Accordion></CardContent></Card>;
+  if (variant === "RTL") return <div dir="rtl"><Accordion>{item("password", "كيف يمكنني إعادة تعيين كلمة المرور؟", "افتح صفحة تسجيل الدخول واختر نسيت كلمة المرور.")}{item("plan", "هل يمكنني تغيير خطة الاشتراك؟", "يمكن تغيير الخطة من إعدادات الحساب.")}</Accordion></div>;
+  return <Accordion>{item("password", "How do I reset my password?", "Click Forgot Password on the login page and follow the email link.")}{item("subscription", "Can I change my subscription plan?", "Plans can be changed from workspace settings.")}</Accordion>;
+}
+
 function AvatarPreview({ variant = "Basic" }: { variant?: string }) {
   const avatar = (label: string, size?: "sm" | "lg") => <Avatar size={size}><AvatarFallback>{label}</AvatarFallback></Avatar>;
   if (variant === "Badge") return <div className="docs-preview-row docs-preview-centered"><Avatar><AvatarFallback>GP</AvatarFallback><AvatarBadge /></Avatar><Avatar><AvatarFallback>MC</AvatarFallback><AvatarBadge className="bg-green-600" /></Avatar></div>;
@@ -92,11 +102,21 @@ function ComponentPreview({ name, variant }: { name: string; variant?: string })
   const [paletteOpen, setPaletteOpen] = useState(false);
   const [uploadFiles, setUploadFiles] = useState<UploadFile[]>([]);
   if (name === "Checkbox") return <CheckboxPreview variant={variant} />;
+  if (name === "Accordion") return <AccordionPreview variant={variant} />;
   if (name === "Avatar") return <AvatarPreview variant={variant} />;
   if (name === "Alert") return <AlertPreview variant={variant} />;
+  if (name === "Aspect Ratio" && variant === "Portrait") return <AspectRatio ratio={9 / 16}><div className="docs-preview-media">9:16 portrait media</div></AspectRatio>;
+  if (name === "Aspect Ratio" && variant === "RTL") return <div dir="rtl"><AspectRatio ratio={16 / 9}><div className="docs-preview-media">منظر طبيعي جميل</div></AspectRatio></div>;
   if (name === "Input") return <InputPreview variant={variant} />;
   if (name === "Label") return <div className="docs-preview-form"><Label htmlFor="label-preview">Project name</Label><Input id="label-preview" placeholder="Remote UI" /></div>;
-  if (name === "Breadcrumb") return <Breadcrumb items={[{ label: "Workspace", href: "#workspace" }, { label: "Projects", href: "#projects" }, { label: "Remote UI" }]} />;
+  if (name === "Breadcrumb") {
+    if (variant === "Custom separator") return <Breadcrumb items={[{ label: "Workspace", href: "#workspace" }, { label: "Projects", href: "#projects" }, { label: "Remote UI" }]} className="docs-breadcrumb-custom" />;
+    if (variant === "Dropdown") return <Breadcrumb items={[{ label: "Workspace", href: "#workspace" }, { label: "More…", href: "#more" }, { label: "Remote UI" }]} />;
+    if (variant === "Collapsed") return <Breadcrumb items={[{ label: "Workspace", href: "#workspace" }, { label: "…", href: "#more" }, { label: "Remote UI" }]} />;
+    if (variant === "Link component") return <Breadcrumb items={[{ label: <Button variant="link" className="h-auto p-0">Workspace</Button>, href: "#workspace" }, { label: "Remote UI" }]} />;
+    if (variant === "RTL") return <div dir="rtl"><Breadcrumb items={[{ label: "مساحة العمل", href: "#workspace" }, { label: "المشروع" }]} /></div>;
+    return <Breadcrumb items={[{ label: "Workspace", href: "#workspace" }, { label: "Projects", href: "#projects" }, { label: "Remote UI" }]} />;
+  };
   if (name === "Button Group") return <ButtonGroup><Button variant="outline">Previous</Button><Button variant="outline">Next</Button></ButtonGroup>;
   if (name === "Command") { const [query, setQuery] = useState(""); return <Command className="max-w-sm"><CommandInput value={query} onValueChange={setQuery} placeholder="Search commands..." /><CommandList><CommandGroup heading="Actions"><CommandItem value="new project" query={query}>New project</CommandItem><CommandItem value="open settings" query={query}>Open settings</CommandItem></CommandGroup><CommandEmpty>No matching commands.</CommandEmpty></CommandList></Command>; }
   if (name === "Calendar") return <Calendar value="2026-09-13" onChange={() => undefined} />;
@@ -170,6 +190,7 @@ function BadgePreview({ variant = "Default" }: { variant?: string }) {
 }
 
 function AlertPreview({ variant = "Basic" }: { variant?: string }) {
+  if (variant === "Custom Colors") return <Alert className="docs-alert-amber" title="Subscription expiring"><AlertDescription>Renew now to avoid service interruption.</AlertDescription></Alert>;
   if (variant === "Destructive") return <Alert variant="destructive" title="Payment failed"><AlertDescription>Your payment could not be processed. Try another card.</AlertDescription></Alert>;
   if (variant === "Action") return <Alert title="New feature available"><AlertDescription><span className="docs-alert-action-row">Scheduled reports are now available.<Button size="sm" variant="outline">Learn more</Button></span></AlertDescription></Alert>;
   if (variant === "RTL") return <Alert dir="rtl" title="تم الحفظ"><AlertDescription>تم حفظ التغييرات بنجاح.</AlertDescription></Alert>;
