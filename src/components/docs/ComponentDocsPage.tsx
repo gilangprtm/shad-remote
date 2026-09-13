@@ -1,8 +1,8 @@
 import { useEffect, useState, type ReactNode } from "react";
-import { ArrowLeft, ArrowRight, Check, Copy, Download, MoreHorizontal, Plus, Search, Settings } from "lucide-react";
+import { ArrowLeft, ArrowRight, CalendarDays, Check, CheckCircle2, Copy, Download, LockKeyhole, Mail, MoreHorizontal, Plus, Search, Settings } from "lucide-react";
 import { Badge } from "../../core/badge/Badge";
 import { Button } from "../../core/button/Button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../../core/card/Card";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../../core/card/Card";
 import { Input } from "../../core/input/Input";
 import { Label } from "../../core/label/Label";
 import { Select } from "../../core/select/Select";
@@ -90,10 +90,19 @@ function ComponentPreview({ name, variant }: { name: string; variant?: string })
   return <div className="docs-placeholder"><strong>Contract preview</strong><p>This page shows the public contract for {name}. A live preview will be added when the producer wiring is available.</p></div>;
 }
 
+function CardPreview({ variant = "Content card" }: { variant?: string }) {
+  if (variant === "Login form") return <Card className="docs-card-preview"><CardHeader><CardTitle>Login to your account</CardTitle><CardDescription>Enter your email below to login to your account.</CardDescription></CardHeader><CardContent><div className="docs-preview-form"><Label htmlFor="card-email">Email</Label><Input id="card-email" type="email" placeholder="name@example.com" /><Label htmlFor="card-password">Password</Label><Input id="card-password" type="password" placeholder="••••••••" /><Button>Login</Button></div></CardContent><CardFooter><Button variant="outline" className="w-full"><LockKeyhole />Login with Google</Button></CardFooter></Card>;
+  if (variant === "Scheduled reports") return <Card className="docs-card-preview"><CardHeader><CardTitle>Scheduled reports</CardTitle><CardDescription>Weekly snapshots. No more manual exports.</CardDescription></CardHeader><CardContent><ul className="docs-card-list"><li><CheckCircle2 />Choose a schedule.</li><li><CheckCircle2 />Send to teammates.</li><li><CheckCircle2 />Include key metrics.</li></ul></CardContent><CardFooter><Button>Set up scheduled reports</Button><Button variant="link">See what&apos;s new</Button></CardFooter></Card>;
+  if (variant === "Image") return <Card className="docs-card-preview docs-card-media"><div className="docs-card-image"><CalendarDays size={22} /><span>Q4 planning review</span></div><CardHeader><CardTitle>Project review</CardTitle><CardDescription>Updated today by the workspace team.</CardDescription></CardHeader><CardFooter><Button variant="outline">Open project</Button></CardFooter></Card>;
+  if (variant === "RTL") return <Card dir="rtl" className="docs-card-preview"><CardHeader><CardTitle>تقرير الفريق</CardTitle><CardDescription>ملخص الأداء لهذا الأسبوع.</CardDescription></CardHeader><CardContent><p className="docs-card-rtl-copy">تم تحديث البيانات منذ ساعتين.</p></CardContent><CardFooter><Button>عرض التقرير</Button></CardFooter></Card>;
+  if (variant === "Structured card") return <Card className="docs-card-preview"><CardHeader><CardTitle>Workspace settings</CardTitle><CardDescription>Manage access and notification preferences.</CardDescription></CardHeader><CardContent><div className="docs-card-setting"><span>Weekly digest</span><Switch checked onCheckedChange={() => undefined} /></div></CardContent><CardFooter><Button variant="outline">Cancel</Button><Button>Save changes</Button></CardFooter></Card>;
+  return <Card className="docs-card-preview"><CardContent><p>Use a content card to group a related piece of information without adding actions.</p></CardContent></Card>;
+}
+
 function Preview({ name, variant }: { name: string; variant?: string }) {
   const [enabled, setEnabled] = useState(true);
   if (name === "Button") return <ButtonPreview variant={variant} />;
-  if (name === "Card") return <Card><CardHeader><CardTitle>Card title</CardTitle><CardDescription>A surface for related content.</CardDescription></CardHeader><CardContent><Button size="sm">Continue</Button></CardContent></Card>;
+  if (name === "Card") return <CardPreview variant={variant} />;
   if (name === "Input") return <div className="docs-preview-form"><Label htmlFor="docs-input">Component name</Label><Input id="docs-input" placeholder="Select" /></div>;
   if (name === "Select") return <div className="docs-preview-form"><Label htmlFor="docs-select">Release channel</Label><Select id="docs-select" defaultValue="stable"><option value="stable">Stable</option><option value="canary">Canary</option></Select></div>;
   if (name === "Switch") return <div className="docs-preview-row"><Switch checked={enabled} onCheckedChange={setEnabled} /><span className="showcase-muted">{enabled ? "Enabled" : "Disabled"}</span></div>;
