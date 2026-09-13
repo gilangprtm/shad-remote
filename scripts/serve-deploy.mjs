@@ -16,7 +16,12 @@ const server = createServer((req, res) => {
   try {
     const st = statSync(file);
     if (st.isDirectory()) file = join(file, "index.html");
-  } catch {}
+  } catch {
+    if (!extname(url.pathname)) {
+      const [channel] = url.pathname.replace(/^\//, "").split("/");
+      file = join(root, channel || "v1", "index.html");
+    }
+  }
 
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "GET,OPTIONS");

@@ -22,7 +22,7 @@ function Preview({ name }: { name: string }) {
   if (name === "Select") return <div className="docs-preview-form"><Label htmlFor="docs-select">Release channel</Label><Select id="docs-select" defaultValue="stable"><option value="stable">Stable</option><option value="canary">Canary</option></Select></div>;
   if (name === "Switch") return <div className="docs-preview-row"><Switch checked={enabled} onCheckedChange={setEnabled} /><span className="showcase-muted">{enabled ? "Enabled" : "Disabled"}</span></div>;
   if (name === "Badge") return <div className="docs-preview-row"><Badge>Stable</Badge><Badge variant="secondary">Preview</Badge><Badge variant="outline">Optional</Badge><Badge variant="destructive">Deprecated</Badge></div>;
-  return <div className="docs-placeholder">Interactive preview for {name}. The example uses the public contract shown below.</div>;
+  return <div className="docs-placeholder"><strong>Contract preview</strong><p>This page shows the public contract for {name}. A live preview will be added when the producer wiring is available.</p></div>;
 }
 
 function ApiReference({ page }: { page: ReturnType<typeof getComponentDoc> }) {
@@ -37,12 +37,13 @@ export function ComponentDocsPage({ path }: { path: string }) {
     window.addEventListener("edjavu:navigate", onNavigate);
     return () => window.removeEventListener("edjavu:navigate", onNavigate);
   }, []);
-  const page = getComponentDoc(currentPath) ?? componentRegistry[0];
+  const navigate = (url: string) => { window.history.replaceState({}, "", url); window.dispatchEvent(new CustomEvent("edjavu:navigate", { detail: url })); };
+  const page = getComponentDoc(currentPath);
+  if (!page) return <article className="docs-page"><div className="docs-page-heading"><div><Badge variant="destructive">Not found</Badge><h1>Documentation not found</h1><p>No documented component matches this path.</p></div><div className="docs-heading-actions"><Button variant="outline" onClick={() => navigate("/")}>Back to overview</Button></div></div></article>;
   const index = componentRegistry.findIndex((item) => item.path === page.path);
   const previous = componentRegistry[index - 1];
   const next = componentRegistry[index + 1];
   const categoryPages = componentRegistry.filter((item) => item.group === page.group);
-  const navigate = (url: string) => { window.history.replaceState({}, "", url); window.dispatchEvent(new CustomEvent("edjavu:navigate", { detail: url })); };
   return <article className="docs-page">
     <div className="docs-page-heading"><div><Badge variant="secondary">{page.group}</Badge><h1>{page.name}</h1><p>{page.description}</p></div><div className="docs-heading-actions"><Button variant="outline" onClick={() => navigate("/")}>Back to overview</Button></div></div>
     <section className="docs-section"><h2>Preview</h2><p>Try the public behavior before adding the component to a consumer.</p><Card className="docs-demo-card"><CardContent><Preview name={page.name} /></CardContent></Card></section>

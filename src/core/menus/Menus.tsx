@@ -1,7 +1,14 @@
-import { useState, type ReactNode } from "react";
+import { cloneElement, isValidElement, useId, useState, type ReactElement, type ReactNode } from "react";
 import { cn } from "../../lib/cn";
 
-export function DropdownMenu({ trigger, children }: { trigger: ReactNode; children: ReactNode }) { const [open, setOpen] = useState(false); return <span className="relative inline-flex"><span onClick={() => setOpen(!open)}>{trigger}</span>{open && <div role="menu" className="absolute right-0 top-full z-40 mt-2 min-w-44 rounded-md border bg-popover p-1 text-popover-foreground shadow-md">{children}</div>}</span>; }
+export function DropdownMenu({ trigger, children }: { trigger: ReactNode; children: ReactNode }) {
+  const [open, setOpen] = useState(false);
+  const menuId = useId();
+  const triggerElement = isValidElement(trigger)
+    ? cloneElement(trigger as ReactElement<{ onClick?: () => void; "aria-expanded"?: boolean; "aria-controls"?: string }>, { onClick: () => setOpen((value) => !value), "aria-expanded": open, "aria-controls": menuId })
+    : <button type="button" aria-expanded={open} aria-controls={menuId} onClick={() => setOpen((value) => !value)}>{trigger}</button>;
+  return <span className="relative inline-flex">{triggerElement}{open && <div id={menuId} role="menu" className="absolute right-0 top-full z-40 mt-2 min-w-44 rounded-md border bg-popover p-1 text-popover-foreground shadow-md">{children}</div>}</span>;
+}
 export function DropdownMenuItem({ children, onSelect, disabled = false }: { children: ReactNode; onSelect?: () => void; disabled?: boolean }) { return <button type="button" role="menuitem" disabled={disabled} className="flex w-full items-center rounded-sm px-2 py-1.5 text-left text-sm hover:bg-muted disabled:pointer-events-none disabled:opacity-50" onClick={onSelect}>{children}</button>; }
 export function DropdownMenuSeparator() { return <div role="separator" className="-mx-1 my-1 h-px bg-border" />; }
 

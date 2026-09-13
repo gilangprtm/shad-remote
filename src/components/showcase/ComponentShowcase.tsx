@@ -80,7 +80,7 @@ export function ComponentShowcase() {
       </div>
 
       <div className="showcase-feature-grid">
-        <Chart definition={{ kind: "line", series: [{ key: "value", label: "Interactions" }], title: "Catalog interaction sample", description: "Sample data for validating the chart contract." }} state={chartState} />
+        <Chart definition={{ kind: "line", series: [{ key: "value", label: "Fixture interactions" }], title: "Fixture data: chart contract", description: "Fixture values used only to exercise the chart contract." }} state={chartState} />
         <Card><CardHeader><CardTitle>Date picker</CardTitle><CardDescription>Controlled date value from the host contract.</CardDescription></CardHeader><CardContent><DatePicker value={date} onChange={setDate} /></CardContent></Card>
       </div>
 
@@ -119,7 +119,7 @@ export function ComponentShowcase() {
           <Card><CardHeader><CardTitle>File contract</CardTitle><CardDescription>Selection, validation, preview surface, dan lifecycle callback.</CardDescription></CardHeader><CardContent><FileUploader files={files} accept={["image/png", "image/jpeg", "application/pdf"]} onFilesSelected={addFiles} onRemove={(id) => setFiles((current) => current.filter((file) => file.id !== id))} onRetry={() => undefined} onCancel={() => undefined} /></CardContent></Card>
         </TabsContent>
         <TabsContent value="states">
-          <Card><CardHeader><CardTitle>Loading and empty states</CardTitle><CardDescription>State harus menjelaskan kondisi dan aksi berikutnya.</CardDescription></CardHeader><CardContent><div className="showcase-state-grid"><div><p className="showcase-label">Loading</p><Skeleton className="h-4 w-40" /><Skeleton className="mt-2 h-4 w-56" /></div><div><p className="showcase-label">Empty</p><p className="showcase-muted">Belum ada komponen yang difilter.</p><Button size="sm">Reset filter</Button></div></div></CardContent></Card>
+          <Card><CardHeader><CardTitle>Loading and empty states</CardTitle><CardDescription>State harus menjelaskan kondisi dan aksi berikutnya.</CardDescription></CardHeader><CardContent><div className="showcase-state-grid"><div><p className="showcase-label">Loading</p><Skeleton className="h-4 w-40" /><Skeleton className="mt-2 h-4 w-56" /></div><div><p className="showcase-label">Empty</p><p className="showcase-muted">Belum ada komponen yang difilter.</p><Button size="sm" onClick={() => setTab("overview")}>Open overview</Button></div></div></CardContent></Card>
         </TabsContent>
       </Tabs>
       <CommandPalette commands={commands} open={commandOpen} onOpenChange={setCommandOpen} />
