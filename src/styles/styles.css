@@ -140,6 +140,10 @@
 .docs-preview-centered { justify-content: center; width: 100%; }
 .docs-preview-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 10px; width: 100%; }
 .docs-preview-copy { max-width: 520px; text-align: center; color: var(--muted-foreground); line-height: 1.55; }
+.docs-preview-media { display: grid; width: 100%; height: 100%; place-items: center; border: 1px solid var(--border); border-radius: var(--radius); background: var(--muted); color: var(--muted-foreground); font-size: 12px; }
+.docs-preview-scroll { width: min(100%, 320px); max-height: 148px; border: 1px solid var(--border); border-radius: var(--radius); padding: 8px; }
+.docs-preview-scroll .docs-preview-form { width: 100%; }
+.docs-preview-panel { display: grid; min-height: 112px; place-items: center; border: 1px solid var(--border); background: var(--muted); color: var(--muted-foreground); font-size: 12px; }
 .docs-spinner { width: 14px; height: 14px; border: 2px solid currentColor; border-right-color: transparent; border-radius: 999px; animation: docs-spin 700ms linear infinite; }
 @keyframes docs-spin { to { transform: rotate(360deg); } }
 @media (prefers-reduced-motion: reduce) { .docs-spinner { animation: none; } }
