@@ -19,11 +19,36 @@ import { Popover } from "../../core/popover/Popover";
 import { Slider } from "../../core/controls/Controls";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../../core/accordion/Accordion";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "../../core/collapsible/Collapsible";
-import { Spinner, Kbd, AspectRatio, ScrollArea, Item, Field, NativeSelect } from "../../core/misc/Misc";
+import { Spinner, Kbd, AspectRatio, ScrollArea, Field, NativeSelect } from "../../core/misc/Misc";
 import { Direction, Empty, HoverCard, Marker, Message, MessageScroller, Typography, Calendar, Toast } from "../../core/foundation/Foundation";
+import { Dialog } from "../../core/dialog/Dialog";
+import { AlertDialog, Drawer, Sheet } from "../../core/overlay/Overlay";
 import { Attachment, Bubble, Questionnaire } from "../../core/foundation/ExtendedFoundation";
 import { InputGroup, InputOTP, Carousel, Resizable } from "../../core/advanced/Advanced";
 import { DropdownMenu, DropdownMenuItem, ContextMenu, Menubar, MenubarItem, NavigationMenu, NavigationMenuLink, Combobox } from "../../core/menus/Menus";
+import { ButtonGroup, ToggleGroup, ToggleGroupItem } from "../../core/controls/Controls";
+import { Toggle } from "../../core/toggle/Toggle";
+import { Command, CommandInput, CommandList, CommandGroup, CommandItem, CommandEmpty } from "../../core/command/Command";
+import { Table, TableHeader, TableBody, TableFooter, TableRow, TableHead, TableCell, TableCaption } from "../../core/table/Table";
+import { Textarea } from "../../core/textarea/Textarea";
+import { Breadcrumb } from "../../shell/breadcrumb/Breadcrumb";
+import { Pagination } from "../../components/pagination/Pagination";
+import { DataTable } from "../../components/data-table/DataTable";
+import { Chart } from "../../components/chart/Chart";
+import { DatePicker } from "../../components/date-picker/DatePicker";
+import { DateRangePicker } from "../../components/date-picker/DateRangePicker";
+import { RadioGroup, RadioGroupItem } from "../../core/radio-group/RadioGroup";
+import { SidebarProvider, Sidebar, SidebarHeader, SidebarContent, SidebarFooter, SidebarInset } from "../../shell/sidebar/Sidebar";
+import { Item } from "../../core/misc/Misc";
+import { EventCalendar } from "../../components/calendar/EventCalendar";
+import { FilterBar } from "../../components/filter-bar/FilterBar";
+import { StatCard } from "../../components/stat-card/StatCard";
+import { EmptyState } from "../../components/empty-state/EmptyState";
+import { CommandPalette } from "../../components/command-palette/CommandPalette";
+import { FileUploader } from "../../components/file-uploader/FileUploader";
+import type { CalendarEvent } from "../../contracts/calendar";
+import type { UploadFile } from "../../contracts/files";
+import type { CommandItem as CommandDefinition } from "../../contracts/command";
 import { componentRegistry, getComponentDoc } from "./component-registry";
 
 function CodeBlock({ children }: { children: string }) {
@@ -48,9 +73,35 @@ function ButtonPreview({ variant = "All variants" }: { variant?: string }) {
 function ComponentPreview({ name, variant }: { name: string; variant?: string }) {
   const [checked, setChecked] = useState(false);
   const [tab, setTab] = useState("one");
+  const [overlayOpen, setOverlayOpen] = useState(false);
+  const [filterValue, setFilterValue] = useState("");
+  const [paletteOpen, setPaletteOpen] = useState(false);
+  const [uploadFiles, setUploadFiles] = useState<UploadFile[]>([]);
   if (name === "Checkbox") return <CheckboxPreview variant={variant} />;
   if (name === "Alert") return <AlertPreview variant={variant} />;
   if (name === "Input") return <InputPreview variant={variant} />;
+  if (name === "Label") return <div className="docs-preview-form"><Label htmlFor="label-preview">Project name</Label><Input id="label-preview" placeholder="Remote UI" /></div>;
+  if (name === "Breadcrumb") return <Breadcrumb items={[{ label: "Workspace", href: "#workspace" }, { label: "Projects", href: "#projects" }, { label: "Remote UI" }]} />;
+  if (name === "Button Group") return <ButtonGroup><Button variant="outline">Previous</Button><Button variant="outline">Next</Button></ButtonGroup>;
+  if (name === "Command") { const [query, setQuery] = useState(""); return <Command className="max-w-sm"><CommandInput value={query} onValueChange={setQuery} placeholder="Search commands..." /><CommandList><CommandGroup heading="Actions"><CommandItem value="new project" query={query}>New project</CommandItem><CommandItem value="open settings" query={query}>Open settings</CommandItem></CommandGroup><CommandEmpty>No matching commands.</CommandEmpty></CommandList></Command>; }
+  if (name === "Calendar") return <Calendar value="2026-09-13" onChange={() => undefined} />;
+  if (name === "Pagination") return <Pagination page={variant === "First page" ? 1 : 3} pageCount={10} onPageChange={() => undefined} />;
+  if (name === "Textarea") return <div className="docs-preview-form"><Label htmlFor="docs-textarea">Message</Label><Textarea id="docs-textarea" placeholder="Describe the change" rows={4} /><span className="showcase-muted">Markdown is supported.</span></div>;
+  if (name === "Toggle") return <Toggle pressed={variant === "On"} onPressedChange={() => undefined}>Bold</Toggle>;
+  if (name === "Toggle Group") return <ToggleGroup defaultValue="week"><ToggleGroupItem value="day">Day</ToggleGroupItem><ToggleGroupItem value="week">Week</ToggleGroupItem><ToggleGroupItem value="month">Month</ToggleGroupItem></ToggleGroup>;
+  if (name === "Table") return <Table><TableCaption>Recent workspace activity</TableCaption><TableHeader><TableRow><TableHead>Event</TableHead><TableHead>Status</TableHead></TableRow></TableHeader><TableBody><TableRow><TableCell>Sync completed</TableCell><TableCell>Ready</TableCell></TableRow><TableRow><TableCell>Report queued</TableCell><TableCell>Waiting</TableCell></TableRow></TableBody><TableFooter><TableRow><TableCell colSpan={2}>2 events</TableCell></TableRow></TableFooter></Table>;
+  if (name === "Data Table") return <DataTable data={[{ name: "Weekly report", status: "Ready" }, { name: "Workspace sync", status: "Running" }]} columns={[{ key: "name", header: "Job" }, { key: "status", header: "Status" }]} />;
+  if (name === "Chart") { const kind: "line" | "bar" | "area" | "pie" | "donut" = variant === "Bar" ? "bar" : variant === "Area" ? "area" : variant === "Pie" ? "pie" : variant === "Donut" ? "donut" : "line"; const definition = { kind, series: [{ key: "desktop", label: "Desktop" }, { key: "mobile", label: "Mobile" }], title: "Visitors by device", description: "Last 3 months" }; return <Chart definition={definition} state={{ status: "ready", data: [{ desktop: 7324, mobile: 6250 }, { desktop: 8110, mobile: 7250 }, { desktop: 9020, mobile: 8250 }] }} />; }
+  if (name === "Radio Group") return <RadioGroup defaultValue="pro" className="grid gap-3"><label className="flex items-start gap-3"><RadioGroupItem value="starter" /><span><strong>Starter</strong><small className="showcase-muted block">For individuals and small teams.</small></span></label><label className="flex items-start gap-3"><RadioGroupItem value="pro" /><span><strong>Pro</strong><small className="showcase-muted block">For growing businesses.</small></span></label><label className="flex items-start gap-3"><RadioGroupItem value="enterprise" disabled={variant === "Disabled"} /><span><strong>Enterprise</strong><small className="showcase-muted block">For large teams.</small></span></label></RadioGroup>;
+  if (name === "Sidebar") return <SidebarProvider open={variant !== "Collapsed"}><div className="flex min-h-48 w-full"><Sidebar><SidebarHeader><strong>Workspace</strong></SidebarHeader><SidebarContent><nav className="grid gap-1 text-sm"><a href="#overview" className="rounded px-2 py-1 hover:bg-muted">Overview</a><a href="#projects" className="rounded px-2 py-1 hover:bg-muted">Projects</a></nav></SidebarContent><SidebarFooter><span className="text-xs">Account</span></SidebarFooter></Sidebar><SidebarInset><div className="p-4 text-sm">Main content area</div></SidebarInset></div></SidebarProvider>;
+  if (name === "Date Picker") return variant === "Range" ? <DateRangePicker defaultValue={{ from: new Date("2026-01-20"), to: new Date("2026-02-09") }} onChange={() => undefined} /> : <DatePicker defaultValue={new Date("2026-09-15")} onChange={() => undefined} />;
+  if (name === "Item") return <Item><Avatar><AvatarFallback>GP</AvatarFallback></Avatar><div><strong>Workspace sync</strong><small className="showcase-muted block">Your profile has been verified.</small></div><Button size="sm" variant="outline">Open</Button></Item>;
+  if (name === "Stat Card") return <StatCard label="Published components" value="64" description="All documented and Federation-visible" />;
+  if (name === "Empty State") return <EmptyState title="No projects yet" description="Create a project to start organizing your components." action={<Button>Create project</Button>} />;
+  if (name === "Filter Bar") return <FilterBar value={filterValue} onValueChange={setFilterValue} onReset={() => setFilterValue("")} placeholder="Filter projects..." />;
+  if (name === "Command Palette") { const commands: CommandDefinition[] = [{ id: "new", label: "Create project", group: "Project", onSelect: () => undefined }, { id: "settings", label: "Open settings", group: "Workspace", onSelect: () => undefined }]; return <><Button variant="outline" onClick={() => setPaletteOpen(true)}>Open command palette</Button><CommandPalette commands={commands} open={paletteOpen} onOpenChange={setPaletteOpen} /></>; }
+  if (name === "File Uploader") { const addFiles = (selected: File[]) => setUploadFiles(selected.map((file, index) => ({ id: `${file.name}-${index}`, file, name: file.name, size: file.size, type: file.type, progress: 0, status: "queued" }))); return <FileUploader files={uploadFiles} multiple accept={["application/pdf", "image/png"]} onFilesSelected={addFiles} onRemove={(id) => setUploadFiles((items) => items.filter((item) => item.id !== id))} onRetry={() => undefined} onCancel={() => undefined} onUpload={() => undefined} />; }
+  if (name === "Event Calendar") { const events: CalendarEvent[] = [{ id: "review", title: "Project review", start: new Date("2026-09-15T10:00:00"), end: new Date("2026-09-15T11:00:00") }, { id: "sync", title: "Workspace sync", start: new Date("2026-09-18T14:00:00"), end: new Date("2026-09-18T15:00:00") }]; return <EventCalendar events={events} view={variant === "Week" ? "week" : variant === "Day" ? "day" : "month"} date={new Date("2026-09-13")} onDateChange={() => undefined} onViewChange={() => undefined} onEventClick={() => undefined} onSlotClick={() => undefined} />; }
   if (name === "Avatar") return <div className="docs-preview-row docs-preview-centered"><Avatar><AvatarFallback>GP</AvatarFallback></Avatar></div>;
   if (name === "Progress") return <div className="docs-preview-form"><Progress value={variant === "Determinate" ? 64 : 32} /><span className="showcase-muted">{variant === "Determinate" ? "64% complete" : "32% complete"}</span></div>;
   if (name === "Skeleton") return <div className="docs-preview-form"><Skeleton className={variant === "Block" ? "h-20 w-full" : "h-4 w-40"} /></div>;
@@ -87,7 +138,10 @@ function ComponentPreview({ name, variant }: { name: string; variant?: string })
   if (name === "Typography") return <Typography as={variant === "Quote" ? "blockquote" : variant === "Code" ? "code" : "h2"}>{variant === "Quote" ? "A useful quote" : variant === "Code" ? "npm run build" : "Section title"}</Typography>;
   if (name === "Toast") return <Toast title="Saved" description="Changes are live." onDismiss={() => undefined} />;
   if (name === "Resizable") return <Resizable direction={variant === "Vertical" ? "vertical" : "horizontal"}>{[<div key="a" className="docs-preview-panel">Panel A</div>, <div key="b" className="docs-preview-panel">Panel B</div>]}</Resizable>;
-  if (name === "Drawer" || name === "Sheet" || name === "Dialog" || name === "Alert Dialog") return <div className="docs-inline-dialog"><strong>{name}</strong><p>Open this surface from a consumer-owned trigger.</p><Button variant={name === "Alert Dialog" ? "destructive" : "outline"}>{name === "Alert Dialog" ? "Confirm" : "Open"}</Button></div>;
+  if (name === "Dialog") return <><Button variant="outline" onClick={() => setOverlayOpen(true)}>Open dialog</Button><Dialog open={overlayOpen} onOpenChange={setOverlayOpen} title="Project details"><p className="text-sm">Review the project configuration before continuing.</p></Dialog></>;
+  if (name === "Alert Dialog") return <><Button variant="destructive" onClick={() => setOverlayOpen(true)}>Delete project</Button><AlertDialog open={overlayOpen} onOpenChange={setOverlayOpen} title="Delete project" description="This action cannot be undone." confirmLabel="Delete" /></>;
+  if (name === "Drawer") return <><Button variant="outline" onClick={() => setOverlayOpen(true)}>Open drawer</Button><Drawer open={overlayOpen} onOpenChange={setOverlayOpen} title="Filters"><div className="grid gap-3 text-sm"><strong>Filter projects</strong><label><input type="checkbox" /> Active only</label><Button onClick={() => setOverlayOpen(false)}>Apply filters</Button></div></Drawer></>;
+  if (name === "Sheet") return <><Button variant="outline" onClick={() => setOverlayOpen(true)}>Open sheet</Button><Sheet open={overlayOpen} onOpenChange={setOverlayOpen} title="Settings"><div className="grid gap-3 text-sm"><strong>Workspace settings</strong><p>Manage notifications and access.</p><Button onClick={() => setOverlayOpen(false)}>Save changes</Button></div></Sheet></>;
   return <div className="docs-placeholder"><strong>Contract preview</strong><p>This page shows the public contract for {name}. A live preview will be added when the producer wiring is available.</p></div>;
 }
 
