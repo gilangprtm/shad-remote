@@ -1,0 +1,460 @@
+{
+  "generatedAt": "2026-09-13T04:55:06.689Z",
+  "upstreamCount": 64,
+  "counts": {
+    "documented": 28,
+    "runtime-only": 33,
+    "source-only": 0,
+    "missing": 3
+  },
+  "rows": [
+    {
+      "name": "Accordion",
+      "source": true,
+      "federation": true,
+      "docs": true,
+      "status": "documented"
+    },
+    {
+      "name": "Alert",
+      "source": true,
+      "federation": true,
+      "docs": true,
+      "status": "documented"
+    },
+    {
+      "name": "Alert Dialog",
+      "source": true,
+      "federation": true,
+      "docs": false,
+      "status": "runtime-only"
+    },
+    {
+      "name": "Aspect Ratio",
+      "source": true,
+      "federation": true,
+      "docs": false,
+      "status": "runtime-only"
+    },
+    {
+      "name": "Attachment",
+      "source": false,
+      "federation": false,
+      "docs": false,
+      "status": "missing"
+    },
+    {
+      "name": "Avatar",
+      "source": true,
+      "federation": true,
+      "docs": true,
+      "status": "documented"
+    },
+    {
+      "name": "Badge",
+      "source": true,
+      "federation": true,
+      "docs": true,
+      "status": "documented"
+    },
+    {
+      "name": "Breadcrumb",
+      "source": true,
+      "federation": true,
+      "docs": true,
+      "status": "documented"
+    },
+    {
+      "name": "Bubble",
+      "source": false,
+      "federation": false,
+      "docs": false,
+      "status": "missing"
+    },
+    {
+      "name": "Button",
+      "source": true,
+      "federation": true,
+      "docs": true,
+      "status": "documented"
+    },
+    {
+      "name": "Button Group",
+      "source": true,
+      "federation": true,
+      "docs": true,
+      "status": "documented"
+    },
+    {
+      "name": "Calendar",
+      "source": true,
+      "federation": true,
+      "docs": false,
+      "status": "runtime-only"
+    },
+    {
+      "name": "Card",
+      "source": true,
+      "federation": true,
+      "docs": true,
+      "status": "documented"
+    },
+    {
+      "name": "Carousel",
+      "source": true,
+      "federation": true,
+      "docs": false,
+      "status": "runtime-only"
+    },
+    {
+      "name": "Chart",
+      "source": true,
+      "federation": true,
+      "docs": true,
+      "status": "documented"
+    },
+    {
+      "name": "Checkbox",
+      "source": true,
+      "federation": true,
+      "docs": true,
+      "status": "documented"
+    },
+    {
+      "name": "Collapsible",
+      "source": true,
+      "federation": true,
+      "docs": false,
+      "status": "runtime-only"
+    },
+    {
+      "name": "Combobox",
+      "source": true,
+      "federation": true,
+      "docs": false,
+      "status": "runtime-only"
+    },
+    {
+      "name": "Command",
+      "source": true,
+      "federation": true,
+      "docs": true,
+      "status": "documented"
+    },
+    {
+      "name": "Context Menu",
+      "source": true,
+      "federation": true,
+      "docs": false,
+      "status": "runtime-only"
+    },
+    {
+      "name": "Data Table",
+      "source": true,
+      "federation": true,
+      "docs": true,
+      "status": "documented"
+    },
+    {
+      "name": "Date Picker",
+      "source": true,
+      "federation": true,
+      "docs": true,
+      "status": "documented"
+    },
+    {
+      "name": "Dialog",
+      "source": true,
+      "federation": true,
+      "docs": false,
+      "status": "runtime-only"
+    },
+    {
+      "name": "Direction",
+      "source": true,
+      "federation": true,
+      "docs": false,
+      "status": "runtime-only"
+    },
+    {
+      "name": "Drawer",
+      "source": true,
+      "federation": true,
+      "docs": false,
+      "status": "runtime-only"
+    },
+    {
+      "name": "Dropdown Menu",
+      "source": true,
+      "federation": true,
+      "docs": false,
+      "status": "runtime-only"
+    },
+    {
+      "name": "Empty",
+      "source": true,
+      "federation": true,
+      "docs": false,
+      "status": "runtime-only"
+    },
+    {
+      "name": "Field",
+      "source": true,
+      "federation": true,
+      "docs": false,
+      "status": "runtime-only"
+    },
+    {
+      "name": "Hover Card",
+      "source": true,
+      "federation": true,
+      "docs": false,
+      "status": "runtime-only"
+    },
+    {
+      "name": "Input",
+      "source": true,
+      "federation": true,
+      "docs": true,
+      "status": "documented"
+    },
+    {
+      "name": "Input Group",
+      "source": true,
+      "federation": true,
+      "docs": false,
+      "status": "runtime-only"
+    },
+    {
+      "name": "Input OTP",
+      "source": true,
+      "federation": true,
+      "docs": false,
+      "status": "runtime-only"
+    },
+    {
+      "name": "Item",
+      "source": true,
+      "federation": true,
+      "docs": false,
+      "status": "runtime-only"
+    },
+    {
+      "name": "Kbd",
+      "source": true,
+      "federation": true,
+      "docs": false,
+      "status": "runtime-only"
+    },
+    {
+      "name": "Label",
+      "source": true,
+      "federation": true,
+      "docs": true,
+      "status": "documented"
+    },
+    {
+      "name": "Marker",
+      "source": true,
+      "federation": true,
+      "docs": false,
+      "status": "runtime-only"
+    },
+    {
+      "name": "Menubar",
+      "source": true,
+      "federation": true,
+      "docs": false,
+      "status": "runtime-only"
+    },
+    {
+      "name": "Message",
+      "source": true,
+      "federation": true,
+      "docs": false,
+      "status": "runtime-only"
+    },
+    {
+      "name": "Message Scroller",
+      "source": true,
+      "federation": true,
+      "docs": false,
+      "status": "runtime-only"
+    },
+    {
+      "name": "Native Select",
+      "source": true,
+      "federation": true,
+      "docs": false,
+      "status": "runtime-only"
+    },
+    {
+      "name": "Navigation Menu",
+      "source": true,
+      "federation": true,
+      "docs": false,
+      "status": "runtime-only"
+    },
+    {
+      "name": "Pagination",
+      "source": true,
+      "federation": true,
+      "docs": false,
+      "status": "runtime-only"
+    },
+    {
+      "name": "Popover",
+      "source": true,
+      "federation": true,
+      "docs": true,
+      "status": "documented"
+    },
+    {
+      "name": "Progress",
+      "source": true,
+      "federation": true,
+      "docs": true,
+      "status": "documented"
+    },
+    {
+      "name": "Questionnaire",
+      "source": false,
+      "federation": false,
+      "docs": false,
+      "status": "missing"
+    },
+    {
+      "name": "Radio Group",
+      "source": true,
+      "federation": true,
+      "docs": false,
+      "status": "runtime-only"
+    },
+    {
+      "name": "Resizable",
+      "source": true,
+      "federation": true,
+      "docs": false,
+      "status": "runtime-only"
+    },
+    {
+      "name": "Scroll Area",
+      "source": true,
+      "federation": true,
+      "docs": false,
+      "status": "runtime-only"
+    },
+    {
+      "name": "Select",
+      "source": true,
+      "federation": true,
+      "docs": true,
+      "status": "documented"
+    },
+    {
+      "name": "Separator",
+      "source": true,
+      "federation": true,
+      "docs": true,
+      "status": "documented"
+    },
+    {
+      "name": "Sheet",
+      "source": true,
+      "federation": true,
+      "docs": false,
+      "status": "runtime-only"
+    },
+    {
+      "name": "Sidebar",
+      "source": true,
+      "federation": true,
+      "docs": true,
+      "status": "documented"
+    },
+    {
+      "name": "Skeleton",
+      "source": true,
+      "federation": true,
+      "docs": true,
+      "status": "documented"
+    },
+    {
+      "name": "Slider",
+      "source": true,
+      "federation": true,
+      "docs": true,
+      "status": "documented"
+    },
+    {
+      "name": "Spinner",
+      "source": true,
+      "federation": true,
+      "docs": false,
+      "status": "runtime-only"
+    },
+    {
+      "name": "Switch",
+      "source": true,
+      "federation": true,
+      "docs": true,
+      "status": "documented"
+    },
+    {
+      "name": "Table",
+      "source": true,
+      "federation": true,
+      "docs": true,
+      "status": "documented"
+    },
+    {
+      "name": "Tabs",
+      "source": true,
+      "federation": true,
+      "docs": true,
+      "status": "documented"
+    },
+    {
+      "name": "Textarea",
+      "source": true,
+      "federation": true,
+      "docs": true,
+      "status": "documented"
+    },
+    {
+      "name": "Toast",
+      "source": true,
+      "federation": true,
+      "docs": false,
+      "status": "runtime-only"
+    },
+    {
+      "name": "Toggle",
+      "source": true,
+      "federation": true,
+      "docs": false,
+      "status": "runtime-only"
+    },
+    {
+      "name": "Toggle Group",
+      "source": true,
+      "federation": true,
+      "docs": true,
+      "status": "documented"
+    },
+    {
+      "name": "Tooltip",
+      "source": true,
+      "federation": true,
+      "docs": true,
+      "status": "documented"
+    },
+    {
+      "name": "Typography",
+      "source": true,
+      "federation": true,
+      "docs": false,
+      "status": "runtime-only"
+    }
+  ]
+}
