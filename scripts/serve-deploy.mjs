@@ -13,15 +13,17 @@ const server = createServer((req, res) => {
   let file = normalize(join(root, url.pathname.replace(/^\//, "")));
   if (!file.startsWith(root)) { res.writeHead(403); res.end("forbidden"); return; }
 
+  const channel = url.pathname.match(/^\/(v1|canary)(?:\/|$)/)?.[1];
+  const isApplicationRoute = url.pathname === "/" || !extname(url.pathname);
+
   try {
     const st = statSync(file);
-    if (st.isDirectory()) file = join(file, "index.html");
+    if (st.isDirectory()) file = join(root, channel ?? "v1", "index.html");
   } catch {
-    if (!extname(url.pathname)) {
-      const [channel] = url.pathname.replace(/^\//, "").split("/");
-      file = join(root, channel || "v1", "index.html");
-    }
+    if (isApplicationRoute) file = join(root, channel ?? "v1", "index.html");
   }
+
+  if (url.pathname === "/") file = join(root, "v1", "index.html");
 
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "GET,OPTIONS");
